@@ -22,9 +22,9 @@ export default function createRoutes(store) {
       name: 'home',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          import('containers/HomePage/reducer'),
-          import('containers/HomePage/sagas'),
-          import('containers/HomePage'),
+          System.import('containers/HomePage/reducer'),
+          System.import('containers/HomePage/sagas'),
+          System.import('containers/HomePage'),
         ]);
 
         const renderRoute = loadModule(cb);
@@ -42,7 +42,7 @@ export default function createRoutes(store) {
       path: '/features',
       name: 'features',
       getComponent(nextState, cb) {
-        import('containers/FeaturePage')
+        System.import('containers/FeaturePage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
@@ -50,7 +50,7 @@ export default function createRoutes(store) {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
-        import('containers/NotFoundPage')
+        System.import('containers/NotFoundPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
