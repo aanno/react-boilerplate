@@ -25,7 +25,7 @@ const plugins = [
   }),
 ];
 
-module.exports = require('./webpack.base.babel')({
+module.exports = require('./webpack.base.ts.js')({
   // Add hot reloading in development
   entry: [
     'eventsource-polyfill', // Necessary for hot reloading with IE
