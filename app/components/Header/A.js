@@ -1,4 +1,4 @@
-import * as styled from 'styled-components';
+import styled from 'styled-components';
 
 import NormalA from 'components/A/index.js';
 

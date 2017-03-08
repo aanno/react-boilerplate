@@ -8,7 +8,7 @@
 
 import * as React from 'react';
 import * as Helmet from 'react-helmet';
-import * as styled from 'styled-components';
+import styled from 'styled-components';
 
 import Header from '../../components/Header/index.js';
 import Footer from '../../components/Footer/index.js';
