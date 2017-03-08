@@ -4,7 +4,7 @@
 *
 */
 
-import React from 'react';
+import * as React from 'react';
 import { injectIntl, intlShape } from 'react-intl';
 
 const ToggleOption = ({ value, message, intl }) => (

@@ -2,7 +2,7 @@
  * Testing the NotFoundPage
  */
 
-import React from 'react';
+import * as React from 'react';
 import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
 

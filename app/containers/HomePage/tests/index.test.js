@@ -2,7 +2,7 @@
  * Test the HomePage
  */
 
-import React from 'react';
+import * as React from 'react';
 import { shallow, mount } from 'enzyme';
 import { IntlProvider } from 'react-intl';
 
