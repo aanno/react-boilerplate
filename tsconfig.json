@@ -47,9 +47,9 @@
 	"lib": [
 	  "DOM",
 	  "ES2016",
-	  "ScriptHost",
-	  "DOM.Iterable",
-	  "WebWorker"
+	  "ScriptHost"
+	  // "DOM.Iterable",
+	  // "WebWorker"
 	]
   },
   "include": [
