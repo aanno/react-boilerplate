@@ -27,7 +27,7 @@
     "start": "cross-env NODE_ENV=development ts-node server/index.js",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true ts-node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
-    "start:prod": "cross-env NODE_ENV=production ts-node server",
+    "start:prod": "cross-env NODE_ENV=production ts-node server/index.js",
     "presetup": "npm i chalk shelljs",
     "setup": "ts-node ./internals/scripts/set---up.js",
     "postsetup": "npm run build:dll",
