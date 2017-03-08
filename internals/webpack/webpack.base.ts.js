@@ -15,8 +15,13 @@ module.exports = (options) => ({
     loaders: [{
       test: /\.(jsx?|tsx?)$/i, // Transform all .js files required somewhere with Babel
       loader: 'awesome-typescript-loader',
+      // loader: 'ts-loader',
+      include: /app/,
       exclude: /node_modules/,
       // query: options.babelQuery,
+      query: {
+        declaration: false,
+      },
     }, {
       // Do not transform vendor's CSS with CSS-modules
       // The point is that they remain in global scope.

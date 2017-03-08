@@ -40,6 +40,8 @@
 	"pretty": true,
 	"diagnostics": true,
 	"listFiles": true,
+	"declaration": false,
+	// "declarationDir": "target/typings",
 	// This will influence only the type _declarations_, you still need the polyfill! (tp)
 	// see http://stackoverflow.com/questions/42093758/need-clarification-of-the-target-and-lib-compiler-options
 	"lib": [
