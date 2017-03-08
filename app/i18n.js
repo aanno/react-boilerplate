@@ -6,8 +6,8 @@
  */
 import * as log from 'loglevel';
 import { addLocaleData } from 'react-intl';
-import enLocaleData from 'react-intl/locale-data/en';
-import deLocaleData from 'react-intl/locale-data/de';
+import * as enLocaleData from 'react-intl/locale-data/en';
+import * as deLocaleData from 'react-intl/locale-data/de';
 
 import { DEFAULT_LOCALE } from '../app/containers/App/constants';
 

@@ -8,7 +8,7 @@
 	// is a solution to support https://github.com/systemjs/systemjs
 	// BUT it seems to be unneeded
 	"module": "commonjs",
-	"target": "es5",
+	"target": "es6",
 	"jsx": "react",
 	"moduleResolution": "node",
 	"allowJs": true,
