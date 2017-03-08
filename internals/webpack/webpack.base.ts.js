@@ -12,16 +12,23 @@ module.exports = (options) => ({
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
   module: {
-    loaders: [{
+    rules: [{
       test: /\.(jsx?|tsx?)$/i, // Transform all .js files required somewhere with Babel
-      loader: 'awesome-typescript-loader',
+      use: [
+        {
+          loader: 'awesome-typescript-loader',
+          query: {
+            declaration: false,
+          },
+        },
+        {
+          loader: 'babel-loader',
+          query: options.babelQuery,
+        },
+      ],
       // loader: 'ts-loader',
       include: /app/,
       exclude: /node_modules/,
-      // query: options.babelQuery,
-      query: {
-        declaration: false,
-      },
     }, {
       // Do not transform vendor's CSS with CSS-modules
       // The point is that they remain in global scope.
