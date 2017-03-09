@@ -6,13 +6,13 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import React from 'react';
-import Helmet from 'react-helmet';
+import * as React from 'react';
+import * as Helmet from 'react-helmet';
 import styled from 'styled-components';
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import withProgressBar from 'components/ProgressBar';
+import Header from '../../components/Header/index.js';
+import Footer from '../../components/Footer/index.js';
+import withProgressBar from '../../components/ProgressBar/index.js';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);

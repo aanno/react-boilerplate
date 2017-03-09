@@ -1,0 +1,121 @@
+// https://www.npmjs.com/package/tslint
+{
+  /*
+   * Possible values:
+   * - the name of a built-in config
+   * - the name of an NPM module which has a "main" file that exports a config object
+   * - a relative path to a JSON file
+   */
+  "extends": "tslint:latest",
+  "linterOptions": {
+	// Does not work, see https://github.com/palantir/tslint#type-checking
+	// and https://github.com/palantir/tslint/issues/1445
+	"typeCheck": true
+  },
+  "rules": {
+	/*
+	 * Any rules specified here will override those from the base config we are extending
+	 */
+	// "no-constructor-vars": true
+	"semicolon": false,
+	"quotemark": "'",
+	"indent": [
+	  true,
+	  "spaces"
+	],
+	"member-access": false,
+	"member-ordering": [
+	  true,
+	  "public-before-private",
+	  "static-before-instance",
+	  "variables-before-functions"
+	],
+	"object-literal-sort-keys": false,
+	"object-literal-shorthand": false,
+	"no-require-imports": true,
+	"no-var-requires": true,
+	"no-consecutive-blank-lines": true,
+	"eofline": true,
+	"linebreak-style": [
+	  true,
+	  "LF"
+	],
+	"whitespace": true,
+	"no-trailing-whitespace": true,
+	"typedef-whitespace": true,
+	"trailing-comma": [
+	  true,
+	  {
+		"multiline": "always",
+		"singleline": "never"
+	  }
+	],
+	"interface-name": true,
+	"class-name": true,
+	"new-parens": true,
+	"label-position": true,
+	// old
+	// "label-undefined": true,
+	"no-console": true,
+	"no-debugger": true,
+	"no-empty": true,
+	"no-invalid-this": true,
+	"no-unsafe-finally": true,
+	// old
+	// "no-unreachable": true,
+	"no-shadowed-variable": true,
+	"no-null-keyword": true,
+	"no-duplicate-variable": true,
+	// old
+	// "no-duplicate-key": true,
+	"no-eval": true,
+	"no-construct": true,
+	"no-unused-new": true,
+	"no-unused-expression": true,
+	// ?! compiler option
+	// "no-unused-parameters": true,
+	// ?! compiler option
+	// "no-unused-locals": true,
+	// old
+	// "no-unused-variable": true,
+	"no-use-before-declare": true,
+	"no-var-keyword": true,
+	// "only-arrow-functions": false,
+
+	"no-switch-case-fall-through": true,
+	"triple-equals": [
+	  true,
+	  "allow-null-check"
+	],
+	// old
+	// "use-strict": [ true, "check-function", "check-module" ],
+	// old
+	// "import-destructuring-spacing": true,
+	"variable-name": [
+	  true,
+	  "check-format",
+	  "allow-leading-underscore",
+	  "ban-keywords"
+	],
+	"one-line": [
+	  true,
+	  "check-open-brace",
+	  "check-catch",
+	  "check-else",
+	  "check-finally",
+	  "check-whitespace"
+	],
+	"jsdoc-format": true,
+	"comment-format": [
+	  true,
+	  "check-space"
+	]
+  },
+  "rulesDirectory": [
+	/*
+	 * A list of relative or absolute paths to directories that contain custom rules.
+	 * See the Custom Rules documentation below for more details.
+	 */
+	// "node_modules/codelyzer"
+  ]
+}

@@ -4,8 +4,8 @@
  *
  * Renders an image, enforcing the usage of the alt="" tag
  */
-
-import React, { PropTypes } from 'react';
+import * as React from 'react';
+import { PropTypes } from 'react';
 
 function Img(props) {
   return (

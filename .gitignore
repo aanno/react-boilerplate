@@ -8,3 +8,6 @@ stats.json
 .DS_Store
 npm-debug.log
 .idea
+/.git.gone
+/.git.backup
+/*.iml

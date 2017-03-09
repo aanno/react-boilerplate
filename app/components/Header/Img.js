@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import NormalImg from 'components/Img';
+import NormalImg from 'components/Img/index.js';
 
 const Img = styled(NormalImg)`
   width: 100%;

@@ -1,5 +1,12 @@
 <img src="https://raw.githubusercontent.com/react-boilerplate/react-boilerplate-brand/master/assets/banner-metal-optimized.jpg" alt="react boilerplate banner" align="center" />
 
+## Changes in this fork
+
+* Using TypeScript
+* Minimal changes wrt [react-boilerplate/react-boilerplate](https://github.com/react-boilerplate/react-boilerplate)
+
+## Original README
+
 <br />
 
 <div align="center"><strong>Start your next react project in seconds</strong></div>

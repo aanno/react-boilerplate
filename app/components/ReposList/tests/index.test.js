@@ -1,5 +1,5 @@
 import { shallow, mount } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import { IntlProvider } from 'react-intl';
 
 import RepoListItem from 'containers/RepoListItem';
