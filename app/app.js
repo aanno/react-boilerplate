@@ -11,6 +11,7 @@ import 'babel-polyfill';
 // Import all the third party stuff
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import * as log from 'loglevel';
 import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -55,6 +56,8 @@ openSansObserver.load().then(() => {
 }, () => {
   document.body.classList.remove('fontLoaded');
 });
+
+log.setLevel('debug');
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as log from 'loglevel';
 import { FormattedMessage } from 'react-intl';
 
 import A from './A';
@@ -9,6 +10,8 @@ import Banner from './banner.jpg';
 import messages from './messages';
 
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  // TODO (tp):
+  // log.info('Header: Banner is', Banner);
   render() {
     return (
       <div>
