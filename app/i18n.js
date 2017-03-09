@@ -11,8 +11,8 @@ import * as deLocaleData from 'react-intl/locale-data/de';
 
 import { DEFAULT_LOCALE } from '../app/containers/App/constants';
 
-import enTranslationMessages from './translations/en.json';
-import deTranslationMessages from './translations/de.json';
+import * as enTranslationMessages from './translations/en.json';
+import * as deTranslationMessages from './translations/de.json';
 
 addLocaleData(enLocaleData);
 addLocaleData(deLocaleData);
@@ -24,8 +24,7 @@ export const appLocales = [
 
 export const formatTranslationMessages = (locale, messages) => {
   log.info("formatTranslationMessages", locale, messages)
-  return {}
-  /* TODO (tp):
+  console.log("formatTranslationMessages", locale, messages)
   const defaultFormattedMessages = locale !== DEFAULT_LOCALE
     ? formatTranslationMessages(DEFAULT_LOCALE, enTranslationMessages)
     : {};
@@ -35,7 +34,6 @@ export const formatTranslationMessages = (locale, messages) => {
       : messages[key];
     return Object.assign(formattedMessages, { [key]: formattedMessage });
   }, {});
-  */
 };
 
 export const translationMessages = {
