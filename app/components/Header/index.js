@@ -15,6 +15,7 @@ const Banner = require('./banner.jpg')
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
+
     log.debug('Header: Banner is', Banner);
     return (
       <div>

@@ -5,31 +5,45 @@
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = (options) => ({
+const jsLoader = (options) => {
+  const result = {
+    test: /\.(jsx?|tsx?)$/i, // Transform all .js files required somewhere with Babel
+    use: [
+      {
+        loader: 'awesome-typescript-loader',
+        query: {
+          declaration: false,
+        },
+      },
+      {
+        loader: 'babel-loader',
+        query: options.babelQuery,
+      },
+    ],
+    // loader: 'ts-loader',
+    include: /app/,
+    exclude: /node_modules/,
+  };
+  if (options.reactHotLoader) {
+    result.use.unshift({
+      loader: 'react-hot-loader/webpack',
+    })
+  }
+  console.log('jsLoader', JSON.stringify(result, null, 2))
+  return result;
+};
+
+
+const config = (options) => ({
   entry: options.entry,
   output: Object.assign({ // Compile into js/build.js
     path: path.resolve(process.cwd(), 'build'),
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
   module: {
-    rules: [{
-      test: /\.(jsx?|tsx?)$/i, // Transform all .js files required somewhere with Babel
-      use: [
-        {
-          loader: 'awesome-typescript-loader',
-          query: {
-            declaration: false,
-          },
-        },
-        {
-          loader: 'babel-loader',
-          query: options.babelQuery,
-        },
-      ],
-      // loader: 'ts-loader',
-      include: /app/,
-      exclude: /node_modules/,
-    }, {
+    rules: [
+    jsLoader(options),
+    {
       // Do not transform vendor's CSS with CSS-modules
       // The point is that they remain in global scope.
       // Since we require these CSS files in our JS or CSS files,
@@ -107,3 +121,5 @@ module.exports = (options) => ({
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},
 });
+
+module.exports = config;

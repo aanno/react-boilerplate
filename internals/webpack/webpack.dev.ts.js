@@ -12,6 +12,15 @@ const cheerio = require('cheerio');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const dllPlugin = pkg.dllPlugin;
 
+/**
+ * Hot reload:
+ * http://gaearon.github.io/react-hot-loader/getstarted/
+ * https://github.com/gaearon/react-hot-boilerplate
+ * https://github.com/BrowserSync/recipes/tree/master/recipes/webpack.react-hot-loader
+ * http://andrewhfarmer.com/3-ways-webpack-hmr/
+ * https://github.com/gaearon/react-hot-boilerplate/pull/61
+ */
+
 const plugins = [
   new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
   // prints more readable module names in the browser console on HMR updates
@@ -67,6 +76,7 @@ module.exports = require('./webpack.base.ts.js')({
   performance: {
     hints: false,
   },
+  reactHotLoader: true,
 });
 
 /**
