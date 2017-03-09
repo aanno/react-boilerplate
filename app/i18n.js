@@ -24,6 +24,8 @@ export const appLocales = [
 
 export const formatTranslationMessages = (locale, messages) => {
   log.info("formatTranslationMessages", locale, messages)
+  return {}
+  /* TODO (tp):
   const defaultFormattedMessages = locale !== DEFAULT_LOCALE
     ? formatTranslationMessages(DEFAULT_LOCALE, enTranslationMessages)
     : {};
@@ -33,6 +35,7 @@ export const formatTranslationMessages = (locale, messages) => {
       : messages[key];
     return Object.assign(formattedMessages, { [key]: formattedMessage });
   }, {});
+  */
 };
 
 export const translationMessages = {
