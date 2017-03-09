@@ -11,7 +11,7 @@
  * the linting exception.
  */
 
-import React from 'react';
+import * as React from 'react';
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
