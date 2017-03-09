@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { PropTypes } from 'react';
 
 import List from 'components/List';
