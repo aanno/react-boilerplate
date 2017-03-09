@@ -4,7 +4,7 @@
  * List all the features
  */
 import * as React from 'react';
-import Helmet from 'react-helmet';
+import * as Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 
 import H1 from 'components/H1';

@@ -5,7 +5,7 @@
  */
 
 import * as React from 'react';
-import Helmet from 'react-helmet';
+import * as Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
