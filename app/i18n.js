@@ -23,7 +23,7 @@ export const appLocales = [
 ];
 
 export const formatTranslationMessages = (locale, messages) => {
-  log.info("formatTranslationMessages", locale, messages)
+  log.debug("formatTranslationMessages", locale, messages)
   console.log("formatTranslationMessages", locale, messages)
   const defaultFormattedMessages = locale !== DEFAULT_LOCALE
     ? formatTranslationMessages(DEFAULT_LOCALE, enTranslationMessages)
