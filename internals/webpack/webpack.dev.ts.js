@@ -39,7 +39,7 @@ const plugins = [
   }),
 ];
 
-module.exports = require('./webpack.base.ts.js')({
+const config = require('./webpack.base.ts.js')({
   // Add hot reloading in development
   entry: [
     'eventsource-polyfill', // Necessary for hot reloading with IE
@@ -78,6 +78,10 @@ module.exports = require('./webpack.base.ts.js')({
   },
   reactHotLoader: true,
 });
+
+// git console.log('webpack.dev.ts.js:\n', JSON.stringify(config, null, 2));
+
+module.exports = config;
 
 /**
  * Select which plugins to use to optimize the bundle's handling of
