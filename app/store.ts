@@ -7,6 +7,8 @@ import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
+import {Store} from "react-redux";
+import {IMyStore, IStoreState} from "../custom-typings/custom-typings";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -32,11 +34,13 @@ export default function configureStore(initialState = {}, history) {
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
   /* eslint-enable */
 
-  const store = createStore(
+  const realStore: Store<IStoreState> = createStore<IStoreState>(
     createReducer(),
     fromJS(initialState),
     composeEnhancers(...enhancers)
   );
+
+  const store: IMyStore = realStore as IMyStore;
 
   // Extensions
   store.runSaga = sagaMiddleware.run;

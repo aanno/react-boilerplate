@@ -53,7 +53,8 @@
 	]
   },
   "include": [
-	"app/**/*"
+	"app/**/*",
+  "custom-typings/**/*"
   ],
   "exclude": [
 	"node_modules",

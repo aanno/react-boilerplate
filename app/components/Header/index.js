@@ -16,8 +16,6 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
 
   render() {
     log.debug('Header: Banner is', Banner);
-
-
     return (
       <div>
         <A href="https://twitter.com/mxstbr">
