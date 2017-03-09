@@ -20,7 +20,7 @@ export default function createRoutes(store) {
     {
       path: '/',
       name: 'home',
-      getComponent(nextState, cb) {
+      getComponent(_, cb) {
         const importModules = Promise.all([
           System.import('containers/HomePage/reducer'),
           System.import('containers/HomePage/sagas'),
@@ -41,7 +41,7 @@ export default function createRoutes(store) {
     }, {
       path: '/features',
       name: 'features',
-      getComponent(nextState, cb) {
+      getComponent(_, cb) {
         System.import('containers/FeaturePage')
           .then(loadModule(cb))
           .catch(errorLoading);
@@ -49,7 +49,7 @@ export default function createRoutes(store) {
     }, {
       path: '*',
       name: 'notfound',
-      getComponent(nextState, cb) {
+      getComponent(_, cb) {
         System.import('containers/NotFoundPage')
           .then(loadModule(cb))
           .catch(errorLoading);

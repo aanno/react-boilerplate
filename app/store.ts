@@ -35,7 +35,7 @@ export default function configureStore(initialState = {}, history) {
   /* eslint-enable */
 
   const realStore: Store<IStoreState> = createStore<IStoreState>(
-    createReducer(),
+    createReducer({/*asyncReducer*/}),
     fromJS(initialState),
     composeEnhancers(...enhancers)
   );

@@ -12,11 +12,11 @@ import {AppContainer} from "react-hot-loader";
 import "react-hot-loader/patch";
 import "sanitize.css/sanitize.css";
 // Import root app
-import App from "containers/App/index.js";
+import App from "./containers/App/index.js";
 // Import selector for `syncHistoryWithStore`
-import {makeSelectLocationState} from "containers/App/selectors";
+import {makeSelectLocationState} from "./containers/App/selectors.js";
 // Import Language Provider
-import LanguageProvider from "containers/LanguageProvider/index.js";
+import LanguageProvider from "./containers/LanguageProvider/index.js";
 import "!file-loader?name=[name].[ext]!./favicon.ico";
 import "!file-loader?name=[name].[ext]!./manifest.json";
 import "file-loader?name=[name].[ext]!./.htaccess";
