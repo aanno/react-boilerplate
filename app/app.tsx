@@ -16,7 +16,7 @@ import App from "./containers/App/index";
 // Import selector for `syncHistoryWithStore`
 import {makeSelectLocationState} from "./containers/App/selectors";
 // Import Language Provider
-import LanguageProvider from "./containers/LanguageProvider/index.js";
+import LanguageProvider from "./containers/LanguageProvider";
 import "!file-loader?name=[name].[ext]!./favicon.ico";
 import "!file-loader?name=[name].[ext]!./manifest.json";
 import "file-loader?name=[name].[ext]!./.htaccess";

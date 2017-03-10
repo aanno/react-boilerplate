@@ -10,9 +10,9 @@ import * as React from 'react';
 import * as Helmet from 'react-helmet';
 import styled from 'styled-components';
 
-import HeaderJS from '../../components/Header/index.js';
-import Footer from '../../components/Footer/index.js';
-import withProgressBar from '../../components/ProgressBar/index.js';
+import HeaderJS from '../../components/Header';
+import Footer from '../../components/Footer';
+import withProgressBar from '../../components/ProgressBar';
 import {ITrivialReactComponentConstructor} from "../../../custom-typings/custom-typings";
 
 const Header = HeaderJS as any;
