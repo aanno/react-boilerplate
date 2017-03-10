@@ -22,9 +22,16 @@ import messages from './messages';
 import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
+import {IReactMinimalProps} from "../../../custom-typings/custom-typings";
 
-interface IHomepage {
+interface IHomepage extends IReactMinimalProps {
   error: boolean,
+  loading: boolean,
+  repos: any[],
+  username: string | undefined,
+
+  onChangeUserName: (Event) => void,
+  onSubmitForm: (Event) => void,
 }
 
 export class HomePage extends React.PureComponent<IHomepage, {}> { // eslint-disable-line react/prefer-stateless-function
