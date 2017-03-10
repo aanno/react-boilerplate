@@ -30,8 +30,8 @@ interface IHomepage extends IReactMinimalProps {
   repos: any[],
   username: string | undefined,
 
-  onChangeUserName: (Event) => void,
-  onSubmitForm: (Event) => void,
+  onChangeUsername: (Event) => void,
+  onSubmitForm: () => void,
 }
 
 export class HomePage extends React.PureComponent<IHomepage, {}> { // eslint-disable-line react/prefer-stateless-function

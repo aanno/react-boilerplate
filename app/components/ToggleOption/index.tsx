@@ -6,9 +6,9 @@
 
 import * as React from 'react';
 import { injectIntl, intlShape } from 'react-intl';
-import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
+import {IReactNodeWithPropTypes, IToggleOption} from "../../../custom-typings/custom-typings";
 
-const ToggleOption: (IToggleOption) => IReactNodeWithPropTypes = ({ value, message, intl }) => (
+const ToggleOption: (IToggleOption) => IReactNodeWithPropTypes<IToggleOption> = ({ value, message, intl }: IToggleOption) => (
   <option value={value}>
     {message ? intl.formatMessage(message) : value}
   </option>

@@ -1,5 +1,6 @@
 import {Store} from "react-redux";
 import ValidationMap = React.ValidationMap;
+import InjectedIntl = ReactIntl.InjectedIntl;
 
 /**
  * Redux Store plus Middleware
@@ -30,8 +31,8 @@ interface ITrivialReactComponentConstructor {
  */
 interface IToggleOption {
   value: string,
-  message: string,
-  intl: string,
+  message: FormattedMessage.MessageDescriptor,
+  intl: InjectedIntl,
 }
 
 interface IReactNodeWithPropTypes<P> extends React.ReactNode {
