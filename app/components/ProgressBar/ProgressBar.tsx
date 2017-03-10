@@ -9,7 +9,14 @@ import { PropTypes } from 'react';
 import Wrapper from './Wrapper';
 import Percent from './Percent';
 
-class ProgressBar extends React.Component {
+interface IProgressBar {
+
+}
+
+class ProgressBar extends React.Component<IProgressBar, {}> {
+
+  interval: number | undefined;
+  timeout: number | undefined;
 
   static defaultProps = {
     percent: -1,

@@ -7,13 +7,17 @@ import * as React from 'react';
 import * as Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 
-import H1 from 'components/H1';
+import H1 from '../../components/H1';
 import messages from './messages';
 import List from './List';
 import ListItem from './ListItem';
 import ListItemTitle from './ListItemTitle';
 
-export default class FeaturePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+interface IFeaturePage {
+
+}
+
+export default class FeaturePage extends React.Component<IFeaturePage, {}> { // eslint-disable-line react/prefer-stateless-function
 
   // Since state and props are static,
   // there's no need to re-render this component

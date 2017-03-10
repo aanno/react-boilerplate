@@ -12,7 +12,11 @@ import * as log from 'loglevel';
 // TODO (tp): no idea why the import does not work
 const Banner = require('./banner.jpg')
 
-class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
+interface IHeader {
+
+}
+
+class Header extends React.Component<IHeader, {}> { // eslint-disable-line react/prefer-stateless-function
 
   render() {
     log.debug('Header: Banner is', Banner);

@@ -1,8 +1,12 @@
 import * as React from 'react';
 import ProgressBar from './ProgressBar';
 
+interface IAppWithProgressBar {
+
+}
+
 function withProgressBar(WrappedComponent) {
-  class AppWithProgressBar extends React.Component {
+  class AppWithProgressBar extends React.Component<IAppWithProgressBar, {}> {
     constructor(props) {
       super(props);
       this.state = {
