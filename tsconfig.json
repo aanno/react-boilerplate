@@ -9,7 +9,7 @@
 	// BUT it seems to be unneeded
 	"module": "commonjs",
 	"target": "es6",
-	"jsx": "react",
+	"jsx": "preserve",
 	"moduleResolution": "node",
 	"allowJs": true,
 	// https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#types-typeroots-and-types
@@ -25,6 +25,7 @@
 	"sourceMap": true,
 	"skipLibCheck": true,
 	"skipDefaultLibCheck": true,
+	"preserveConstEnums": true,
 	"alwaysStrict": true,
 	"importHelpers": true,
 	"noImplicitThis": true,
