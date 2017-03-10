@@ -101,7 +101,7 @@ if (module.hot) {
     rootRoute.component = require('./containers/App/index.tsx');
     render(translationMessages);
   });
-  module.hot.accept('containers/App/index.js', () => {
+  module.hot.accept('containers/App/index.tsx', () => {
     log.debug('Hot module reloading for containers/App/index.tsx');
     rootRoute.component = require('./containers/App/index.tsx');
     render(translationMessages);
