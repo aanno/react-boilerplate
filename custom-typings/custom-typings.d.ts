@@ -13,3 +13,11 @@ interface IMyStore extends Store<IStoreState> {
  */
 interface IStoreState {
 }
+
+interface ITrivialReactComponent<P> {
+
+}
+
+interface ITrivialReactComponentConstructor {
+  propTypes: any,
+}

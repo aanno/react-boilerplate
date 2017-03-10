@@ -10,9 +10,12 @@ import * as React from 'react';
 import * as Helmet from 'react-helmet';
 import styled from 'styled-components';
 
-import Header from '../../components/Header/index.js';
+import HeaderJS from '../../components/Header/index.js';
 import Footer from '../../components/Footer/index.js';
 import withProgressBar from '../../components/ProgressBar/index.js';
+import {ITrivialReactComponentConstructor} from "../../../custom-typings/custom-typings";
+
+const Header = HeaderJS as any;
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -23,7 +26,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export function App(props) {
+export function App(props): any {
   return (
     <AppWrapper>
       <Helmet

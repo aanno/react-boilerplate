@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import {ResponseError} from "../types/types";
 
 /**
  * Parses the JSON returned by a network request
@@ -23,8 +24,9 @@ function checkStatus(response) {
     return response;
   }
 
-  const error = new Error(response.statusText);
-  error.response = response;
+  const error = new ResponseError(response.statusText, response);
+
+  // error.response = response;
   throw error;
 }
 
