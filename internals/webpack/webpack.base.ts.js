@@ -10,14 +10,14 @@ const jsLoader = (options) => {
     test: /\.(jsx?|tsx?)$/i, // Transform all .js files required somewhere with Babel
     use: [
       {
+        loader: 'babel-loader',
+        query: options.babelQuery,
+      },
+      {
         loader: 'awesome-typescript-loader',
         query: {
           declaration: false,
         },
-      },
-      {
-        loader: 'babel-loader',
-        query: options.babelQuery,
       },
     ],
     // loader: 'ts-loader',
