@@ -65,4 +65,4 @@ interface IMessages {
   [id: string]: string,
 }
 
-type IReactElementConstructor = (() => JSX.Element) | string;
+type IReactElementConstructor = (() => JSX.Element) | string | ComponentClass<any>;
