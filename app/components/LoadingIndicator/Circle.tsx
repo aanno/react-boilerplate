@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { PropTypes } from 'react';
 import styled, { keyframes } from 'styled-components';
+import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
+
+interface ICircle {
+  delay: number,
+  rotate: number,
+}
 
 const circleFadeDelay = keyframes`
   0%,
@@ -14,8 +20,9 @@ const circleFadeDelay = keyframes`
   }
 `;
 
-const Circle = (props) => {
-  const CirclePrimitive = styled.div`
+const Circle : (ICircle) => IReactNodeWithPropTypes<ICircle> = (props: ICircle) => {
+  const realCircle: any = (props: ICircle) => {
+    const CirclePrimitive = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
@@ -42,12 +49,13 @@ const Circle = (props) => {
       `}
     }
   `;
-  return <CirclePrimitive />;
-};
-
-Circle.propTypes = {
-  delay: PropTypes.number,
-  rotate: PropTypes.number,
+    return <CirclePrimitive />;
+  }
+  realCircle.propTypes = {
+    delay: PropTypes.number,
+    rotate: PropTypes.number,
+  };
+  return realCircle(props);
 };
 
 export default Circle;
