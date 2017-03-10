@@ -17,10 +17,17 @@ import RepoLink from './RepoLink';
 import Wrapper from './Wrapper';
 
 interface IRepoListItem {
-
+  item: any,
+  currentUser: any,
 }
 
 export class RepoListItem extends React.PureComponent<IRepoListItem, {}> { // eslint-disable-line react/prefer-stateless-function
+
+  static propTypes = {
+    item: React.PropTypes.object,
+    currentUser: React.PropTypes.string,
+  };
+
   render() {
     const item = this.props.item;
     let nameprefix = '';
@@ -50,11 +57,6 @@ export class RepoListItem extends React.PureComponent<IRepoListItem, {}> { // es
     );
   }
 }
-
-RepoListItem.propTypes = {
-  item: React.PropTypes.object,
-  currentUser: React.PropTypes.string,
-};
 
 export default connect(createStructuredSelector({
   currentUser: makeSelectCurrentUser(),

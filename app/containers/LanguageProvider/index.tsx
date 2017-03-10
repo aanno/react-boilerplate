@@ -18,6 +18,13 @@ interface ILanguageProvider {
 }
 
 export class LanguageProvider extends React.PureComponent<ILanguageProvider, {}> { // eslint-disable-line react/prefer-stateless-function
+
+  static propTypes = {
+    locale: React.PropTypes.string,
+    messages: React.PropTypes.object,
+    children: React.PropTypes.element.isRequired,
+  };
+
   render() {
     return (
       <IntlProvider locale={this.props.locale} key={this.props.locale} messages={this.props.messages[this.props.locale]}>
@@ -26,12 +33,6 @@ export class LanguageProvider extends React.PureComponent<ILanguageProvider, {}>
     );
   }
 }
-
-LanguageProvider.propTypes = {
-  locale: React.PropTypes.string,
-  messages: React.PropTypes.object,
-  children: React.PropTypes.element.isRequired,
-};
 
 const mapStateToProps = createSelector(
   makeSelectLocale(),

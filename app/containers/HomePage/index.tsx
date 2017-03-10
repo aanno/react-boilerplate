@@ -28,6 +28,22 @@ interface IHomepage {
 }
 
 export class HomePage extends React.PureComponent<IHomepage, {}> { // eslint-disable-line react/prefer-stateless-function
+
+  static propTypes = {
+    loading: React.PropTypes.bool,
+    error: React.PropTypes.oneOfType([
+      React.PropTypes.object,
+      React.PropTypes.bool,
+    ]),
+    repos: React.PropTypes.oneOfType([
+      React.PropTypes.array,
+      React.PropTypes.bool,
+    ]),
+    onSubmitForm: React.PropTypes.func,
+    username: React.PropTypes.string,
+    onChangeUsername: React.PropTypes.func,
+  };
+
   /**
    * when initial state username is not null, submit the form to load repos
    */
@@ -88,21 +104,6 @@ export class HomePage extends React.PureComponent<IHomepage, {}> { // eslint-dis
     );
   }
 }
-
-HomePage.propTypes = {
-  loading: React.PropTypes.bool,
-  error: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
-  repos: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.bool,
-  ]),
-  onSubmitForm: React.PropTypes.func,
-  username: React.PropTypes.string,
-  onChangeUsername: React.PropTypes.func,
-};
 
 export function mapDispatchToProps(dispatch) {
   return {

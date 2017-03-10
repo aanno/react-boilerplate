@@ -20,6 +20,12 @@ interface ILocaleToggle {
 }
 
 export class LocaleToggle extends React.PureComponent<ILocaleToggle, {}> { // eslint-disable-line react/prefer-stateless-function
+
+  static propTypes = {
+    onLocaleToggle: React.PropTypes.func,
+    locale: React.PropTypes.string,
+  };
+
   render() {
     return (
       <Wrapper>
@@ -28,11 +34,6 @@ export class LocaleToggle extends React.PureComponent<ILocaleToggle, {}> { // es
     );
   }
 }
-
-LocaleToggle.propTypes = {
-  onLocaleToggle: React.PropTypes.func,
-  locale: React.PropTypes.string,
-};
 
 const mapStateToProps = createSelector(
   makeSelectLocale(),

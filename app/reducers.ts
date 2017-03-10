@@ -10,7 +10,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import globalReducer from './containers/App/reducer';
 import languageProviderReducer from './containers/LanguageProvider/reducer';
 import {IStoreState} from "../custom-typings/custom-typings";
-// import {IStoreState} from "../custom-typings/custom-typings";
+import {Reducer} from 'redux';
 
 /*
  * routeReducer
@@ -43,7 +43,7 @@ function routeReducer(state = routeInitialState, action) {
 /**
  * Creates the main reducer with the asynchronously loaded ones
  */
-export default function createReducer(asyncReducers): IStoreState {
+export default function createReducer(asyncReducers): Reducer<IStoreState> {
   return combineReducers({
     route: routeReducer,
     global: globalReducer,
