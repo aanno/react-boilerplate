@@ -1,5 +1,5 @@
-import * as React from 'react';
-import ProgressBar from './ProgressBar';
+import * as React from "react";
+import ProgressBar from "./ProgressBar";
 
 interface IAppWithProgressBar {
   router: any | undefined,
@@ -15,6 +15,11 @@ function withProgressBar(WrappedComponent) {
   class AppWithProgressBar extends React.Component<IAppWithProgressBar, IAppWithProgressState> {
 
     unsubscribeHistory: any;
+
+    static propTypes = {
+      location: React.PropTypes.object,
+      router: React.PropTypes.object,
+    };
 
     constructor(props) {
       super(props);
@@ -67,11 +72,6 @@ function withProgressBar(WrappedComponent) {
       );
     }
   }
-
-  AppWithProgressBar.propTypes = {
-    location: React.PropTypes.object,
-    router: React.PropTypes.object,
-  };
 
   return AppWithProgressBar;
 }

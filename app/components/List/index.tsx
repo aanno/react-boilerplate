@@ -5,8 +5,12 @@ import Wrapper from './Wrapper';
 import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
 
 interface IList {
+  /*
   component: React.Component<any, any>,
-  items: React.Component<any, any>[],
+  items?: React.Component<any, any>[],
+   */
+  component: () => JSX.Element,
+  items?: Array<() => JSX.Element>,
 }
 
 function List(props: IList): IReactNodeWithPropTypes<IList> {

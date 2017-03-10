@@ -5,7 +5,7 @@ import Wrapper from './Wrapper';
 
 const LoadingIndicator = () => (
   <Wrapper>
-    <Circle />
+    <Circle rotate={0} delay={0} />
     <Circle rotate={30} delay={-1.1} />
     <Circle rotate={60} delay={-1} />
     <Circle rotate={90} delay={-0.9} />

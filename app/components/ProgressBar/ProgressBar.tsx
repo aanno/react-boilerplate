@@ -2,12 +2,11 @@
  *
  * ProgressBar
  *
-*/
-
-import * as React from 'react';
-import { PropTypes } from 'react';
-import Wrapper from './Wrapper';
-import Percent from './Percent';
+ */
+import * as React from "react";
+import {PropTypes} from "react";
+import Wrapper from "./Wrapper";
+import Percent from "./Percent";
 
 interface IProgressBar {
   percent: number,
@@ -27,6 +26,10 @@ class ProgressBar extends React.Component<IProgressBar, IProgressBarState> {
     percent: -1,
     autoIncrement: true,
     intervalTime: 75,
+  };
+
+  static propTypes = {
+    percent: PropTypes.number.isRequired,
   };
 
   constructor(props) {
@@ -130,9 +133,5 @@ class ProgressBar extends React.Component<IProgressBar, IProgressBarState> {
     );
   }
 }
-
-ProgressBar.propTypes = {
-  percent: PropTypes.number.isRequired,
-};
 
 export default ProgressBar;

@@ -2,19 +2,26 @@ import * as React from 'react';
 
 import Item from './Item';
 import Wrapper from './Wrapper';
+import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
 
-function ListItem(props) {
-  return (
-    <Wrapper>
-      <Item>
-        {props.item}
-      </Item>
-    </Wrapper>
-  );
+interface IListItem {
+  item: React.Component<any, any>,
 }
 
-ListItem.propTypes = {
-  item: React.PropTypes.any,
-};
+function ListItem(props: IListItem): IReactNodeWithPropTypes<IListItem> {
+  const realListItem: any = function (props: IListItem) {
+    return (
+      <Wrapper>
+        <Item>
+          {props.item}
+        </Item>
+      </Wrapper>
+    );
+  }
+  realListItem.propTypes = {
+    item: React.PropTypes.any,
+  };
+  return realListItem(props);
+}
 
 export default ListItem;

@@ -35,7 +35,7 @@ interface IToggleOption {
   intl: InjectedIntl,
 }
 
-interface IReactNodeWithPropTypes<P> extends React.ReactNode {
+interface IReactNodeWithPropTypes<P> extends React.Component<P,{}> {
 
   propTypes: ValidationMap<P>,
 
