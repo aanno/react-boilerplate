@@ -11,7 +11,7 @@ import {IReactNodeWithPropTypes, IToggleOption} from "../../../custom-typings/cu
 const ToggleOption: (IToggleOption) => IReactNodeWithPropTypes<IToggleOption> = (props: IToggleOption) => {
   const realToggleOption: any = ({value, message, intl}: IToggleOption) => (
     <option value={value}>
-      {message ? intl.formatMessage(message) : value}
+      {message ? (intl ? intl.formatMessage(message) : message) : value}
     </option>
   );
   realToggleOption.propTypes = {
@@ -20,6 +20,7 @@ const ToggleOption: (IToggleOption) => IReactNodeWithPropTypes<IToggleOption> = 
     intl: intlShape.isRequired,
   };
   return realToggleOption(props);
+
 };
 
-export default injectIntl(ToggleOption);
+export default injectIntl(ToggleOption as React.ComponentClass<IToggleOption>);

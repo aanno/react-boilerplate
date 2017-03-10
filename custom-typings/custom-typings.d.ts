@@ -1,6 +1,7 @@
 import {Store} from "react-redux";
 import ValidationMap = React.ValidationMap;
 import InjectedIntl = ReactIntl.InjectedIntl;
+import InjectedIntlProps = ReactIntl.InjectedIntlProps;
 
 /**
  * Redux Store plus Middleware
@@ -29,10 +30,10 @@ interface ITrivialReactComponentConstructor {
  * ToggleOption arguments
  * Html option
  */
-interface IToggleOption {
+interface IToggleOption extends InjectedIntlProps {
   value: string,
   message: FormattedMessage.MessageDescriptor,
-  intl: InjectedIntl,
+  // intl: InjectedIntl,
 }
 
 interface IReactNodeWithPropTypes<P> extends React.Component<P,{}> {
