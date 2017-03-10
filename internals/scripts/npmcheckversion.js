@@ -1,3 +1,5 @@
+// ATTENTION (tp): Do not convert this file to TypeScript!
+
 const exec = require('child_process').exec;
 exec('npm -v', function (err, stdout, stderr) {
   if (err) throw err;
