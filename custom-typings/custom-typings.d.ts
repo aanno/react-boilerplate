@@ -67,3 +67,9 @@ interface IMessages {
 }
 
 type IReactElementConstructor = (() => JSX.Element) | string | ComponentClass<any>;
+
+namespace "redux-saga" {
+  namespace effects {
+    declare const takeLatest: any
+  }
+}
