@@ -2,15 +2,15 @@ import * as React from 'react';
 
 import Ul from './Ul';
 import Wrapper from './Wrapper';
-import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
+import {IReactNodeWithPropTypes, IReactElementConstructor} from "../../../custom-typings/custom-typings";
 
 interface IList {
   /*
   component: React.Component<any, any>,
   items?: React.Component<any, any>[],
    */
-  component: () => JSX.Element,
-  items?: Array<() => JSX.Element>,
+  component: IReactElementConstructor,
+  items?: Array<IReactElementConstructor>,
 }
 
 function List(props: IList): IReactNodeWithPropTypes<IList> {

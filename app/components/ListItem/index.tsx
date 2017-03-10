@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import Item from './Item';
 import Wrapper from './Wrapper';
-import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
+import {IReactNodeWithPropTypes, IReactElementConstructor} from "../../../custom-typings/custom-typings";
 
 interface IListItem {
-  item: React.Component<any, any>,
+  item: IReactElementConstructor,
 }
 
 function ListItem(props: IListItem): IReactNodeWithPropTypes<IListItem> {

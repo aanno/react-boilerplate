@@ -64,3 +64,5 @@ interface IReactPropsIntl extends IReactMinimalProps{
 interface IMessages {
   [id: string]: string,
 }
+
+type IReactElementConstructor = (() => JSX.Element) | string;
