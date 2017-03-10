@@ -2,11 +2,20 @@ import * as React from 'react';
 import ProgressBar from './ProgressBar';
 
 interface IAppWithProgressBar {
+  router: any | undefined,
+}
 
+interface IAppWithProgressState {
+  loadedRoutes: any[],
+  progress: number,
 }
 
 function withProgressBar(WrappedComponent) {
-  class AppWithProgressBar extends React.Component<IAppWithProgressBar, {}> {
+
+  class AppWithProgressBar extends React.Component<IAppWithProgressBar, IAppWithProgressState> {
+
+    unsubscribeHistory: any;
+
     constructor(props) {
       super(props);
       this.state = {

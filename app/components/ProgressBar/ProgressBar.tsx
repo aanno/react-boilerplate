@@ -10,10 +10,15 @@ import Wrapper from './Wrapper';
 import Percent from './Percent';
 
 interface IProgressBar {
-
+  percent: number,
+  updateProgress: (number) => void,
 }
 
-class ProgressBar extends React.Component<IProgressBar, {}> {
+interface IProgressBarState {
+  percent: number,
+}
+
+class ProgressBar extends React.Component<IProgressBar, IProgressBarState> {
 
   interval: number | undefined;
   timeout: number | undefined;
