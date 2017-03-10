@@ -14,9 +14,10 @@ import messages from './messages';
 import { appLocales } from '../../i18n';
 import { changeLocale } from '../LanguageProvider/actions';
 import { makeSelectLocale } from '../LanguageProvider/selectors';
+import {IReactPropsIntl} from "../../../custom-typings/custom-typings";
 
-interface ILocaleToggle {
-
+interface ILocaleToggle extends IReactPropsIntl {
+  onLocaleToggle: (Event) => void,
 }
 
 export class LocaleToggle extends React.PureComponent<ILocaleToggle, {}> { // eslint-disable-line react/prefer-stateless-function

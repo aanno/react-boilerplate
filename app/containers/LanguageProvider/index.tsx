@@ -7,14 +7,14 @@
  */
 
 import * as React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import { createSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
 
 import { makeSelectLocale } from './selectors';
+import {IReactPropsIntl} from "../../../custom-typings/custom-typings";
 
-interface ILanguageProvider {
-
+interface ILanguageProvider extends IReactPropsIntl {
 }
 
 export class LanguageProvider extends React.PureComponent<ILanguageProvider, {}> { // eslint-disable-line react/prefer-stateless-function

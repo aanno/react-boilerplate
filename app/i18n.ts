@@ -10,6 +10,7 @@ import * as enLocaleData from 'react-intl/locale-data/en';
 import * as deLocaleData from 'react-intl/locale-data/de';
 
 import { DEFAULT_LOCALE } from '../app/containers/App/constants';
+import {IMessages} from "../custom-typings/custom-typings";
 
 // import * as enTranslationMessages from './translations/en.json';
 // import * as deTranslationMessages from './translations/de.json';
@@ -25,7 +26,7 @@ export const appLocales = [
   'de',
 ];
 
-export const formatTranslationMessages = (locale, messages) => {
+export const formatTranslationMessages = (locale: string, messages: IMessages) => {
   log.debug("formatTranslationMessages", locale, messages)
   console.log("formatTranslationMessages", locale, messages)
   const defaultFormattedMessages = locale !== DEFAULT_LOCALE

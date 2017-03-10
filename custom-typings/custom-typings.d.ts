@@ -48,3 +48,15 @@ interface IReactRoutedComponent extends IReactMinimalComponent {
 interface IReactMinimalComponent extends Element {
   children?: React.ReactNode,
 }
+
+interface IReactPropsIntl {
+  locale: string,
+  messages: IMessages,
+  dispatch: Dispatch<any>,
+  // TODO (tp):
+  context?: any,
+}
+
+interface IMessages {
+  [id: string]: string,
+}
