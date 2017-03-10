@@ -9,13 +9,13 @@ import * as React from 'react';
 import Select from './Select';
 import ToggleOption from '../ToggleOption';
 import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
-import FormattedMessage = ReactIntl.FormattedMessage;
+import Messages = ReactIntl.Messages;
 
 interface IToggle {
   value: string,
   onToggle: (Event) => void,
 
-  messages: FormattedMessage.MessageDescriptor[],
+  messages: Messages,
   values: string[],
 }
 

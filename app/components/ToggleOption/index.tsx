@@ -23,4 +23,5 @@ const ToggleOption: (IToggleOption) => IReactNodeWithPropTypes<IToggleOption> = 
 
 };
 
-export default injectIntl(ToggleOption as React.ComponentClass<IToggleOption>);
+// TODO (tp):
+export default injectIntl(ToggleOption as any/* as React.ComponentClass<IToggleOption> */);
