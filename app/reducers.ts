@@ -9,6 +9,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import globalReducer from './containers/App/reducer';
 import languageProviderReducer from './containers/LanguageProvider/reducer';
+import {IStoreState} from "../custom-typings/custom-typings";
 // import {IStoreState} from "../custom-typings/custom-typings";
 
 /*

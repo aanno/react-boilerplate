@@ -12,9 +12,9 @@ import {AppContainer} from "react-hot-loader";
 import "react-hot-loader/patch";
 import "sanitize.css/sanitize.css";
 // Import root app
-import App from "./containers/App/index.js";
+import App from "./containers/App/index";
 // Import selector for `syncHistoryWithStore`
-import {makeSelectLocationState} from "./containers/App/selectors.js";
+import {makeSelectLocationState} from "./containers/App/selectors";
 // Import Language Provider
 import LanguageProvider from "./containers/LanguageProvider/index.js";
 import "!file-loader?name=[name].[ext]!./favicon.ico";
@@ -91,24 +91,24 @@ if (module.hot) {
     log.debug('Hot module reloading for ./i18n');
     render(translationMessages);
   });
-  module.hot.accept('./containers/App/index.js', () => {
-    log.debug('Hot module reloading for ./containers/App/index.js');
-    rootRoute.component = require('./containers/App/index.js');
+  module.hot.accept('./containers/App/index.tsx', () => {
+    log.debug('Hot module reloading for ./containers/App/index.tsx');
+    rootRoute.component = require('./containers/App/index.tsx');
     render(translationMessages);
   });
   module.hot.accept('./containers/App', () => {
     log.debug('Hot module reloading for ./containers/App');
-    rootRoute.component = require('./containers/App/index.js');
+    rootRoute.component = require('./containers/App/index.tsx');
     render(translationMessages);
   });
   module.hot.accept('containers/App/index.js', () => {
-    log.debug('Hot module reloading for containers/App/index.js');
-    rootRoute.component = require('./containers/App/index.js');
+    log.debug('Hot module reloading for containers/App/index.tsx');
+    rootRoute.component = require('./containers/App/index.tsx');
     render(translationMessages);
   });
   module.hot.accept('containers/App', () => {
     log.debug('Hot module reloading for containers/App');
-    rootRoute.component = require('./containers/App/index.js');
+    rootRoute.component = require('./containers/App/index.tsx');
     render(translationMessages);
   });
 }
