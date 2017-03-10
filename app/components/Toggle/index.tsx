@@ -9,14 +9,19 @@ import * as React from 'react';
 import Select from './Select';
 import ToggleOption from '../ToggleOption';
 import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
+import FormattedMessage = ReactIntl.FormattedMessage;
 
 interface IToggle {
+  value: string,
+  onToggle: (Event) => void,
 
+  messages: FormattedMessage.MessageDescriptor[],
+  values: string[],
 }
 
 function Toggle(props: IToggle): IReactNodeWithPropTypes<IToggle> {
   const realToggle: any = function (props: IToggle) {
-    let content = (<option>--</option>);
+    let content: any = (<option>--</option>);
 
     // If we have items, render them
     if (props.values) {

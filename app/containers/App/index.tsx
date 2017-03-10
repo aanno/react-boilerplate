@@ -10,12 +10,14 @@ import * as React from 'react';
 import * as Helmet from 'react-helmet';
 import styled from 'styled-components';
 
-import HeaderJS from '../../components/Header';
+import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import withProgressBar from '../../components/ProgressBar';
-import {ITrivialReactComponentConstructor} from "../../../custom-typings/custom-typings";
+import {ITrivialReactComponentConstructor, IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
 
-const Header = HeaderJS as any;
+interface IApp {
+  children?: React.ReactNode,
+}
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -26,25 +28,27 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export function App(props): any {
-  return (
-    <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-        meta={[
+export function App(props: IApp): IReactNodeWithPropTypes<IApp> {
+  const realApp: any = function (props: IApp) {
+    return (
+      <AppWrapper>
+        <Helmet
+          titleTemplate="%s - React.js Boilerplate"
+          defaultTitle="React.js Boilerplate"
+          meta={[
           { name: 'description', content: 'A React.js Boilerplate application' },
         ]}
-      />
-      <Header />
-      {React.Children.toArray(props.children)}
-      <Footer />
-    </AppWrapper>
-  );
+        />
+        <Header />
+        {React.Children.toArray(props.children)}
+        <Footer />
+      </AppWrapper>
+    );
+  }
+  realApp.propTypes = {
+    children: React.PropTypes.node,
+  };
+  return realApp(props);
 }
-
-App.propTypes = {
-  children: React.PropTypes.node,
-};
 
 export default withProgressBar(App);
