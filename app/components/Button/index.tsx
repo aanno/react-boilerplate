@@ -12,8 +12,15 @@ import { PropTypes, Children } from 'react';
 import A from './A';
 import StyledButton from './StyledButton';
 import Wrapper from './Wrapper';
+import {IReactNodeWithPropTypes, IReactRoutedComponent} from "../../../custom-typings/custom-typings";
 
-function Button(props) {
+interface IButton extends IReactRoutedComponent {
+
+  href: string,
+  onClick: (Event) => void,
+}
+
+function Button(props: IButton): IReactNodeWithPropTypes<IButton> {
   // Render an anchor tag
   let button = (
     <A href={props.href} onClick={props.onClick}>
