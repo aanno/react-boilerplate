@@ -5,14 +5,12 @@
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
-
-import * as React from 'react';
-import * as Helmet from 'react-helmet';
-import styled from 'styled-components';
-
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import withProgressBar from '../../components/ProgressBar';
+import * as React from "react";
+import * as Helmet from "react-helmet";
+import styled from "styled-components";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import withProgressBar from "../../components/ProgressBar";
 import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
 
 export interface IApp {
@@ -51,4 +49,4 @@ export function App(props: IApp, _?: any): IReactNodeWithPropTypes<IApp> {
   return realApp(props);
 }
 
-export default withProgressBar(App);
+export default withProgressBar(App as any/* as ComponentClass<{}> */);

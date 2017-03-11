@@ -8,8 +8,7 @@ import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 import {Store} from "react-redux";
-import {IMyStore, IStoreState, MyReducer} from "../custom-typings/custom-typings";
-import Module = webpack.Module;
+import {IMyStore, IStoreState, MyReducer, Module} from "../custom-typings/custom-typings";
 
 const sagaMiddleware = createSagaMiddleware();
 

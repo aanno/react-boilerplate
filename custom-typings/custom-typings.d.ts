@@ -127,3 +127,6 @@ namespace "redux-saga" {
 module "react-hot-loader" {
   declare const AppContainer: any;
 }
+
+// dummy type for webpack.Module
+type Module = any;
