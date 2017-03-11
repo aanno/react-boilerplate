@@ -20,13 +20,28 @@ import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
 } from './constants';
+import {IAction} from "../../../custom-typings/custom-typings";
+
+export interface ILoadReposAction extends IAction {
+}
+
+export interface IReposLoadedAction extends IAction {
+  repos: any,
+  username: string,
+}
+
+export interface ILoadingReposErrorAction extends IAction {
+  error: Error,
+}
+
+export type IAppAction = ILoadReposAction | IReposLoadedAction | ILoadingReposErrorAction
 
 /**
  * Load the repositories, this action starts the request saga
  *
  * @return {object} An action object with a type of LOAD_REPOS
  */
-export function loadRepos() {
+export function loadRepos(): ILoadReposAction {
   return {
     type: LOAD_REPOS,
   };
@@ -40,7 +55,7 @@ export function loadRepos() {
  *
  * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
  */
-export function reposLoaded(repos, username) {
+export function reposLoaded(repos: any, username: string): IReposLoadedAction {
   return {
     type: LOAD_REPOS_SUCCESS,
     repos,
@@ -55,7 +70,7 @@ export function reposLoaded(repos, username) {
  *
  * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
  */
-export function repoLoadingError(error) {
+export function repoLoadingError(error: Error): ILoadingReposErrorAction {
   return {
     type: LOAD_REPOS_ERROR,
     error,

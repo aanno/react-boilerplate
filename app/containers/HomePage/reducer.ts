@@ -14,13 +14,18 @@ import { fromJS } from 'immutable';
 import {
   CHANGE_USERNAME,
 } from './constants';
+import {IChangeUsernameAction} from "./actions";
+
+export interface IHomePageState {
+  username: string,
+}
 
 // The initial state of the App
-const initialState = fromJS({
+const initialState: IHomePageState = fromJS({
   username: '',
 });
 
-function homeReducer(state = initialState, action) {
+function homeReducer(state: IHomePageState = initialState, action: IChangeUsernameAction) {
   switch (action.type) {
     case CHANGE_USERNAME:
 

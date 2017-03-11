@@ -12,12 +12,17 @@ import {
 import {
   DEFAULT_LOCALE,
 } from '../App/constants';
+import {IChangeLocaleAction} from "./actions";
+
+export interface ILanguageProviderState {
+  locale: string,
+}
 
 const initialState = fromJS({
   locale: DEFAULT_LOCALE,
 });
 
-function languageProviderReducer(state = initialState, action) {
+function languageProviderReducer(state: ILanguageProviderState = initialState, action: IChangeLocaleAction) {
   switch (action.type) {
     case CHANGE_LOCALE:
       return state

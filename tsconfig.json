@@ -34,7 +34,7 @@
 	"noUnusedLocals": true,
 	"noUnusedParameters": true,
 	"strictNullChecks": true,
-	"noImplicitAny": false,
+	"noImplicitAny": true,
 	"newLine": "LF",
 	"rootDir": ".",
 	"outDir": "dist",

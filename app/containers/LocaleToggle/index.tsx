@@ -5,7 +5,7 @@
  */
 
 import * as React from 'react';
-import { connect } from 'react-redux';
+import {connect, MapStateToProps, Dispatch, MapDispatchToPropsFunction} from 'react-redux';
 import { createSelector } from 'reselect';
 
 import Toggle from '../../components/Toggle';
@@ -17,7 +17,7 @@ import { makeSelectLocale } from '../LanguageProvider/selectors';
 import {IReactPropsIntl} from "../../../custom-typings/custom-typings";
 
 interface ILocaleToggle extends IReactPropsIntl {
-  onLocaleToggle: (Event) => void,
+  onLocaleToggle: (e: Event) => void,
 }
 
 export class LocaleToggle extends React.PureComponent<ILocaleToggle, {}> { // eslint-disable-line react/prefer-stateless-function
@@ -36,14 +36,14 @@ export class LocaleToggle extends React.PureComponent<ILocaleToggle, {}> { // es
   }
 }
 
-const mapStateToProps = createSelector(
+const mapStateToProps: MapStateToProps<any, any> = createSelector(
   makeSelectLocale(),
   (locale) => ({ locale })
 );
 
-export function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch: Dispatch<any>): MapDispatchToPropsFunction<any, any> {
   return {
-    onLocaleToggle: (evt) => dispatch(changeLocale(evt.target.value)),
+    onLocaleToggle: (evt: Event) => dispatch(changeLocale((evt.target as any).value)),
     dispatch,
   };
 }

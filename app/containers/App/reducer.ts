@@ -17,9 +17,21 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
 } from './constants';
+import {IAppAction} from "./actions";
+
+interface IUserData {
+  repositories: boolean,
+}
+
+export interface IAppState {
+  loading: boolean,
+  error: boolean,
+  currentUser: boolean,
+  userData: IUserData,
+}
 
 // The initial state of the App
-const initialState = fromJS({
+const initialState: IAppState = fromJS({
   loading: false,
   error: false,
   currentUser: false,
@@ -28,7 +40,7 @@ const initialState = fromJS({
   },
 });
 
-function appReducer(state = initialState, action) {
+function appReducer(state: IAppState = initialState, action: IAppAction) {
   switch (action.type) {
     case LOAD_REPOS:
       return state

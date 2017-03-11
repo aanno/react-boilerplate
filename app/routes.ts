@@ -3,16 +3,21 @@
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
 import { getAsyncInjectors } from './utils/asyncInjectors';
+import Module = webpack.Module;
+import {IMyStore} from "../custom-typings/custom-typings";
+import {RouteConfig} from "react-router";
 
-const errorLoading = (err) => {
+type LazyModuleCb = (_: any, defaultModule: Module) => void;
+
+const errorLoading = (err: Error) => {
   console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
 };
 
-const loadModule = (cb) => (componentModule) => {
+const loadModule = (cb: LazyModuleCb) => (componentModule: Module) => {
   cb(null, componentModule.default);
 };
 
-export default function createRoutes(store) {
+export default function createRoutes(store: IMyStore): RouteConfig {
   // create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
 
@@ -20,7 +25,7 @@ export default function createRoutes(store) {
     {
       path: '/',
       name: 'home',
-      getComponent(_, cb) {
+      getComponent(_, cb: LazyModuleCb) {
         const importModules = Promise.all([
           System.import('containers/HomePage/reducer'),
           System.import('containers/HomePage/sagas'),
@@ -41,7 +46,7 @@ export default function createRoutes(store) {
     }, {
       path: '/features',
       name: 'features',
-      getComponent(_, cb) {
+      getComponent(_, cb: LazyModuleCb) {
         System.import('containers/FeaturePage')
           .then(loadModule(cb))
           .catch(errorLoading);
@@ -49,7 +54,7 @@ export default function createRoutes(store) {
     }, {
       path: '*',
       name: 'notfound',
-      getComponent(_, cb) {
+      getComponent(_, cb: LazyModuleCb) {
         System.import('containers/NotFoundPage')
           .then(loadModule(cb))
           .catch(errorLoading);

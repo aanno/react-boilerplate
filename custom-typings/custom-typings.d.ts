@@ -16,7 +16,20 @@ interface IMyStore extends Store<IStoreState> {
  * Redux Store interface
  */
 interface IStoreState {
+  // ???
+  get: (id: 'language') => string,
+
+  language: string,
 }
+
+interface IAction {
+  type: string,
+}
+
+/**
+ * Saga interface
+ */
+type Saga<T> = () => T
 
 interface ITrivialReactComponent<P> {
 
