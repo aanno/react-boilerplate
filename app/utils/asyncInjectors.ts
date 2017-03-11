@@ -30,7 +30,7 @@ export function checkStore(store: IMyStore) {
 /**
  * Inject an asynchronously loaded reducer
  */
-export function injectAsyncReducer(store: IMyStore, isValid: boolean) {
+export function injectAsyncReducer(store: IMyStore, isValid?: boolean) {
   return function injectReducer(name: string, asyncReducer: MyReducer<any>) {
     if (!isValid) checkStore(store);
 
@@ -49,7 +49,7 @@ export function injectAsyncReducer(store: IMyStore, isValid: boolean) {
 /**
  * Inject an asynchronously loaded saga
  */
-export function injectAsyncSagas(store: IMyStore, isValid: boolean) {
+export function injectAsyncSagas(store: IMyStore, isValid?: boolean) {
   return function injectSagas(sagas: Saga<any>[]) {
     if (!isValid) checkStore(store);
 

@@ -4,9 +4,10 @@
 
 import { browserHistory } from 'react-router';
 import configureStore from '../store';
+import {IMyStore} from "../../custom-typings/custom-typings";
 
 describe('configureStore', () => {
-  let store;
+  let store: IMyStore;
 
   beforeAll(() => {
     store = configureStore({}, browserHistory);

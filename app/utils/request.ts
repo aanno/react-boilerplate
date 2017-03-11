@@ -38,7 +38,7 @@ function checkStatus(response: Response) {
  *
  * @return {object}           The response data
  */
-export default function request(url: RequestInfo, options: RequestInit) {
+export default function request(url: RequestInfo, options?: RequestInit) {
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON);

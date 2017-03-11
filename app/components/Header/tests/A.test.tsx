@@ -21,7 +21,8 @@ describe('<A />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = mount(<A attribute={'test'} />);
+    const Untyped: any = A;
+    const renderedComponent = mount(<Untyped attribute={'test'} />);
     expect(renderedComponent.find('a').prop('attribute')).toBeUndefined();
   });
 });

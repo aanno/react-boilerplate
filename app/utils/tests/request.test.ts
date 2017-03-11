@@ -3,6 +3,7 @@
  */
 
 import request from '../request';
+import {ResponseError} from "../../types/types";
 
 describe('request', () => {
   // Before each test, stub the fetch function
@@ -20,7 +21,7 @@ describe('request', () => {
         },
       });
 
-      window.fetch.mockReturnValue(Promise.resolve(res));
+      (window.fetch as any).mockReturnValue(Promise.resolve(res));
     });
 
     it('should format the response correctly', (done) => {
@@ -44,12 +45,12 @@ describe('request', () => {
         },
       });
 
-      window.fetch.mockReturnValue(Promise.resolve(res));
+      (window.fetch as any).mockReturnValue(Promise.resolve(res));
     });
 
     it('should catch errors', (done) => {
       request('/thisdoesntexist')
-        .catch((err) => {
+        .catch((err: ResponseError) => {
           expect(err.response.status).toBe(404);
           expect(err.response.statusText).toBe('Not Found');
           done();

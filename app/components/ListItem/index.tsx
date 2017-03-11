@@ -4,8 +4,9 @@ import Item from './Item';
 import Wrapper from './Wrapper';
 import {IReactNodeWithPropTypes, IReactElementConstructor} from "../../../custom-typings/custom-typings";
 
-interface IListItem {
+export interface IListItem {
   item: IReactElementConstructor,
+  className?: string,
 }
 
 function ListItem(props: IListItem): IReactNodeWithPropTypes<IListItem> {
