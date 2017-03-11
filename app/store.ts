@@ -9,10 +9,11 @@ import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 import {Store} from "react-redux";
 import {IMyStore, IStoreState, MyReducer, Module} from "../custom-typings/custom-typings";
+import {History} from "history";
 
 const sagaMiddleware = createSagaMiddleware();
 
-export default function configureStore(initialState: any = {}, history: History.History) {
+export default function configureStore(initialState: any = {}, history: History) {
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
   // 2. routerMiddleware: Syncs the location/URL path to the state
@@ -35,7 +36,7 @@ export default function configureStore(initialState: any = {}, history: History.
   /* eslint-enable */
 
   const realStore: Store<IStoreState> = createStore<IStoreState>(
-    createReducer({asyncReducer}),
+    createReducer({}),
     fromJS(initialState),
     composeEnhancers(...enhancers)
   );

@@ -30,7 +30,7 @@ const makeSelectRepos: MakeSelectType<boolean> = () => createSelector(
   (globalState: IAppState) => globalState.getIn(['userData', 'repositories'])
 );
 
-const makeSelectLocationState = () => {
+const makeSelectLocationState: MakeSelectType<any> = () => {
   // TODO (tp): Perhaps RouterState?
   let prevRoutingState: any;
   let prevRoutingStateJS: any;
