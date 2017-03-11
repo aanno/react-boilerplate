@@ -2,7 +2,7 @@ import * as React from 'react';
 import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
 
 interface IIssueIcon {
-  className: string,
+  className?: string,
 }
 
 function IssueIcon(props: IIssueIcon): IReactNodeWithPropTypes<IIssueIcon> {

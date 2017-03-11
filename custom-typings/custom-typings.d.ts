@@ -4,6 +4,8 @@ import InjectedIntl = ReactIntl.InjectedIntl;
 import InjectedIntlProps = ReactIntl.InjectedIntlProps;
 import {RouterState} from "react-router-redux";
 import {IAppState} from "../app/containers/App/reducer";
+import * as Redux from "redux";
+import Action = Redux.Action;
 import * as Immuable from "immutable";
 import Map = Immuable.Map
 
@@ -35,7 +37,7 @@ interface IImmutableStore extends Map<string, any> {
 
 }
 
-interface IAction {
+interface IAction extends Action {
   type: string,
 }
 
@@ -73,6 +75,11 @@ interface IToggleOption extends InjectedIntlProps {
 interface IReactNodeWithPropTypes<P> extends React.Component<P,{}> {
 
   propTypes: ValidationMap<P>,
+
+  // Needed to make 'interface ReactElement<P>' happy
+  // (not used in application, though) (tp)
+  type: string,
+  key: null,
 
 }
 

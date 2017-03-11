@@ -9,7 +9,7 @@ import { PropTypes } from 'react';
 import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
 
 interface IImg {
-  className: string,
+  className?: string,
   src: string,
   alt: string,
 }

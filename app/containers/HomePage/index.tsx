@@ -3,34 +3,32 @@
  *
  * This is the first thing users see of our App, at the '/' route
  */
-
-import * as React from 'react';
-import * as Helmet from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
-import {connect, Dispatch} from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-
-import { makeSelectRepos, makeSelectLoading, makeSelectError } from '../../containers/App/selectors';
-import H2 from '../../components/H2';
-import ReposList from '../../components/ReposList';
-import AtPrefix from './AtPrefix';
-import CenteredSection from './CenteredSection';
-import Form from './Form';
-import Input from './Input';
-import Section from './Section';
-import messages from './messages';
-import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
-import { makeSelectUsername } from './selectors';
+import * as React from "react";
+import * as Helmet from "react-helmet";
+import {FormattedMessage} from "react-intl";
+import {connect, Dispatch} from "react-redux";
+import {createStructuredSelector} from "reselect";
+import {makeSelectRepos, makeSelectLoading, makeSelectError} from "../../containers/App/selectors";
+import H2 from "../../components/H2";
+import ReposList from "../../components/ReposList";
+import AtPrefix from "./AtPrefix";
+import CenteredSection from "./CenteredSection";
+import Form from "./Form";
+import Input from "./Input";
+import Section from "./Section";
+import messages from "./messages";
+import {loadRepos} from "../App/actions";
+import {changeUsername, IChangeUsernameAction} from "./actions";
+import {makeSelectUsername} from "./selectors";
 import {IReactMinimalProps} from "../../../custom-typings/custom-typings";
 
-interface IHomepage extends IReactMinimalProps {
+export interface IHomepage extends IReactMinimalProps {
   error: boolean,
   loading: boolean,
   repos: any[],
   username: string | undefined,
 
-  onChangeUsername: (e: React.FormEvent<Element>) => void,
+  onChangeUsername: (e: React.FormEvent<Element>) => IChangeUsernameAction,
   onSubmitForm: () => void,
 }
 
@@ -114,7 +112,7 @@ export class HomePage extends React.PureComponent<IHomepage, {}> { // eslint-dis
 
 export function mapDispatchToProps(dispatch: Dispatch<any>) {
   return {
-    onChangeUsername: (evt: Event) => dispatch(changeUsername((evt.target as any).value)),
+    onChangeUsername: (evt: React.FormEvent<Element>) => dispatch(changeUsername((evt.target as any).value)),
     onSubmitForm: (evt: Event) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());

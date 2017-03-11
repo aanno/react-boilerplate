@@ -2,19 +2,21 @@ import * as React from "react";
 import ProgressBar from "./ProgressBar";
 import ComponentClass = React.ComponentClass;
 
+type AppWithProgressBarType = ComponentClass<IAppWithProgressBar>;
+
 export interface IAppWithProgressBar {
-  router: any | undefined,
+  router?: any | undefined,
   location: Location,
 }
 
 interface IAppWithProgressState {
-  loadedRoutes: any[],
+  loadedRoutes: string[],
   progress: number,
 }
 
 // declare class AppWithProgressBar extends React.Component<IAppWithProgressBar, IAppWithProgressState>;
 
-function withProgressBar<P>(WrappedComponent: ComponentClass<P>): IAppWithProgressBar {
+function withProgressBar<P>(WrappedComponent: ComponentClass<P>): AppWithProgressBarType {
 
   class AppWithProgressBar extends React.Component<IAppWithProgressBar, IAppWithProgressState> {
 
@@ -29,9 +31,10 @@ function withProgressBar<P>(WrappedComponent: ComponentClass<P>): IAppWithProgre
       super(props);
       this.state = {
         progress: -1,
-        loadedRoutes: props.location && [props.location.pathname],
+        loadedRoutes: (props.location && [props.location.pathname]) || [],
       };
       this.updateProgress = this.updateProgress.bind(this);
+      this.setState = this.setState.bind(this);
     }
 
     componentWillMount() {

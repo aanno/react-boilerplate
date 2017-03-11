@@ -15,7 +15,7 @@ import Footer from '../../components/Footer';
 import withProgressBar from '../../components/ProgressBar';
 import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
 
-interface IApp {
+export interface IApp {
   children?: React.ReactNode,
 }
 
@@ -28,7 +28,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export function App(props: IApp): IReactNodeWithPropTypes<IApp> {
+export function App(props: IApp, _?: any): IReactNodeWithPropTypes<IApp> {
   const realApp: any = function (props: IApp) {
     return (
       <AppWrapper>
