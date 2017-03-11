@@ -2,14 +2,14 @@ import * as React from "react";
 import ProgressBar from "./ProgressBar";
 import ComponentClass = React.ComponentClass;
 
-type AppWithProgressBarType = ComponentClass<IAppWithProgressBar>;
+export type AppWithProgressBarType = ComponentClass<IAppWithProgressBar>;
 
 export interface IAppWithProgressBar {
   router?: any | undefined,
   location: Location,
 }
 
-interface IAppWithProgressState {
+export interface IAppWithProgressState {
   loadedRoutes: string[],
   progress: number,
 }
