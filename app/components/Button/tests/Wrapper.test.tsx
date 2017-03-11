@@ -1,27 +1,28 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import A from '../A';
+import Wrapper from '../Wrapper';
 
-describe('<A />', () => {
-  it('should render an <a> tag', () => {
-    const renderedComponent = shallow(<A />);
-    expect(renderedComponent.type()).toEqual('a');
+describe('<Wrapper />', () => {
+  it('should render an <div> tag', () => {
+    const renderedComponent = shallow(<Wrapper />);
+    expect(renderedComponent.type()).toEqual('div');
   });
 
   it('should have a className attribute', () => {
-    const renderedComponent = shallow(<A />);
+    const renderedComponent = shallow(<Wrapper />);
     expect(renderedComponent.prop('className')).toBeDefined();
   });
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<A id={id} />);
+    const renderedComponent = shallow(<Wrapper id={id} />);
     expect(renderedComponent.prop('id')).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<A attribute={'test'} />);
+    const WrapperUntyped: any = Wrapper;
+    const renderedComponent = shallow(<WrapperUntyped attribute={'test'} />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

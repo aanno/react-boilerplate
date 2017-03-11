@@ -2,7 +2,7 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
 
-import A from 'components/A';
+import A from '../../../components/A';
 import messages from '../messages';
 import Footer from '../index';
 

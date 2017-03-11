@@ -37,8 +37,9 @@ describe('App Actions', () => {
 
   describe('repoLoadingError', () => {
     it('should return the correct type and the error', () => {
-      const fixture = {
-        msg: 'Something went wrong!',
+      const fixture: Error = {
+        name: 'Error',
+        message: 'Something went wrong!',
       };
       const expectedResult = {
         type: LOAD_REPOS_ERROR,

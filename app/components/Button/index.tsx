@@ -14,7 +14,7 @@ import StyledButton from './StyledButton';
 import Wrapper from './Wrapper';
 import {IReactNodeWithPropTypes, IReactRoutedComponent} from "../../../custom-typings/custom-typings";
 
-interface IButton extends IReactRoutedComponent {
+export interface IButton extends IReactRoutedComponent {
 
   href: string,
   onClick: (e: React.MouseEvent<Element>) => void,

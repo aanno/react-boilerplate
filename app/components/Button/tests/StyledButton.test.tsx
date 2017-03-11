@@ -21,7 +21,8 @@ describe('<StyledButton />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<StyledButton attribute={'test'} />);
+    const StyleButtonUntyped: any = StyledButton;
+    const renderedComponent = shallow(<StyleButtonUntyped attribute={'test'} />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

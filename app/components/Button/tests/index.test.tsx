@@ -6,12 +6,15 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 
 import Button from '../index';
+import {IButton} from "../index";
+import {ReactTestProps} from "../../../../custom-typings/custom-typings";
 
 const handleRoute = () => {};
 const href = 'http://mxstbr.com';
 const children = (<h1>Test</h1>);
-const renderComponent = (props = {}) => mount(
-  <Button href={href} {...props}>
+
+const renderComponent = (props: ReactTestProps<IButton> = {}) => mount(
+  <Button href={href} {...props as any}>
     {children}
   </Button>
 );

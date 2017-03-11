@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
 import { App } from '../index';
 
 describe('<App />', () => {

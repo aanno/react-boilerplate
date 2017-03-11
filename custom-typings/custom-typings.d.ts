@@ -8,6 +8,7 @@ import * as Redux from "redux";
 import Action = Redux.Action;
 import * as Immuable from "immutable";
 import Map = Immuable.Map
+import Partial = _.Partial;
 
 /**
  * Redux Store plus Middleware
@@ -117,6 +118,13 @@ interface ITranslations {
 }
 
 type IReactElementConstructor = (() => JSX.Element) | string | ComponentClass<any>;
+
+interface IReactTestProps {
+  handleRoute: (any) => void,
+  type: string,
+}
+
+type ReactTestProps<P> = Partial<IReactTestProps> & Partial<P>;
 
 namespace "redux-saga" {
   namespace effects {

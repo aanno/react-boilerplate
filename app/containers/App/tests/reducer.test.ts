@@ -4,11 +4,12 @@ import appReducer from '../reducer';
 import {
   loadRepos,
   reposLoaded,
-  repoLoadingError,
+  repoLoadingError, IAppAction,
 } from '../actions';
+import {IAppState} from "../reducer";
 
 describe('appReducer', () => {
-  let state;
+  let state: IAppState;
   beforeEach(() => {
     state = fromJS({
       loading: false,
@@ -22,7 +23,8 @@ describe('appReducer', () => {
 
   it('should return the initial state', () => {
     const expectedResult = state;
-    expect(appReducer(undefined, {})).toEqual(expectedResult);
+    const noAction: IAppAction = {} as IAppAction;
+    expect(appReducer(undefined, noAction)).toEqual(expectedResult);
   });
 
   it('should handle the loadRepos action correctly', () => {
@@ -48,8 +50,9 @@ describe('appReducer', () => {
   });
 
   it('should handle the repoLoadingError action correctly', () => {
-    const fixture = {
-      msg: 'Not found',
+    const fixture: Error = {
+      name: 'Error',
+      message: 'Not found',
     };
     const expectedResult = state
       .set('error', fixture)
