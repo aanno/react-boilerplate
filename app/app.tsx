@@ -27,6 +27,7 @@ import {translationMessages} from "./i18n";
 import "./global-styles";
 // Import routes
 import createRoutes from "./routes";
+import Messages = ReactIntl.Messages;
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -61,7 +62,7 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
-const render = (messages) => {
+const render = (messages: Messages) => {
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>

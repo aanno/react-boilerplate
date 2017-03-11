@@ -10,7 +10,9 @@ import Percent from "./Percent";
 
 interface IProgressBar {
   percent: number,
-  updateProgress: (number) => void,
+  updateProgress: (percent: number) => void,
+  autoIncrement?: boolean,
+  intervalTime?: number,
 }
 
 interface IProgressBarState {
@@ -32,7 +34,7 @@ class ProgressBar extends React.Component<IProgressBar, IProgressBarState> {
     percent: PropTypes.number.isRequired,
   };
 
-  constructor(props) {
+  constructor(props: IProgressBar) {
     super(props);
     this.handleProps = this.handleProps.bind(this);
     this.increment = this.increment.bind(this);
@@ -45,7 +47,7 @@ class ProgressBar extends React.Component<IProgressBar, IProgressBarState> {
     this.handleProps(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: IProgressBar) {
     if (this.interval) {
       // stop progress when new props come in.
       clearInterval(this.interval);
@@ -85,7 +87,7 @@ class ProgressBar extends React.Component<IProgressBar, IProgressBarState> {
     });
   }
 
-  handleProps(props) {
+  handleProps(props: IProgressBar) {
     /**
      * Increment progress bar if auto increment is set to true
      * and progress percent is less than 99.

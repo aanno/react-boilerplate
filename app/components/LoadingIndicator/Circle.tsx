@@ -20,7 +20,7 @@ const circleFadeDelay = keyframes`
   }
 `;
 
-const Circle : (ICircle) => IReactNodeWithPropTypes<ICircle> = (props: ICircle) => {
+const Circle : (props: ICircle) => IReactNodeWithPropTypes<ICircle> = (props: ICircle) => {
   const realCircle: any = (props: ICircle) => {
     const CirclePrimitive = styled.div`
     width: 100%;

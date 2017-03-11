@@ -7,7 +7,7 @@
 import * as React from 'react';
 import * as Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
+import {connect, Dispatch} from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { makeSelectRepos, makeSelectLoading, makeSelectError } from '../../containers/App/selectors';
@@ -30,7 +30,7 @@ interface IHomepage extends IReactMinimalProps {
   repos: any[],
   username: string | undefined,
 
-  onChangeUsername: (Event) => void,
+  onChangeUsername: (e: Event) => void,
   onSubmitForm: () => void,
 }
 
@@ -112,10 +112,10 @@ export class HomePage extends React.PureComponent<IHomepage, {}> { // eslint-dis
   }
 }
 
-export function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch: Dispatch<any>) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    onSubmitForm: (evt) => {
+    onChangeUsername: (evt: Event) => dispatch(changeUsername((evt.target as any).value)),
+    onSubmitForm: (evt: Event) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
     },

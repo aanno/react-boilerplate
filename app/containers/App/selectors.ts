@@ -3,35 +3,38 @@
  */
 
 import { createSelector } from 'reselect';
+import {IStoreState} from "../../../custom-typings/custom-typings";
+import {IAppState} from "./reducer";
+import {RouterState} from "react-router-redux";
 
-const selectGlobal = (state) => state.get('global');
+const selectGlobal: IAppState = (state: IStoreState) => state.get('global');
 
 const makeSelectCurrentUser = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.get('currentUser')
+  (globalState: IAppState) => globalState.get('currentUser')
 );
 
 const makeSelectLoading = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.get('loading')
+  (globalState: IAppState) => globalState.get('loading')
 );
 
 const makeSelectError = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.get('error')
+  (globalState: IAppState) => globalState.get('error')
 );
 
 const makeSelectRepos = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.getIn(['userData', 'repositories'])
+  (globalState: IAppState) => globalState.getIn(['userData', 'repositories'])
 );
 
 const makeSelectLocationState = () => {
-  let prevRoutingState;
+  let prevRoutingState: RouterState;
   let prevRoutingStateJS;
 
-  return (state) => {
-    const routingState = state.get('route'); // or state.route
+  return (state: IStoreState) => {
+    const routingState: RouterState = state.get('route'); // or state.route
 
     if (!routingState.equals(prevRoutingState)) {
       prevRoutingState = routingState;

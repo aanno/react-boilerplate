@@ -16,7 +16,7 @@ const jsLoader = (options) => {
       {
         loader: 'awesome-typescript-loader',
         query: {
-          declaration: false,
+          // declaration: false,
         },
       },
     ],
@@ -27,9 +27,9 @@ const jsLoader = (options) => {
   if (options.reactHotLoader) {
     result.use.unshift({
       loader: 'react-hot-loader/webpack',
-    })
+    });
   }
-  console.log('jsLoader', JSON.stringify(result, null, 2))
+  console.log('jsLoader', JSON.stringify(result, null, 2));
   return result;
 };
 

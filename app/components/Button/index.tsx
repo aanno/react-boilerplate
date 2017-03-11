@@ -17,7 +17,7 @@ import {IReactNodeWithPropTypes, IReactRoutedComponent} from "../../../custom-ty
 interface IButton extends IReactRoutedComponent {
 
   href: string,
-  onClick: (Event) => void,
+  onClick: (e: Event) => void,
 }
 
 function Button(props: IButton): IReactNodeWithPropTypes<IButton> {

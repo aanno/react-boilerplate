@@ -13,7 +13,7 @@ import Messages = ReactIntl.Messages;
 
 interface IToggle {
   value: string,
-  onToggle: (Event) => void,
+  onToggle: (e: Event) => void,
 
   messages: Messages,
   values: string[],

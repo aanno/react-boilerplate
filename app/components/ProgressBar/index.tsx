@@ -3,6 +3,7 @@ import ProgressBar from "./ProgressBar";
 
 interface IAppWithProgressBar {
   router: any | undefined,
+  location: Location,
 }
 
 interface IAppWithProgressState {
@@ -10,7 +11,9 @@ interface IAppWithProgressState {
   progress: number,
 }
 
-function withProgressBar(WrappedComponent) {
+// declare class AppWithProgressBar extends React.Component<IAppWithProgressBar, IAppWithProgressState>;
+
+function withProgressBar<P, S>(WrappedComponent: React.Component<P, S>): IAppWithProgressBar {
 
   class AppWithProgressBar extends React.Component<IAppWithProgressBar, IAppWithProgressState> {
 
@@ -21,7 +24,7 @@ function withProgressBar(WrappedComponent) {
       router: React.PropTypes.object,
     };
 
-    constructor(props) {
+    constructor(props: IAppWithProgressBar & P) {
       super(props);
       this.state = {
         progress: -1,
@@ -33,7 +36,7 @@ function withProgressBar(WrappedComponent) {
     componentWillMount() {
       // Store a reference to the listener.
       /* istanbul ignore next */
-      this.unsubscribeHistory = this.props.router && this.props.router.listenBefore((location) => {
+      this.unsubscribeHistory = this.props.router && this.props.router.listenBefore((location: Location) => {
         // Do not show progress bar for already loaded routes.
         if (this.state.loadedRoutes.indexOf(location.pathname) === -1) {
           this.updateProgress(0);
@@ -41,7 +44,7 @@ function withProgressBar(WrappedComponent) {
       });
     }
 
-    componentWillUpdate(newProps, newState) {
+    componentWillUpdate(newProps: IAppWithProgressBar, newState: IAppWithProgressState) {
       const { loadedRoutes, progress } = this.state;
       const { pathname } = newProps.location;
 
@@ -59,7 +62,7 @@ function withProgressBar(WrappedComponent) {
       this.unsubscribeHistory = undefined;
     }
 
-    updateProgress(progress) {
+    updateProgress(progress: number) {
       this.setState({ progress });
     }
 
