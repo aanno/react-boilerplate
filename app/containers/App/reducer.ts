@@ -19,7 +19,7 @@ import {
 } from './constants';
 import {IAppAction, IReposLoadedAction, ILoadingReposErrorAction} from "./actions";
 
-interface IUserData {
+export interface IUserData {
   repositories: boolean,
 }
 

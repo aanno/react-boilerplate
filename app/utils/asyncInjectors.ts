@@ -7,7 +7,7 @@ import * as invariant from 'invariant';
 import * as warning from 'warning';
 
 import createReducer from '../reducers';
-import {IMyStore, Saga} from "../../custom-typings/custom-typings";
+import {IMyStore, Saga, MyReducer} from "../../custom-typings/custom-typings";
 
 /**
  * Validate the shape of redux store
@@ -31,7 +31,7 @@ export function checkStore(store: IMyStore) {
  * Inject an asynchronously loaded reducer
  */
 export function injectAsyncReducer(store: IMyStore, isValid: boolean) {
-  return function injectReducer(name: string, asyncReducer) {
+  return function injectReducer(name: string, asyncReducer: MyReducer<any>) {
     if (!isValid) checkStore(store);
 
     invariant(

@@ -3,28 +3,30 @@
  */
 
 import { createSelector } from 'reselect';
-import {IStoreState} from "../../../custom-typings/custom-typings";
+import {IStoreState, MakeSelectType} from "../../../custom-typings/custom-typings";
 import {IAppState} from "./reducer";
 import {RouterState} from "react-router-redux";
 
-const selectGlobal: IAppState = (state: IStoreState) => state.get('global');
+export type SelectGlobalType = (state: IStoreState) => IAppState;
 
-const makeSelectCurrentUser = () => createSelector(
+const selectGlobal: SelectGlobalType = (state: IStoreState) => state.get('global');
+
+const makeSelectCurrentUser: MakeSelectType<string> = () => createSelector(
   selectGlobal,
   (globalState: IAppState) => globalState.get('currentUser')
 );
 
-const makeSelectLoading = () => createSelector(
+const makeSelectLoading: MakeSelectType<boolean> = () => createSelector(
   selectGlobal,
   (globalState: IAppState) => globalState.get('loading')
 );
 
-const makeSelectError = () => createSelector(
+const makeSelectError: MakeSelectType<Error> = () => createSelector(
   selectGlobal,
   (globalState: IAppState) => globalState.get('error')
 );
 
-const makeSelectRepos = () => createSelector(
+const makeSelectRepos: MakeSelectType<boolean> = () => createSelector(
   selectGlobal,
   (globalState: IAppState) => globalState.getIn(['userData', 'repositories'])
 );

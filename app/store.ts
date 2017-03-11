@@ -8,7 +8,7 @@ import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 import {Store} from "react-redux";
-import {IMyStore, IStoreState} from "../custom-typings/custom-typings";
+import {IMyStore, IStoreState, MyReducer} from "../custom-typings/custom-typings";
 import Module = webpack.Module;
 
 const sagaMiddleware = createSagaMiddleware();
@@ -53,7 +53,7 @@ export default function configureStore(initialState: any = {}, history: History.
     module.hot.accept('./reducers', () => {
       System.import('./reducers').then((reducerModule: Module) => {
         const createReducers = reducerModule.default;
-        const nextReducers = createReducers(store.asyncReducers);
+        const nextReducers: MyReducer<any> = createReducers(store.asyncReducers);
 
         store.replaceReducer(nextReducers);
       });
