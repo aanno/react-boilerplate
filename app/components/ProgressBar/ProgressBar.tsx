@@ -22,7 +22,7 @@ interface IProgressBarState {
 class ProgressBar extends React.Component<IProgressBar, IProgressBarState> {
 
   interval: number | undefined;
-  timeout: number | undefined;
+  timeout: any | undefined;
 
   static defaultProps = {
     percent: -1,
