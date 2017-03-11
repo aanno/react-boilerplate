@@ -4,10 +4,10 @@
  */
 import {fromJS} from "immutable";
 import {combineReducers} from "redux-immutable";
-import {LOCATION_CHANGE, LocationAction} from "react-router-redux";
+import {LOCATION_CHANGE, RouterState, RouterAction} from "react-router-redux";
 import globalReducer from "./containers/App/reducer";
 import languageProviderReducer from "./containers/LanguageProvider/reducer";
-import {IStoreState, MyReducer} from "../custom-typings/custom-typings";
+import {IStoreState, MyReducer, MyReducersMapObject} from "../custom-typings/custom-typings";
 
 /*
  * routeReducer
@@ -18,18 +18,19 @@ import {IStoreState, MyReducer} from "../custom-typings/custom-typings";
  */
 
 // Initial routing state
-const routeInitialState = fromJS({
+const routeInitialState: RouterState = fromJS({
   locationBeforeTransitions: null,
 });
 
 /**
  * Merge route into the global application state
  */
-function routeReducer(state = routeInitialState, action: LocationAction) {
+function routeReducer(state: RouterState = routeInitialState, action: RouterAction) {
   switch (action.type) {
     /* istanbul ignore next */
     case LOCATION_CHANGE:
-      return state.merge({
+      // TODO (tp):
+      return (state as any).merge({
         locationBeforeTransitions: action.payload,
       });
     default:
@@ -40,7 +41,7 @@ function routeReducer(state = routeInitialState, action: LocationAction) {
 /**
  * Creates the main reducer with the asynchronously loaded ones
  */
-export default function createReducer(asyncReducers: MyReducer<any>): MyReducer<IStoreState> {
+export default function createReducer(asyncReducers: MyReducersMapObject): MyReducer<IStoreState> {
   return combineReducers({
     route: routeReducer,
     global: globalReducer,

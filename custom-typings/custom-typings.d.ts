@@ -14,8 +14,13 @@ import Map = Immuable.Map
  */
 interface IMyStore extends Store<IStoreState> {
   replaceReducer: <T>(r: MyReducer<T>) => MyReducer<T>,
-  asyncReducers: {[name: string]: MyReducer<any>},
+  asyncReducers: MyReducersMapObject,
   runSaga: any,
+}
+
+// similiar to Redux.ReducersMapObject
+interface MyReducersMapObject {
+  [key: string]: MyReducer<any>;
 }
 
 /**
@@ -99,12 +104,16 @@ interface IReactMinimalProps {
 
 interface IReactPropsIntl extends IReactMinimalProps{
   locale: string,
-  messages: IMessages,
+  messages: ITranslations,
   dispatch: Dispatch<any>,
 }
 
 interface IMessages {
   [id: string]: string,
+}
+
+interface ITranslations {
+  [locale: string]: IMessages,
 }
 
 type IReactElementConstructor = (() => JSX.Element) | string | ComponentClass<any>;
@@ -113,4 +122,8 @@ namespace "redux-saga" {
   namespace effects {
     declare const takeLatest: any
   }
+}
+
+module "react-hot-loader" {
+  declare const AppContainer: any;
 }

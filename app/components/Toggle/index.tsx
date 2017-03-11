@@ -1,22 +1,19 @@
 /**
-*
-* LocaleToggle
-*
-*/
-
-import * as React from 'react';
-
-import Select from './Select';
-import ToggleOption from '../ToggleOption';
-import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
-import Messages = ReactIntl.Messages;
+ *
+ * LocaleToggle
+ *
+ */
+import * as React from "react";
+import Select from "./Select";
+import ToggleOption from "../ToggleOption";
+import {IReactNodeWithPropTypes, ITranslations} from "../../../custom-typings/custom-typings";
 import FormEvent = React.FormEvent;
 
 interface IToggle {
   value: string,
   onToggle: (e: FormEvent<Element>) => void,
 
-  messages: Messages,
+  messages: ITranslations,
   values: string[],
 }
 

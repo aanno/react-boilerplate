@@ -15,8 +15,8 @@ import {IMessages} from "../custom-typings/custom-typings";
 // import * as enTranslationMessages from './translations/en.json';
 // import * as deTranslationMessages from './translations/de.json';
 
-const enTranslationMessages = require('./translations/en.json');
-const deTranslationMessages = require('./translations/de.json');
+const enTranslationMessages: IMessages = require('./translations/en.json');
+const deTranslationMessages: IMessages = require('./translations/de.json');
 
 addLocaleData(enLocaleData);
 addLocaleData(deLocaleData);
@@ -26,7 +26,9 @@ export const appLocales = [
   'de',
 ];
 
-export const formatTranslationMessages = (locale: string, messages: IMessages) => {
+export type FormatTranslationMessagesType = (locale: string, messages: IMessages) => IMessages;
+
+export const formatTranslationMessages: FormatTranslationMessagesType = (locale: string, messages: IMessages) => {
   log.debug("formatTranslationMessages", locale, messages)
   console.log("formatTranslationMessages", locale, messages)
   const defaultFormattedMessages = locale !== DEFAULT_LOCALE

@@ -5,7 +5,6 @@
 import { createSelector } from 'reselect';
 import {IStoreState, MakeSelectType} from "../../../custom-typings/custom-typings";
 import {IAppState} from "./reducer";
-import {RouterState} from "react-router-redux";
 
 export type SelectGlobalType = (state: IStoreState) => IAppState;
 
@@ -32,11 +31,12 @@ const makeSelectRepos: MakeSelectType<boolean> = () => createSelector(
 );
 
 const makeSelectLocationState = () => {
-  let prevRoutingState: RouterState;
-  let prevRoutingStateJS;
+  // TODO (tp): Perhaps RouterState?
+  let prevRoutingState: any;
+  let prevRoutingStateJS: any;
 
   return (state: IStoreState) => {
-    const routingState: RouterState = state.get('route'); // or state.route
+    const routingState: any = state.get('route'); // or state.route
 
     if (!routingState.equals(prevRoutingState)) {
       prevRoutingState = routingState;

@@ -1,5 +1,4 @@
-import { createSelector } from 'reselect';
-import {IStoreState} from "../../../custom-typings/custom-typings";
+import {createSelector} from "reselect";
 import {ILanguageProviderState} from "./reducer";
 
 // type LanguageState = (id: 'locale') => string;
