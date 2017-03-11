@@ -4,6 +4,8 @@ import InjectedIntl = ReactIntl.InjectedIntl;
 import InjectedIntlProps = ReactIntl.InjectedIntlProps;
 import {RouterState} from "react-router-redux";
 import {IAppState} from "../app/containers/App/reducer";
+import * as Immuable from "immutable";
+import Map = Immuable.Map
 
 /**
  * Redux Store plus Middleware
@@ -15,15 +17,22 @@ interface IMyStore extends Store<IStoreState> {
 }
 
 /**
- * Redux Store interface
+ * Redux Store interface for our (concrete) store.
  */
-interface IStoreState {
+interface IStoreState extends IImmutableStore {
   // ???
-  get: (id: string) => any,
+  // get: (id: string) => any,
 
   language: string,
   route: RouterState,
   global: IAppState,
+}
+
+/**
+ * redux-immutable (abstract) store
+ */
+interface IImmutableStore extends Map<string, any> {
+
 }
 
 interface IAction {

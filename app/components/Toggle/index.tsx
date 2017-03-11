@@ -10,10 +10,11 @@ import Select from './Select';
 import ToggleOption from '../ToggleOption';
 import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
 import Messages = ReactIntl.Messages;
+import FormEvent = React.FormEvent;
 
 interface IToggle {
   value: string,
-  onToggle: (e: Event) => void,
+  onToggle: (e: FormEvent<Element>) => void,
 
   messages: Messages,
   values: string[],

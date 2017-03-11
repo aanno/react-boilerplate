@@ -18,12 +18,13 @@ import {
   LOAD_REPOS_ERROR,
 } from './constants';
 import {IAppAction, IReposLoadedAction, ILoadingReposErrorAction} from "./actions";
+import {IImmutableStore} from "../../../custom-typings/custom-typings";
 
 export interface IUserData {
   repositories: boolean,
 }
 
-export interface IAppState {
+export interface IAppState extends IImmutableStore {
   loading: boolean,
   error: boolean,
   currentUser: boolean,
@@ -48,13 +49,13 @@ function appReducer(state: IAppState = initialState, action: IAppAction) {
         .set('error', false)
         .setIn(['userData', 'repositories'], false);
     case LOAD_REPOS_SUCCESS:
-      const a2: IReposLoadedAction = action;
+      const a2: IReposLoadedAction = action as IReposLoadedAction;
       return state
         .setIn(['userData', 'repositories'], a2.repos)
         .set('loading', false)
         .set('currentUser', a2.username);
     case LOAD_REPOS_ERROR:
-      const a3: ILoadingReposErrorAction = action;
+      const a3: ILoadingReposErrorAction = action as ILoadingReposErrorAction;
       return state
         .set('error', a3.error)
         .set('loading', false);

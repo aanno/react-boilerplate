@@ -17,7 +17,7 @@ import { makeSelectLocale } from '../LanguageProvider/selectors';
 import {IReactPropsIntl} from "../../../custom-typings/custom-typings";
 
 interface ILocaleToggle extends IReactPropsIntl {
-  onLocaleToggle: (e: Event) => void,
+  onLocaleToggle: (e: React.FormEvent<Element>) => void,
 }
 
 export class LocaleToggle extends React.PureComponent<ILocaleToggle, {}> { // eslint-disable-line react/prefer-stateless-function

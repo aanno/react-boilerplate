@@ -13,8 +13,9 @@ import {
   DEFAULT_LOCALE,
 } from '../App/constants';
 import {IChangeLocaleAction} from "./actions";
+import {IImmutableStore} from "../../../custom-typings/custom-typings";
 
-export interface ILanguageProviderState {
+export interface ILanguageProviderState extends IImmutableStore {
   locale: string,
 }
 

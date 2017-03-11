@@ -30,7 +30,7 @@ interface IHomepage extends IReactMinimalProps {
   repos: any[],
   username: string | undefined,
 
-  onChangeUsername: (e: Event) => void,
+  onChangeUsername: (e: React.FormEvent<Element>) => void,
   onSubmitForm: () => void,
 }
 

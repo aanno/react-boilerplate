@@ -1,7 +1,8 @@
 import * as React from "react";
 import ProgressBar from "./ProgressBar";
+import ComponentClass = React.ComponentClass;
 
-interface IAppWithProgressBar {
+export interface IAppWithProgressBar {
   router: any | undefined,
   location: Location,
 }
@@ -13,7 +14,7 @@ interface IAppWithProgressState {
 
 // declare class AppWithProgressBar extends React.Component<IAppWithProgressBar, IAppWithProgressState>;
 
-function withProgressBar<P, S>(WrappedComponent: React.Component<P, S>): IAppWithProgressBar {
+function withProgressBar<P>(WrappedComponent: ComponentClass<P>): IAppWithProgressBar {
 
   class AppWithProgressBar extends React.Component<IAppWithProgressBar, IAppWithProgressState> {
 

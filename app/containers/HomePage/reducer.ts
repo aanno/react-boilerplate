@@ -15,8 +15,9 @@ import {
   CHANGE_USERNAME,
 } from './constants';
 import {IChangeUsernameAction} from "./actions";
+import {IImmutableStore} from "../../../custom-typings/custom-typings";
 
-export interface IHomePageState {
+export interface IHomePageState extends IImmutableStore {
   username: string,
 }
 
