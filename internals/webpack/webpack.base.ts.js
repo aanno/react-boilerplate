@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const log = require('loglevel');
 
 const jsLoader = (options) => {
   const result = {
@@ -29,7 +30,7 @@ const jsLoader = (options) => {
       loader: 'react-hot-loader/webpack',
     });
   }
-  console.log('jsLoader', JSON.stringify(result, null, 2));
+  log.info('jsLoader', JSON.stringify(result, null, 2));
   return result;
 };
 
@@ -42,49 +43,49 @@ const config = (options) => ({
   }, options.output), // Merge with env dependent settings
   module: {
     rules: [
-    jsLoader(options),
-    {
-      // Do not transform vendor's CSS with CSS-modules
-      // The point is that they remain in global scope.
-      // Since we require these CSS files in our JS or CSS files,
-      // they will be a part of our compilation either way.
-      // So, no need for ExtractTextPlugin here.
-      test: /\.css$/,
-      include: /node_modules/,
-      loaders: ['style-loader', 'css-loader'],
-    }, {
-      test: /\.(eot|svg|ttf|woff|woff2)$/,
-      loader: 'file-loader',
-    }, {
-      test: /\.(jpg|png|gif)$/,
-      loaders: [
-        'file-loader',
-        {
-          loader: 'image-webpack-loader',
-          query: {
-            progressive: true,
-            optimizationLevel: 7,
-            interlaced: false,
-            pngquant: {
-              quality: '65-90',
-              speed: 4,
+      jsLoader(options),
+      {
+        // Do not transform vendor's CSS with CSS-modules
+        // The point is that they remain in global scope.
+        // Since we require these CSS files in our JS or CSS files,
+        // they will be a part of our compilation either way.
+        // So, no need for ExtractTextPlugin here.
+        test: /\.css$/,
+        include: /node_modules/,
+        loaders: ['style-loader', 'css-loader'],
+      }, {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file-loader',
+      }, {
+        test: /\.(jpg|png|gif)$/,
+        loaders: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            query: {
+              progressive: true,
+              optimizationLevel: 7,
+              interlaced: false,
+              pngquant: {
+                quality: '65-90',
+                speed: 4,
+              },
             },
           },
+        ],
+      }, {
+        test: /\.html$/,
+        loader: 'html-loader',
+      }, {
+        test: /\.json$/,
+        loader: 'json-loader',
+      }, {
+        test: /\.(mp4|webm)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
         },
-      ],
-    }, {
-      test: /\.html$/,
-      loader: 'html-loader',
-    }, {
-      test: /\.json$/,
-      loader: 'json-loader',
-    }, {
-      test: /\.(mp4|webm)$/,
-      loader: 'url-loader',
-      query: {
-        limit: 10000,
-      },
-    }],
+      }],
   },
   plugins: options.plugins.concat([
     new webpack.ProvidePlugin({

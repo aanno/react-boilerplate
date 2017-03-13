@@ -10,7 +10,8 @@ const CircularDependencyPlugin = require('circular-dependency-plugin');
 const logger = require('../../server/logger');
 const cheerio = require('cheerio');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
-const cloneDeep = require('lodash/cloneDeep')
+const cloneDeep = require('lodash/cloneDeep');
+const log = require('loglevel');
 const dllPlugin = pkg.dllPlugin;
 
 /**
@@ -80,9 +81,9 @@ const config = require('./webpack.base.ts.js')({
   reactHotLoader: true,
 });
 
-const clone = cloneDeep(config)
-delete clone.plugins[0].options.manifest
-console.log('webpack.dev.ts.js:\n', JSON.stringify(clone, null, 2));
+const clone = cloneDeep(config);
+delete clone.plugins[0].options.manifest;
+log.info('webpack.dev.ts.js:\n', JSON.stringify(clone, null, 2));
 
 module.exports = config;
 
