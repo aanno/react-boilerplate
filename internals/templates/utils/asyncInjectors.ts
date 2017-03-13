@@ -5,12 +5,13 @@ import isObject from 'lodash/isObject';
 import isString from 'lodash/isString';
 import invariant from 'invariant';
 import warning from 'warning';
-import createReducer from 'reducers';
+import createReducer from '../reducers';
+import {IMyStore, MyReducer, Saga} from "../../../custom-typings/custom-typings";
 
 /**
  * Validate the shape of redux store
  */
-export function checkStore(store) {
+export function checkStore(store: IMyStore) {
   const shape = {
     dispatch: isFunction,
     subscribe: isFunction,
@@ -28,8 +29,8 @@ export function checkStore(store) {
 /**
  * Inject an asynchronously loaded reducer
  */
-export function injectAsyncReducer(store, isValid) {
-  return function injectReducer(name, asyncReducer) {
+export function injectAsyncReducer(store: IMyStore, isValid?: boolean) {
+  return function injectReducer(name: string, asyncReducer: MyReducer<any>) {
     if (!isValid) checkStore(store);
 
     invariant(
@@ -47,8 +48,8 @@ export function injectAsyncReducer(store, isValid) {
 /**
  * Inject an asynchronously loaded saga
  */
-export function injectAsyncSagas(store, isValid) {
-  return function injectSagas(sagas) {
+export function injectAsyncSagas(store: IMyStore, isValid?: boolean) {
+  return function injectSagas(sagas: Saga<any>[]) {
     if (!isValid) checkStore(store);
 
     invariant(
@@ -68,7 +69,7 @@ export function injectAsyncSagas(store, isValid) {
 /**
  * Helper for creating injectors
  */
-export function getAsyncInjectors(store) {
+export function getAsyncInjectors(store: IMyStore) {
   checkStore(store);
 
   return {

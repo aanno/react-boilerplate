@@ -7,13 +7,26 @@
  */
 
 import * as React from 'react';
-import { connect } from 'react-redux';
+import {connect, Dispatch} from 'react-redux';
 import { createSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
 
 import { makeSelectLocale } from './selectors';
+import {ITranslations} from "../../../../custom-typings/custom-typings";
 
-export class LanguageProvider extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+interface ILanguageProvider /* extends IReactPropsIntl */ {
+  messages: ITranslations,
+  locale: string,
+}
+
+export class LanguageProvider extends React.PureComponent<ILanguageProvider, {}> { // eslint-disable-line react/prefer-stateless-function
+
+  static propTypes = {
+    locale: React.PropTypes.string,
+    messages: React.PropTypes.object,
+    children: React.PropTypes.element.isRequired,
+  };
+
   render() {
     return (
       <IntlProvider locale={this.props.locale} key={this.props.locale} messages={this.props.messages[this.props.locale]}>
@@ -23,19 +36,12 @@ export class LanguageProvider extends React.PureComponent { // eslint-disable-li
   }
 }
 
-LanguageProvider.propTypes = {
-  locale: React.PropTypes.string,
-  messages: React.PropTypes.object,
-  children: React.PropTypes.element.isRequired,
-};
-
-
 const mapStateToProps = createSelector(
   makeSelectLocale(),
   (locale) => ({ locale })
 );
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch<any>) {
   return {
     dispatch,
   };

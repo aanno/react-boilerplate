@@ -13,7 +13,11 @@
 
 import * as React from 'react';
 
-export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export interface IApp {
+  children?: React.ReactNode,
+}
+
+export default class App extends React.PureComponent<IApp, {}> { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
     children: React.PropTypes.node,

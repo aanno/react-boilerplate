@@ -1,9 +1,11 @@
 // makeSelectLocationState expects a plain JS object for the routing state
-const makeSelectLocationState = () => {
-  let prevRoutingState;
-  let prevRoutingStateJS;
+import {MakeSelectType, IStoreState} from "../../../../custom-typings/custom-typings";
 
-  return (state) => {
+const makeSelectLocationState: MakeSelectType<any> = () => {
+  let prevRoutingState: any;
+  let prevRoutingStateJS: any;
+
+  return (state: IStoreState) => {
     const routingState = state.get('route'); // or state.route
 
     if (!routingState.equals(prevRoutingState)) {

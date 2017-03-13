@@ -6,19 +6,21 @@ import { memoryHistory } from 'react-router';
 import { put } from 'redux-saga/effects';
 import { fromJS } from 'immutable';
 
-import configureStore from 'store';
+import configureStore from '../../store';
 
 import {
   injectAsyncReducer,
   injectAsyncSagas,
   getAsyncInjectors,
 } from '../asyncInjectors';
+import {RouterAction} from "react-router-redux";
+import {IMyStore} from "../../../../custom-typings/custom-typings";
 
 // Fixtures
 
 const initialState = fromJS({ reduced: 'soon' });
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: RouterAction) => {
   switch (action.type) {
     case 'TEST':
       return state.set('reduced', action.payload);
@@ -36,7 +38,7 @@ const sagas = [
 ];
 
 describe('asyncInjectors', () => {
-  let store;
+  let store: IMyStore;
 
   describe('getAsyncInjectors', () => {
     beforeAll(() => {
@@ -99,7 +101,7 @@ describe('asyncInjectors', () => {
       it('should throw if passed invalid name', () => {
         let result = false;
 
-        const injectReducer = injectAsyncReducer(store);
+        const injectReducer: any = injectAsyncReducer(store);
 
         try {
           injectReducer('', reducer);
@@ -119,7 +121,7 @@ describe('asyncInjectors', () => {
       it('should throw if passed invalid reducer', () => {
         let result = false;
 
-        const injectReducer = injectAsyncReducer(store);
+        const injectReducer: any = injectAsyncReducer(store);
 
         try {
           injectReducer('bad', 'nope');
@@ -152,7 +154,7 @@ describe('asyncInjectors', () => {
       it('should throw if passed invalid saga', () => {
         let result = false;
 
-        const injectSagas = injectAsyncSagas(store);
+        const injectSagas: any = injectAsyncSagas(store);
 
         try {
           injectSagas({ testSaga });

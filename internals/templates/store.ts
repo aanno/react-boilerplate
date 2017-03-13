@@ -7,10 +7,13 @@ import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
+import {History} from "history";
+import {Store} from "react-redux";
+import {IStoreState, Module, MyReducer} from "../../custom-typings/custom-typings";
 
 const sagaMiddleware = createSagaMiddleware();
 
-export default function configureStore(initialState = {}, history) {
+export default function configureStore(initialState: any = {}, history: History) {
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
   // 2. routerMiddleware: Syncs the location/URL path to the state
@@ -32,7 +35,7 @@ export default function configureStore(initialState = {}, history) {
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
   /* eslint-enable */
 
-  const store = createStore(
+  const store: Store<IStoreState> = createStore(
     createReducer(),
     fromJS(initialState),
     composeEnhancers(...enhancers)
@@ -46,9 +49,9 @@ export default function configureStore(initialState = {}, history) {
   /* istanbul ignore next */
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      import('./reducers').then((reducerModule) => {
+      System.import('./reducers').then((reducerModule: Module) => {
         const createReducers = reducerModule.default;
-        const nextReducers = createReducers(store.asyncReducers);
+        const nextReducers: MyReducer<any> = createReducers(store.asyncReducers);
 
         store.replaceReducer(nextReducers);
       });

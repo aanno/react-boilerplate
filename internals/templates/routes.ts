@@ -2,17 +2,21 @@
 // They are all wrapped in the App component, which should contain the navbar etc
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
-import { getAsyncInjectors } from 'utils/asyncInjectors';
+import { getAsyncInjectors } from './utils/asyncInjectors';
+import {Module, IMyStore} from "../../custom-typings/custom-typings";
+import {RouteConfig} from "react-router";
 
-const errorLoading = (err) => {
+type LazyModuleCb = (_: any, defaultModule: Module) => void;
+
+const errorLoading = (err: Error) => {
   console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
 };
 
-const loadModule = (cb) => (componentModule) => {
+const loadModule = (cb: LazyModuleCb) => (componentModule: Module) => {
   cb(null, componentModule.default);
 };
 
-export default function createRoutes(store) {
+export default function createRoutes(store: IMyStore): RouteConfig {
   // Create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store); // eslint-disable-line no-unused-vars
 
@@ -20,9 +24,9 @@ export default function createRoutes(store) {
     {
       path: '/',
       name: 'home',
-      getComponent(nextState, cb) {
+      getComponent(_nextState, cb) {
         const importModules = Promise.all([
-          import('containers/HomePage'),
+          System.import('containers/HomePage'),
         ]);
 
         const renderRoute = loadModule(cb);
@@ -36,8 +40,8 @@ export default function createRoutes(store) {
     }, {
       path: '*',
       name: 'notfound',
-      getComponent(nextState, cb) {
-        import('containers/NotFoundPage')
+      getComponent(_nextState, cb) {
+        System.import('containers/NotFoundPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
