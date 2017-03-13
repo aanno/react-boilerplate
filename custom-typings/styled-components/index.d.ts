@@ -1,7 +1,11 @@
 
 import * as StyledComponents from 'styled-components';
 
-export cogit nst injectGlobal: any;
+export const injectGlobal: any;
+
+export const css: any;
+
+export const keyframes: any;
 
 // export const div: any /*HTMLDivElement*/;
 

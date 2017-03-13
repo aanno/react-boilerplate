@@ -1,16 +1,13 @@
 /**
  * Tests for HomePage sagas
  */
-
-import { cancel, take, put, takeLatest } from 'redux-saga/effects';
-import { createMockTask } from 'redux-saga/lib/utils';
-
-import { LOCATION_CHANGE } from 'react-router-redux';
-
-import { LOAD_REPOS } from '../../../containers/App/constants';
-import { reposLoaded, repoLoadingError } from '../../../containers/App/actions';
-
-import { getRepos, githubData } from '../sagas';
+import * as effects from "redux-saga/effects";
+import {cancel, take, put} from "redux-saga/effects";
+import {createMockTask} from "redux-saga/lib/utils";
+import {LOCATION_CHANGE} from "react-router-redux";
+import {LOAD_REPOS} from "../../../containers/App/constants";
+import {reposLoaded, repoLoadingError} from "../../../containers/App/actions";
+import {getRepos, githubData} from "../sagas";
 
 const username = 'mxstbr';
 
@@ -44,7 +41,7 @@ describe('getRepos Saga', () => {
     const response = new Error('Some error');
     expect(getReposGenerator).toBeDefined();
     if (getReposGenerator) {
-      const putDescriptor = getReposGenerator.throw(response).value;
+     const putDescriptor = (getReposGenerator as any).throw(response).value;
       expect(putDescriptor).toEqual(put(repoLoadingError(response)));
     }
   });
@@ -56,7 +53,7 @@ describe('githubDataSaga Saga', () => {
 
   it('should start task to watch for LOAD_REPOS action', () => {
     const takeLatestDescriptor = githubDataSaga.next().value;
-    expect(takeLatestDescriptor).toEqual(takeLatest(LOAD_REPOS, getRepos));
+    expect(takeLatestDescriptor).toEqual((effects as any).takeLatest(LOAD_REPOS, getRepos));
   });
 
   it('should yield until LOCATION_CHANGE action', () => {

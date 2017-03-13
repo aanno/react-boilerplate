@@ -53,7 +53,7 @@ describe('<LocaleToggle />', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
         const locale = 'de';
-        const target: EventTarget & Element = (new TestEventTarget<string>(locale) as EventTarget & Element);
+        const target: EventTarget & Element = (new TestEventTarget<string>(locale) as any);
        /*
         const evt: React.FormEvent<Element> = {
           target: {

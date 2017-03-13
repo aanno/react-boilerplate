@@ -11,6 +11,7 @@ import {HomePage, mapDispatchToProps, IHomePage} from '../index';
 import { changeUsername } from '../actions';
 import { loadRepos } from '../../App/actions';
 import {ReactTestProps} from "../../../../custom-typings/custom-typings";
+import {TestEventTarget, TestFormEvent} from "../../../types/types";
 
 describe('<HomePage />', () => {
   it('should render the repos list', () => {
@@ -49,7 +50,9 @@ describe('<HomePage />', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
         const username = 'mxstbr';
-        result.onChangeUsername({ target: { value: username } });
+        const target: EventTarget & Element = (new TestEventTarget<string>(username) as any);
+        const formEvent = new TestFormEvent(target);
+        result.onChangeUsername(formEvent);
         expect(dispatch).toHaveBeenCalledWith(changeUsername(username));
       });
     });

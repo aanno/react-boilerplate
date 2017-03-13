@@ -42,6 +42,12 @@ export class TestEventTarget<T> implements EventTarget {
 
 }
 
+/*
+export class TestElementEventTarget<T> extends TestEventTarget<T> implements Element {
+
+}
+ */
+
 export class TestSyntheticEvent<T> implements SyntheticEvent<T> {
 
   bubbles: boolean;
