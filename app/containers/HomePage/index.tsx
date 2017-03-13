@@ -23,7 +23,7 @@ import {makeSelectUsername} from "./selectors";
 import {IReactMinimalProps} from "../../../custom-typings/custom-typings";
 
 export interface IHomePage extends IReactMinimalProps {
-  error: boolean,
+  error: Error | undefined,
   loading: boolean,
   repos: any[],
   username: string | undefined,

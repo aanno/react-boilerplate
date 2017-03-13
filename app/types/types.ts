@@ -101,3 +101,61 @@ export class TestSyntheticEvent<T> implements SyntheticEvent<T> {
 export class TestFormEvent<T> extends TestSyntheticEvent<T> implements FormEvent<T> {
 
 }
+
+export class TestEvent implements Event {
+
+  readonly bubbles: boolean;
+  cancelBubble: boolean;
+  readonly cancelable: boolean;
+  readonly currentTarget: EventTarget;
+  readonly defaultPrevented: boolean;
+  readonly eventPhase: number;
+  readonly isTrusted: boolean;
+  returnValue: boolean;
+  readonly srcElement: Element | null;
+  readonly target: EventTarget;
+  readonly timeStamp: number;
+  readonly type: string;
+  readonly AT_TARGET: number;
+  readonly BUBBLING_PHASE: number;
+  readonly CAPTURING_PHASE: number;
+
+  //
+
+  scoped: boolean;
+  deepPath: () => EventTarget[];
+
+  constructor(target: EventTarget) {
+    this.bubbles = false;
+    this.cancelBubble = false;
+    this.cancelable = false;
+    this.currentTarget = target;
+    this.defaultPrevented = false;
+    this.eventPhase = -9999;
+    this.isTrusted = true;
+    this.returnValue = true;
+    this.srcElement = null;
+    this.target = target;
+    this.timeStamp = -9999;
+    this.type = "TestEvent";
+    this. AT_TARGET = -9900;
+    this.BUBBLING_PHASE = -9990;
+    this.CAPTURING_PHASE = -9000;
+    //
+    this.scoped = false;
+    this.deepPath = () => [];
+  }
+
+  initEvent(_eventTypeArg: string, _canBubbleArg: boolean, _cancelableArg: boolean): void {
+  }
+
+  preventDefault(): void {
+    // this.defaultPrevented = true;
+  }
+
+  stopImmediatePropagation(): void {
+  }
+
+  stopPropagation(): void {
+  }
+}
