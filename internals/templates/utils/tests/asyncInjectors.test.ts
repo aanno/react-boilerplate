@@ -2,12 +2,10 @@
  * Test async injectors
  */
 
-import { memoryHistory } from 'react-router';
+import * as ReactRouter from 'react-router';
 import { put } from 'redux-saga/effects';
 import { fromJS } from 'immutable';
-
 import configureStore from '../../store';
-
 import {
   injectAsyncReducer,
   injectAsyncSagas,
@@ -15,6 +13,8 @@ import {
 } from '../asyncInjectors';
 import {RouterAction} from "react-router-redux";
 import {IMyStore} from "../../../../custom-typings/custom-typings";
+
+const memoryHistory = (ReactRouter as any).memoryHistory;
 
 // Fixtures
 

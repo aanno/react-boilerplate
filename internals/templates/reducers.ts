@@ -5,9 +5,10 @@
 
 import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import {LOCATION_CHANGE, RouterAction} from 'react-router-redux';
 
 import languageProviderReducer from './containers/LanguageProvider/reducer';
+import {MyReducersMapObject, MyReducer, IStoreState} from "../../custom-typings/custom-typings";
 
 /*
  * routeReducer
@@ -25,7 +26,7 @@ const routeInitialState = fromJS({
 /**
  * Merge route into the global application state
  */
-function routeReducer(state = routeInitialState, action) {
+function routeReducer(state = routeInitialState, action: RouterAction) {
   switch (action.type) {
     /* istanbul ignore next */
     case LOCATION_CHANGE:
@@ -40,10 +41,10 @@ function routeReducer(state = routeInitialState, action) {
 /**
  * Creates the main reducer with the asynchronously loaded ones
  */
-export default function createReducer(asyncReducers) {
+export default function createReducer(asyncReducers: MyReducersMapObject): MyReducer<IStoreState> {
   return combineReducers({
     route: routeReducer,
     language: languageProviderReducer,
     ...asyncReducers,
-  });
+  }) as MyReducer<IStoreState>;
 }

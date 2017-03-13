@@ -24,14 +24,22 @@ export default function createRoutes(store: IMyStore): RouteConfig {
     {
       path: '/',
       name: 'home',
-      getComponent(_nextState, cb) {
+      getComponent(_nextState, cb: LazyModuleCb) {
         const importModules = Promise.all([
           System.import('containers/HomePage'),
         ]);
 
         const renderRoute = loadModule(cb);
 
+        /*
         importModules.then(([component]) => {
+          renderRoute(component);
+        });
+         */
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('home', reducer.default);
+          injectSagas(sagas.default);
+
           renderRoute(component);
         });
 

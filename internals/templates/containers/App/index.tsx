@@ -17,7 +17,7 @@ export interface IApp {
   children?: React.ReactNode,
 }
 
-export default class App extends React.PureComponent<IApp, {}> { // eslint-disable-line react/prefer-stateless-function
+export class App extends React.PureComponent<IApp, {}> { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
     children: React.PropTypes.node,

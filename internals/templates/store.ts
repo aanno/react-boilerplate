@@ -9,7 +9,7 @@ import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 import {History} from "history";
 import {Store} from "react-redux";
-import {IStoreState, Module, MyReducer} from "../../custom-typings/custom-typings";
+import {IStoreState, Module, MyReducer, IMyStore} from "../../custom-typings/custom-typings";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -35,11 +35,13 @@ export default function configureStore(initialState: any = {}, history: History)
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
   /* eslint-enable */
 
-  const store: Store<IStoreState> = createStore(
-    createReducer(),
+  const realStore: Store<IStoreState> = createStore(
+    createReducer({}),
     fromJS(initialState),
     composeEnhancers(...enhancers)
   );
+
+  const store: IMyStore = realStore as IMyStore;
 
   // Extensions
   store.runSaga = sagaMiddleware.run;

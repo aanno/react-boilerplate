@@ -13,7 +13,6 @@ import {IMessages} from "../../custom-typings/custom-typings"; // eslint-disable
 
 const enTranslationMessages: IMessages = require('./translations/en.json');
 
-
 export const appLocales = [
   'en',
 ];
