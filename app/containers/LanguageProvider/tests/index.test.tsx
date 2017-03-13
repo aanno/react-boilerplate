@@ -8,6 +8,7 @@ import ConnectedLanguageProvider, { LanguageProvider } from '../index';
 import configureStore from '../../../store';
 
 import { translationMessages } from '../../../i18n';
+import {IMyStore} from "../../../../custom-typings/custom-typings";
 
 const messages = defineMessages({
   someMessage: {
@@ -30,7 +31,7 @@ describe('<LanguageProvider />', () => {
 });
 
 describe('<ConnectedLanguageProvider />', () => {
-  let store;
+  let store: IMyStore;
 
   beforeAll(() => {
     store = configureStore({}, browserHistory);

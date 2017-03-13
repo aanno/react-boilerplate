@@ -3,6 +3,8 @@ import { shallow } from 'enzyme';
 import { IntlProvider, defineMessages } from 'react-intl';
 
 import Toggle from '../index';
+import {ReactTestProps} from "../../../../custom-typings/custom-typings";
+import {IToggle} from "../index";
 
 describe('<Toggle />', () => {
   it('should contain default text', () => {
@@ -18,11 +20,12 @@ describe('<Toggle />', () => {
         defaultMessage: defaultDeMessage,
       },
     });
+    const props: ReactTestProps<IToggle> = {};
     const renderedComponent = shallow(
       <IntlProvider locale="en">
-        <Toggle values={['en', 'de']} messages={messages} />
+        <Toggle {...props} values={['en', 'de']} messages={messages} />
       </IntlProvider>
     );
-    expect(renderedComponent.contains(<Toggle values={['en', 'de']} messages={messages} />)).toBe(true);
+    expect(renderedComponent.contains(<Toggle {...props} values={['en', 'de']} messages={messages} />)).toBe(true);
   });
 });

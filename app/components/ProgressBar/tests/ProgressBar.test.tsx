@@ -5,8 +5,10 @@ import { shallow, mount } from 'enzyme';
 import ProgressBar from '../ProgressBar';
 import Wrapper from '../Wrapper';
 import Percent from '../Percent';
+import {ReactTestProps} from "../../../../custom-typings/custom-typings";
+import {IProgressBar} from "../ProgressBar";
 
-let clock = null;
+let clock: any = null;
 
 describe('<ProgressBar />', () => {
   beforeEach(() => {
@@ -14,33 +16,37 @@ describe('<ProgressBar />', () => {
   });
 
   afterEach(() => {
-    clock = sinon.restore();
+    /*clock = */sinon.restore();
   });
 
   it('should initially render hidden progress bar', () => {
+    const props: ReactTestProps<IProgressBar> = {};
     const renderedComponent = shallow(
-      <ProgressBar />
+      <ProgressBar {...props} />
     );
     expect(renderedComponent.find(Wrapper).length).toEqual(1);
   });
 
   it('should render render horizontal progress bar', () => {
+    const props: ReactTestProps<IProgressBar> = {};
     const renderedComponent = shallow(
-      <ProgressBar />
+      <ProgressBar {...props} />
     );
     expect(renderedComponent.find(Percent).length).toEqual(1);
   });
 
   it('should set state.percent as props.percent', () => {
     const expected = 50;
+    const props: ReactTestProps<IProgressBar> = {};
     const renderedComponent = mount(
-      <ProgressBar percent={expected} />
+      <ProgressBar {...props} percent={expected} />
     );
     expect(renderedComponent.state().percent).toEqual(expected);
   });
 
   it('should call componentDidMount', () => {
     sinon.spy(ProgressBar.prototype, 'componentDidMount');
+    const props: ReactTestProps<IProgressBar> = {};
     const renderedComponent = mount( // eslint-disable-line
       <ProgressBar percent={0} updateProgress={(noop) => noop} />
     );
@@ -50,6 +56,7 @@ describe('<ProgressBar />', () => {
 
   it('should call componentWillReceiveProps', () => {
     sinon.spy(ProgressBar.prototype, 'componentWillReceiveProps');
+    const props: ReactTestProps<IProgressBar> = {};
     const renderedComponent = mount( // eslint-disable-line
       <ProgressBar percent={0} updateProgress={(noop) => noop} />
     );
@@ -135,7 +142,7 @@ describe('<ProgressBar />', () => {
     });
 
     afterEach(() => {
-      clock = sinon.restore();
+      /*clock = */sinon.restore();
     });
 
     it('should start incrementing progress if 0 <= percent < 100', () => {

@@ -7,7 +7,7 @@ import LoadingIndicator from '../../components/LoadingIndicator';
 import RepoListItem from '../../containers/RepoListItem';
 import {IReactNodeWithPropTypes, IReactElementConstructor} from "../../../custom-typings/custom-typings";
 
-interface IReposList {
+export interface IReposList {
   loading: boolean,
   error: boolean,
   repos: IReactElementConstructor[],

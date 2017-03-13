@@ -5,7 +5,7 @@ import sinon from 'sinon';
 import withProgressBar from '../index';
 import ProgressBar from '../ProgressBar';
 
-let clock = null;
+let clock: any = null;
 
 describe('withProgressBar()', () => {
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('withProgressBar()', () => {
   });
 
   afterEach(() => {
-    clock = sinon.restore();
+    /* clock = */sinon.restore();
   });
 
   function Component() {

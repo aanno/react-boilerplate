@@ -2,11 +2,13 @@ import { fromJS } from 'immutable';
 
 import homeReducer from '../reducer';
 import {
-  changeUsername,
+  changeUsername, IChangeUsernameAction,
 } from '../actions';
+import {IStoreState} from "../../../../custom-typings/custom-typings";
+import {IHomePageState} from "../reducer";
 
 describe('homeReducer', () => {
-  let state;
+  let state: IHomePageState;
   beforeEach(() => {
     state = fromJS({
       username: '',
@@ -15,7 +17,7 @@ describe('homeReducer', () => {
 
   it('should return the initial state', () => {
     const expectedResult = state;
-    expect(homeReducer(undefined, {})).toEqual(expectedResult);
+    expect(homeReducer(undefined, {} as IChangeUsernameAction)).toEqual(expectedResult);
   });
 
   it('should handle the changeUsername action correctly', () => {

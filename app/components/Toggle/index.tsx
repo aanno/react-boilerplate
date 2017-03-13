@@ -9,7 +9,7 @@ import ToggleOption from "../ToggleOption";
 import {IReactNodeWithPropTypes, ITranslations} from "../../../custom-typings/custom-typings";
 import FormEvent = React.FormEvent;
 
-interface IToggle {
+export interface IToggle {
   value: string,
   onToggle: (e: FormEvent<Element>) => void,
 

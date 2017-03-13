@@ -8,7 +8,7 @@ import {PropTypes} from "react";
 import Wrapper from "./Wrapper";
 import Percent from "./Percent";
 
-interface IProgressBar {
+export interface IProgressBar {
   percent: number,
   updateProgress: (percent: number) => void,
   autoIncrement?: boolean,

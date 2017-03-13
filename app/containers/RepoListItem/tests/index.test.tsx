@@ -6,17 +6,19 @@ import * as React from 'react';
 import { shallow, render } from 'enzyme';
 import { IntlProvider } from 'react-intl';
 
-import ListItem from 'components/ListItem';
-import { RepoListItem } from '../index';
+import ListItem from '../../../components/ListItem';
+import {RepoListItem, IRepoListItem} from '../index';
+import {ReactTestProps} from "../../../../custom-typings/custom-typings";
 
-const renderComponent = (props = {}) => render(
+const renderComponent = (props: ReactTestProps<IRepoListItem> = {}) => render(
   <IntlProvider locale="en">
     <RepoListItem {...props} />
   </IntlProvider>
 );
 
 describe('<RepoListItem />', () => {
-  let item;
+  const props: ReactTestProps<IRepoListItem> = {} as ReactTestProps<IRepoListItem>;
+  let item: any;
 
   // Before each test reset the item data for safety
   beforeEach(() => {
@@ -33,7 +35,7 @@ describe('<RepoListItem />', () => {
 
   it('should render a ListItem', () => {
     const renderedComponent = shallow(
-      <RepoListItem item={item} />
+      <RepoListItem {...props} item={item} />
     );
     expect(renderedComponent.find(ListItem).length).toBe(1);
   });

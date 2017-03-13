@@ -7,8 +7,8 @@ import { createMockTask } from 'redux-saga/lib/utils';
 
 import { LOCATION_CHANGE } from 'react-router-redux';
 
-import { LOAD_REPOS } from 'containers/App/constants';
-import { reposLoaded, repoLoadingError } from 'containers/App/actions';
+import { LOAD_REPOS } from '../../../containers/App/constants';
+import { reposLoaded, repoLoadingError } from '../../../containers/App/actions';
 
 import { getRepos, githubData } from '../sagas';
 
@@ -16,7 +16,7 @@ const username = 'mxstbr';
 
 /* eslint-disable redux-saga/yield-effects */
 describe('getRepos Saga', () => {
-  let getReposGenerator;
+  let getReposGenerator: IterableIterator<any>;
 
   // We have to test twice, once for a successful load and once for an unsuccessful one
   // so we do all the stuff that happens beforehand automatically in the beforeEach

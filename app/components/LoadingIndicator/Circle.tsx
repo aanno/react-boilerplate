@@ -3,7 +3,7 @@ import { PropTypes } from 'react';
 import styled, { keyframes } from 'styled-components';
 import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
 
-interface ICircle {
+export interface ICircle {
   delay: number,
   rotate: number,
 }

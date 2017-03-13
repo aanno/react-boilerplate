@@ -22,7 +22,7 @@ import {changeUsername, IChangeUsernameAction} from "./actions";
 import {makeSelectUsername} from "./selectors";
 import {IReactMinimalProps} from "../../../custom-typings/custom-typings";
 
-export interface IHomepage extends IReactMinimalProps {
+export interface IHomePage extends IReactMinimalProps {
   error: boolean,
   loading: boolean,
   repos: any[],
@@ -32,7 +32,7 @@ export interface IHomepage extends IReactMinimalProps {
   onSubmitForm: () => void,
 }
 
-export class HomePage extends React.PureComponent<IHomepage, {}> { // eslint-disable-line react/prefer-stateless-function
+export class HomePage extends React.PureComponent<IHomePage, {}> { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
     loading: React.PropTypes.bool,
@@ -113,7 +113,7 @@ export class HomePage extends React.PureComponent<IHomepage, {}> { // eslint-dis
 export function mapDispatchToProps(dispatch: Dispatch<any>) {
   return {
     onChangeUsername: (evt: React.FormEvent<Element>) => dispatch(changeUsername((evt.target as any).value)),
-    onSubmitForm: (evt: Event) => {
+    onSubmitForm: (evt?: Event) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
     },

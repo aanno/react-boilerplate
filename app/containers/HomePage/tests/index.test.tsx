@@ -6,24 +6,28 @@ import * as React from 'react';
 import { shallow, mount } from 'enzyme';
 import { IntlProvider } from 'react-intl';
 
-import ReposList from 'components/ReposList';
-import { HomePage, mapDispatchToProps } from '../index';
+import ReposList from '../../../components/ReposList';
+import {HomePage, mapDispatchToProps, IHomePage} from '../index';
 import { changeUsername } from '../actions';
 import { loadRepos } from '../../App/actions';
+import {ReactTestProps} from "../../../../custom-typings/custom-typings";
 
 describe('<HomePage />', () => {
   it('should render the repos list', () => {
+    const props: ReactTestProps<IHomePage> = {};
     const renderedComponent = shallow(
-      <HomePage loading error={false} repos={[]} />
+      <HomePage {...props} loading error={false} repos={[]} />
     );
     expect(renderedComponent.contains(<ReposList loading error={false} repos={[]} />)).toEqual(true);
   });
 
   it('should render fetch the repos on mount if a username exists', () => {
     const submitSpy = jest.fn();
+    const props: ReactTestProps<IHomePage> = {};
     mount(
       <IntlProvider locale="en">
         <HomePage
+          {...props}
           username="Not Empty"
           onChangeUsername={() => {}}
           onSubmitForm={submitSpy}
@@ -68,7 +72,7 @@ describe('<HomePage />', () => {
     it('should preventDefault if called with event', () => {
       const preventDefault = jest.fn();
       const result = mapDispatchToProps(() => {});
-      const evt = { preventDefault };
+      const evt: Event = { preventDefault };
       result.onSubmitForm(evt);
       expect(preventDefault).toHaveBeenCalledWith();
     });

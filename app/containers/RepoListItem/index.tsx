@@ -16,9 +16,9 @@ import IssueLink from './IssueLink';
 import RepoLink from './RepoLink';
 import Wrapper from './Wrapper';
 
-interface IRepoListItem {
+export interface IRepoListItem {
   item: any,
-  currentUser: any,
+  currentUser: string,
 }
 
 export class RepoListItem extends React.PureComponent<IRepoListItem, {}> { // eslint-disable-line react/prefer-stateless-function
