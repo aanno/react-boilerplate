@@ -2,11 +2,13 @@ import * as React from "react";
 import {mount, ReactWrapper} from "enzyme";
 import sinon from "sinon";
 import withProgressBar, {
-  IAppWithProgressState, AppWithProgressBarType, IAppWithProgressBar,
+  IAppWithProgressState,
+  AppWithProgressBarType,
+  IAppWithProgressBar,
   IAppWithProgressBarComponent
 } from "../index";
 import ProgressBar from "../ProgressBar";
-import {EnzymeMountType} from "../../../../custom-typings/custom-typings";
+import {EnzymeMountType, ComponentClassLike} from "../../../../custom-typings/custom-typings";
 
 type TestAppWithProgressBarType = EnzymeMountType<
   React.Component<IAppWithProgressBar, IAppWithProgressState>, IAppWithProgressBar, IAppWithProgressState>
@@ -23,7 +25,7 @@ describe('withProgressBar()', () => {
     /* clock = */sinon.restore({});
   });
 
-  function Component() {
+  function Component(): ComponentClassLike<{}> {
     return (
       <div></div>
     );
@@ -33,7 +35,7 @@ describe('withProgressBar()', () => {
     listenBefore: () => (() => {}),
   };
 
-  const HocComponent = withProgressBar(Component);
+  const HocComponent: any = withProgressBar(Component as any);
 
   it('Should exist', () => {
     const renderedComponent: TestAppWithProgressBarType = mount(

@@ -86,7 +86,7 @@ function withProgressBar<P>(WrappedComponent: ComponentClass<P>): AppWithProgres
     }
   }
 
-  return AppWithProgressBar as AppWithProgressBarType;
+  return AppWithProgressBar as any;
 }
 
 export default withProgressBar;
