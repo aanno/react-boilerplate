@@ -10,6 +10,7 @@ import LanguageProvider from '../../LanguageProvider';
 import configureStore from '../../../store';
 import { translationMessages } from '../../../i18n';
 import {IMyStore} from "../../../../custom-typings/custom-typings";
+import {TestEventTarget, TestFormEvent} from "../../../types/types";
 
 describe('<LocaleToggle />', () => {
   let store: IMyStore;
@@ -52,11 +53,15 @@ describe('<LocaleToggle />', () => {
         const dispatch = jest.fn();
         const result = mapDispatchToProps(dispatch);
         const locale = 'de';
+        const target: EventTarget & Element = (new TestEventTarget<string>(locale) as EventTarget & Element);
+       /*
         const evt: React.FormEvent<Element> = {
           target: {
             value: locale
           }
         };
+         */
+        const evt: React.FormEvent<Element> = new TestFormEvent(target);
         result.onLocaleToggle(evt);
         expect(dispatch).toHaveBeenCalledWith(changeLocale(locale));
       });
