@@ -3,7 +3,7 @@
  */
 import * as effects from "redux-saga/effects";
 import {cancel, take, put} from "redux-saga/effects";
-import {createMockTask} from "redux-saga/lib/utils";
+import {createMockTask} from "redux-saga/utils";
 import {LOCATION_CHANGE} from "react-router-redux";
 import {LOAD_REPOS} from "../../../containers/App/constants";
 import {reposLoaded, repoLoadingError} from "../../../containers/App/actions";
