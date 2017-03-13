@@ -76,7 +76,7 @@ describe('withProgressBar()', () => {
       <HocComponent location={{ pathname: '/' }} router={router} />
     ) as TestAppWithProgressBarType;
 
-    const inst: AppWithProgressBarType = renderedComponent.instance();
+    const inst: AppWithProgressBarType = renderedComponent.instance() as any;
     expect(inst.unsubscribeHistory).toBeTruthy();
   });
 
@@ -85,9 +85,9 @@ describe('withProgressBar()', () => {
       <HocComponent location={{ pathname: '/' }} router={router} />
     ) as TestAppWithProgressBarType;
 
-    const inst: AppWithProgressBarType = renderedComponent.instance();
+    const inst: AppWithProgressBarType = renderedComponent.instance() as any;
     inst.componentWillUnmount();
-    expect(inst.unsubscribeHistory).toBeFalsy();
+    expect((inst as any).unsubscribeHistory).toBeFalsy();
   });
 
   it('Should update state.progress when called updateProgress()', () => {
