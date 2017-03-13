@@ -4,7 +4,7 @@ import ComponentClass = React.ComponentClass;
 import Component = React.Component;
 import ComponentLifecycle = React.ComponentLifecycle;
 
-export type AppWithProgressBarType = Partial<Component<IAppWithProgressBar, IAppWithProgressState>>
+export type AppWithProgressBarType = Component<IAppWithProgressBar, IAppWithProgressState>
   & IAppWithProgressBarComponent & ComponentLifecycle<IAppWithProgressBar, IAppWithProgressState>;
 
 export interface IAppWithProgressBarComponent {

@@ -159,3 +159,48 @@ export class TestEvent implements Event {
   stopPropagation(): void {
   }
 }
+
+export class TestLocation implements Location {
+  hash: string;
+  host: string;
+  hostname: string;
+  href: string;
+  readonly origin: string;
+  pathname: string;
+  port: string;
+  protocol: string;
+  search: string;
+
+  //
+
+  url: string;
+
+  constructor(path: string) {
+    this.hash = path;
+    this.host = "128.0.0.1";
+    this.hostname = "testhost";
+    this.href = path;
+    this.origin = "test";
+    this.pathname = path;
+    this.port = "-9999";
+    this.protocol = "http";
+    this.search = "";
+    //
+    this.url = path;
+  }
+
+  assign(url: string): void {
+    this.url = url;
+  }
+
+  reload(_forcedReload?: boolean): void {
+  }
+
+  replace(url: string): void {
+    this.url = url;
+  }
+
+  toString(): string {
+    return this.url;
+  }
+}

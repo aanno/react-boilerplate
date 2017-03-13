@@ -9,6 +9,7 @@ import withProgressBar, {
 } from "../index";
 import ProgressBar from "../ProgressBar";
 import {EnzymeMountType, ComponentClassLike} from "../../../../custom-typings/custom-typings";
+import {TestLocation} from "../../../types/types";
 
 type TestAppWithProgressBarType = EnzymeMountType<
   React.Component<IAppWithProgressBar, IAppWithProgressState>, IAppWithProgressBar, IAppWithProgressState>
@@ -77,7 +78,7 @@ describe('withProgressBar()', () => {
     ) as TestAppWithProgressBarType;
 
     const inst: AppWithProgressBarType = renderedComponent.instance() as any;
-    expect(inst.unsubscribeHistory).toBeTruthy();
+    expect((inst as any).unsubscribeHistory).toBeTruthy();
   });
 
   it('Should unset listener when unmounted', () => {
@@ -86,7 +87,10 @@ describe('withProgressBar()', () => {
     ) as TestAppWithProgressBarType;
 
     const inst: AppWithProgressBarType = renderedComponent.instance() as any;
-    inst.componentWillUnmount();
+    expect(inst.componentWillUnmount).toBeDefined();
+    if (inst.componentWillUnmount) {
+      inst.componentWillUnmount();
+    }
     expect((inst as any).unsubscribeHistory).toBeFalsy();
   });
 
@@ -108,7 +112,8 @@ describe('withProgressBar()', () => {
     ) as TestAppWithProgressBarType;
 
     renderedComponent.setState({ loadedRoutes: [], progress: 10 });
-    renderedComponent.setProps({ location: { pathname: '/abc' }, router });
+    const location: Location = new TestLocation('/abc');
+    renderedComponent.setProps({ location: location, router });
     clock.tick(10);
     const state: IAppWithProgressState = renderedComponent.state() as IAppWithProgressState;
     expect(state.progress).toBe(100);
