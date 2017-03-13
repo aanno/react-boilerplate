@@ -1,9 +1,9 @@
 import * as React from "react";
 import ProgressBar from "./ProgressBar";
 import ComponentClass = React.ComponentClass;
-import {ComponentClassLike} from "../../../custom-typings/custom-typings";
+import {ComponentClassLike, ComponentLike} from "../../../custom-typings/custom-typings";
 
-export type AppWithProgressBarType = ComponentClassLike<IAppWithProgressBar> & IAppWithProgressBarComponent;
+export type AppWithProgressBarType = ComponentLike<IAppWithProgressBar, IAppWithProgressState> & IAppWithProgressBarComponent;
 
 export interface IAppWithProgressBarComponent {
   updateProgress: (progress: number) => void;

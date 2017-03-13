@@ -1,8 +1,16 @@
 import * as React from "react";
 import {mount, ReactWrapper} from "enzyme";
 import sinon from "sinon";
-import withProgressBar, {IAppWithProgressState, AppWithProgressBarType, IAppWithProgressBar} from "../index";
+import withProgressBar, {
+  IAppWithProgressState, AppWithProgressBarType, IAppWithProgressBar,
+  IAppWithProgressBarComponent
+} from "../index";
 import ProgressBar from "../ProgressBar";
+import {EnzymeMountType} from "../../../../custom-typings/custom-typings";
+
+type TestAppWithProgressBarType = EnzymeMountType<
+  React.Component<IAppWithProgressBar, IAppWithProgressState>, IAppWithProgressBar, IAppWithProgressState>
+    & IAppWithProgressBarComponent;
 
 let clock: any = null;
 
@@ -28,50 +36,52 @@ describe('withProgressBar()', () => {
   const HocComponent = withProgressBar(Component);
 
   it('Should exist', () => {
-    const renderedComponent = mount(
+    const renderedComponent: TestAppWithProgressBarType = mount(
       <HocComponent />
-    );
+    ) as TestAppWithProgressBarType;
 
     expect(renderedComponent.find(Component).length).toBe(1);
   });
 
   it('Should render <ProgressBar />', () => {
-    const renderedComponent = mount(
+    const renderedComponent: TestAppWithProgressBarType = mount(
       <HocComponent />
-    );
+    ) as TestAppWithProgressBarType;
 
     expect(renderedComponent.find(ProgressBar).length).toBe(1);
   });
 
   it('Should initially have state.progress = -1', () => {
-    const renderedComponent = mount(
+    const renderedComponent: TestAppWithProgressBarType = mount(
       <HocComponent />
-    );
+    ) as TestAppWithProgressBarType;
 
-    expect(renderedComponent.state().progress).toBe(-1);
+    const state: IAppWithProgressState = renderedComponent.state() as IAppWithProgressState;
+    expect(state.progress).toBe(-1);
   });
 
   it('Should initially have state.loadedRoutes = current route', () => {
-    const renderedComponent = mount(
+    const renderedComponent: TestAppWithProgressBarType = mount(
       <HocComponent location={{ pathname: '/' }} />
-    );
+    ) as TestAppWithProgressBarType;
 
-    expect(renderedComponent.state().loadedRoutes[0]).toBe('/');
+    const state: IAppWithProgressState = renderedComponent.state() as IAppWithProgressState;
+    expect(state.loadedRoutes[0]).toBe('/');
   });
 
   it('Should listen to route changes', () => {
-    const renderedComponent = mount(
+    const renderedComponent: TestAppWithProgressBarType = mount(
       <HocComponent location={{ pathname: '/' }} router={router} />
-    );
+    ) as TestAppWithProgressBarType;
 
     const inst: AppWithProgressBarType = renderedComponent.instance();
     expect(inst.unsubscribeHistory).toBeTruthy();
   });
 
   it('Should unset listener when unmounted', () => {
-    const renderedComponent = mount(
+    const renderedComponent: TestAppWithProgressBarType = mount(
       <HocComponent location={{ pathname: '/' }} router={router} />
-    );
+    ) as TestAppWithProgressBarType;
 
     const inst: AppWithProgressBarType = renderedComponent.instance();
     inst.componentWillUnmount();
@@ -82,7 +92,7 @@ describe('withProgressBar()', () => {
     const renderedComponent: AppWithProgressBarType & ReactWrapper<IAppWithProgressBar, IAppWithProgressState>
       = mount(
       <HocComponent location={{ pathname: '/' }} router={router}/>
-    ) as any;
+    ) as TestAppWithProgressBarType;
 
     const inst: AppWithProgressBarType = renderedComponent.instance() as any;
     inst.updateProgress(10);
@@ -91,9 +101,9 @@ describe('withProgressBar()', () => {
   });
 
   it('Should start progress bar for a new route', () => {
-    const renderedComponent = mount(
+    const renderedComponent: TestAppWithProgressBarType = mount(
       <HocComponent location={{ pathname: '/' }} router={router} />
-    );
+    ) as TestAppWithProgressBarType;
 
     renderedComponent.setState({ loadedRoutes: [], progress: 10 });
     renderedComponent.setProps({ location: { pathname: '/abc' }, router });

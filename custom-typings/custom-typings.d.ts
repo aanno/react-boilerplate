@@ -9,6 +9,8 @@ import Action = Redux.Action;
 import * as Immuable from "immutable";
 import Map = Immuable.Map
 import Partial = _.Partial;
+import ComponentLifecycle = React.ComponentLifecycle;
+import {ReactWrapper} from "enzyme";
 
 /**
  * Redux Store plus Middleware
@@ -132,6 +134,34 @@ interface ComponentClassLike<P> {
   defaultProps?: Partial<P>;
   displayName?: string;
 }
+
+/**
+ * Interface like Component<P, S> but without the constructor.
+ * Needed for second-order components.
+ *
+ * @author Thomas Pasch
+ */
+class ComponentLike<P, S> implements ComponentLifecycle<P, S> {
+  // constructor(props?: P, context?: any);
+  setState<K extends keyof S>(f: (prevState: S, props: P) => Pick<S, K>, callback?: () => any): void;
+  setState<K extends keyof S>(state: Pick<S, K>, callback?: () => any): void;
+  forceUpdate(callBack?: () => any): void;
+  render(): JSX.Element | null;
+
+  // React.Props<T> is now deprecated, which means that the `children`
+  // property is not available on `P` by default, even though you can
+  // always pass children as variadic arguments to `createElement`.
+  // In the future, if we can define its call signature conditionally
+  // on the existence of `children` in `P`, then we should remove this.
+  props: Readonly<{ children?: ReactNode }> & Readonly<P>;
+  state: Readonly<S>;
+  context: any;
+  refs: {
+    [key: string]: ReactInstance
+  };
+}
+
+type EnzymeMountType<T extends React.Component<P,S>, P, S> = T & ReactWrapper<P, S>;
 
 type IReactElementConstructor = (() => JSX.Element) | string | ComponentClass<any>;
 
