@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
 
-interface IIssueIcon {
+export interface IIssueIcon {
   className?: string,
 }
 

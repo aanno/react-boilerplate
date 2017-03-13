@@ -21,7 +21,8 @@ describe('<RepoLink />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<RepoLink attribute={'test'} />);
+    const Untyped: any = RepoLink;
+    const renderedComponent = shallow(<Untyped attribute={'test'} />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });

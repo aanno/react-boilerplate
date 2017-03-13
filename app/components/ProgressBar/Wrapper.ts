@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import {StyledComponentType} from "../../../custom-typings/custom-typings";
+
+type WrapperType = StyledComponentType<HTMLDivElement>;
 
 export interface IProgressBarWrapper {
   hidden: boolean;
@@ -13,4 +16,4 @@ export default styled.div`
   opacity: ${(props: IProgressBarWrapper) => props.hidden ? '0' : '1'};
   transition: all 500ms ease-in-out;
   z-index: ${(props: IProgressBarWrapper) => props.hidden ? '-10' : '9999'};
-`;
+` as WrapperType;

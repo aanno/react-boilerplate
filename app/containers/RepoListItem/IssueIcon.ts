@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
 import NormalIssueIcon from '../../components/IssueIcon';
+import {StyledComponentType, IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
+import {IIssueIcon} from "../../components/IssueIcon/index";
 
-const IssueIcon = styled(NormalIssueIcon)`
+type WrapperType = StyledComponentType<IReactNodeWithPropTypes<IIssueIcon>>;
+
+const IssueIcon: WrapperType = styled(NormalIssueIcon)`
   fill: #ccc;
   margin-right: 0.25em;
 `;

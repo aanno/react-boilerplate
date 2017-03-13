@@ -126,6 +126,8 @@ interface ITranslationsInterface {
 type IMessages = Readonly<IMessagesInterface>;
 type ITranslations = Readony<ITranslationsInterface>;
 
+type StyledComponentType<T> = React.ComponentClass<Partial<T>>
+
 /**
  * Interface like ComponentClass<P> but without the constructor.
  * Needed for second-order components.

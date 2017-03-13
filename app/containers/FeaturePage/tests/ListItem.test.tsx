@@ -21,7 +21,8 @@ describe('<ListItem />', () => {
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<ListItem attribute={'test'} />);
+    const Untyped: any = ListItem;
+    const renderedComponent = shallow(<Untyped attribute={'test'} />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });
