@@ -28,16 +28,18 @@ interface MyReducersMapObject {
   [key: string]: MyReducer<any>;
 }
 
-/**
- * Redux Store interface for our (concrete) store.
- */
-interface IStoreState extends IImmutableStore {
-  // ???
-  // get: (id: string) => any,
-
+interface IStoreInterface {
   language: string,
   route: RouterState,
   global: IAppState,
+}
+
+/**
+ * Redux Store interface for our (concrete) store.
+ */
+interface IStoreState extends IImmutableStore, Readonly<IStoreState> {
+  // ???
+  // get: (id: string) => any,
 }
 
 /**
@@ -69,7 +71,7 @@ interface ITrivialReactComponent<P> {
 }
 
 interface ITrivialReactComponentConstructor {
-  propTypes: any,
+  readonly propTypes: any,
 }
 
 /**
@@ -77,14 +79,14 @@ interface ITrivialReactComponentConstructor {
  * Html option
  */
 interface IToggleOption extends InjectedIntlProps {
-  value: string,
-  message: FormattedMessage.MessageDescriptor,
+  readonly value: string,
+  readonly message: FormattedMessage.MessageDescriptor,
   // intl: InjectedIntl,
 }
 
 interface IReactNodeWithPropTypes<P> extends React.Component<P,{}> {
 
-  propTypes: ValidationMap<P>,
+  readonly propTypes: ValidationMap<P>,
 
   // Needed to make 'interface ReactElement<P>' happy
   // (not used in application, though) (tp)
@@ -95,32 +97,34 @@ interface IReactNodeWithPropTypes<P> extends React.Component<P,{}> {
 
 interface IReactRoutedComponent extends IReactMinimalComponent {
   // TODO (tp):
-  handleRoute?: any,
+  readonly handleRoute?: any,
 }
 
 interface IReactMinimalComponent extends Element, IReactMinimalProps {
 }
 
 interface IReactMinimalProps {
-  children?: React.ReactNode,
+  readonly children?: React.ReactNode,
   // TODO (tp):
-  context?: any,
+  readonly context?: any,
 }
 
-interface IReactPropsIntl extends IReactMinimalProps{
-  locale: string,
-  messages: ITranslations,
-  dispatch: Dispatch<any>,
+interface IReactPropsIntl extends IReactMinimalProps {
+  readonly locale: string,
+  readonly messages: ITranslations,
+  readonly dispatch: Dispatch<any>,
 }
 
-interface IMessages {
+interface IMessagesInterface {
   [id: string]: string,
 }
 
-interface ITranslations {
+interface ITranslationsInterface {
   [locale: string]: IMessages,
 }
 
+type IMessages = Readonly<IMessagesInterface>;
+type ITranslations = Readony<ITranslationsInterface>;
 
 /**
  * Interface like ComponentClass<P> but without the constructor.
@@ -172,7 +176,7 @@ interface IReactTestProps {
   type: string,
 }
 
-type ReactTestProps<P> = Partial<IReactTestProps> & Partial<P>;
+type ReactTestProps<P> = Partial<Readonly<IReactTestProps>> & Partial<Readonly<P>>;
 
 namespace "redux-saga" {
   namespace effects {

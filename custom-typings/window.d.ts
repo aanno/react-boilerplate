@@ -4,9 +4,5 @@ declare const System: any;
 
 
 interface Window {
-  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any,
+  readonly __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any,
 }
-
-declare const skjskjs: Window;
-
-
