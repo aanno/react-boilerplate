@@ -1,9 +1,8 @@
-import * as React from 'react';
-import { mount } from 'enzyme';
-import sinon from 'sinon';
-
-import withProgressBar from '../index';
-import ProgressBar from '../ProgressBar';
+import * as React from "react";
+import {mount} from "enzyme";
+import sinon from "sinon";
+import withProgressBar, {IAppWithProgressState, AppWithProgressBarType} from "../index";
+import ProgressBar from "../ProgressBar";
 
 let clock: any = null;
 
@@ -84,9 +83,10 @@ describe('withProgressBar()', () => {
       <HocComponent location={{ pathname: '/' }} router={router} />
     );
 
-    const inst = renderedComponent.instance();
+    const inst: AppWithProgressBarType = renderedComponent.instance() as AppWithProgressBarType;
     inst.updateProgress(10);
-    expect(renderedComponent.state().progress).toBe(10);
+    const state: IAppWithProgressState = renderedComponent.state() as IAppWithProgressState;
+    expect(state.progress).toBe(10);
   });
 
   it('Should start progress bar for a new route', () => {
@@ -97,6 +97,7 @@ describe('withProgressBar()', () => {
     renderedComponent.setState({ loadedRoutes: [], progress: 10 });
     renderedComponent.setProps({ location: { pathname: '/abc' }, router });
     clock.tick(10);
-    expect(renderedComponent.state().progress).toBe(100);
+    const state: IAppWithProgressState = renderedComponent.state() as IAppWithProgressState;
+    expect(state.progress).toBe(100);
   });
 });

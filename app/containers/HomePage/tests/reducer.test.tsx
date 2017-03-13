@@ -1,11 +1,6 @@
-import { fromJS } from 'immutable';
-
-import homeReducer from '../reducer';
-import {
-  changeUsername, IChangeUsernameAction,
-} from '../actions';
-import {IStoreState} from "../../../../custom-typings/custom-typings";
-import {IHomePageState} from "../reducer";
+import {fromJS} from "immutable";
+import homeReducer, {IHomePageState} from "../reducer";
+import {changeUsername, IChangeUsernameAction} from "../actions";
 
 describe('homeReducer', () => {
   let state: IHomePageState;

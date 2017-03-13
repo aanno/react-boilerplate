@@ -15,7 +15,7 @@ export interface IProgressBar {
   intervalTime?: number,
 }
 
-interface IProgressBarState {
+export interface IProgressBarState {
   percent: number,
 }
 

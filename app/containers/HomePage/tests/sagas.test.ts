@@ -42,8 +42,11 @@ describe('getRepos Saga', () => {
 
   it('should call the repoLoadingError action if the response errors', () => {
     const response = new Error('Some error');
-    const putDescriptor = getReposGenerator.throw(response).value;
-    expect(putDescriptor).toEqual(put(repoLoadingError(response)));
+    expect(getReposGenerator).toBeDefined();
+    if (getReposGenerator) {
+      const putDescriptor = getReposGenerator.throw(response).value;
+      expect(putDescriptor).toEqual(put(repoLoadingError(response)));
+    }
   });
 });
 

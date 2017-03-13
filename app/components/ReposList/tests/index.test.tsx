@@ -25,7 +25,7 @@ describe('<ReposList />', () => {
         <ReposList
           {...props}
           loading={false}
-          error={{ message: 'Loading failed!' }}
+          error={{ name: 'Error', message: 'Loading failed!' }}
         />
       </IntlProvider>
     );
@@ -47,7 +47,7 @@ describe('<ReposList />', () => {
       <ReposList
         {...props}
         repos={repos}
-        error={false}
+        error={undefined}
       />
     );
 
@@ -58,7 +58,7 @@ describe('<ReposList />', () => {
     const renderedComponent = shallow(
       <ReposList
         repos={[]}
-        error={false}
+        error={undefined}
         loading={false}
       />
     );

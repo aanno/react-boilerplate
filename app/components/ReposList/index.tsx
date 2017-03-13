@@ -9,7 +9,7 @@ import {IReactNodeWithPropTypes, IReactElementConstructor} from "../../../custom
 
 export interface IReposList {
   loading: boolean,
-  error: boolean,
+  error: Error | undefined,
   repos: IReactElementConstructor[],
 }
 
@@ -19,7 +19,7 @@ function ReposList(props: IReposList): IReactNodeWithPropTypes<IReposList> {
       return <List component={LoadingIndicator}/>;
     }
 
-    if (error !== false) {
+    if (error) {
       const ErrorComponent = () => (
         <ListItem item={'Something went wrong, please try again!'}/>
       );
