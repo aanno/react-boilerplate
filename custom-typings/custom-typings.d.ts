@@ -117,6 +117,22 @@ interface ITranslations {
   [locale: string]: IMessages,
 }
 
+
+/**
+ * Interface like ComponentClass<P> but without the constructor.
+ * Needed for second-order components.
+ *
+ * @author Thomas Pasch
+ */
+interface ComponentClassLike<P> {
+  // new (props?: P, context?: any): Component<P, ComponentState>;
+  propTypes?: ValidationMap<P>;
+  contextTypes?: ValidationMap<any>;
+  childContextTypes?: ValidationMap<any>;
+  defaultProps?: Partial<P>;
+  displayName?: string;
+}
+
 type IReactElementConstructor = (() => JSX.Element) | string | ComponentClass<any>;
 
 interface IReactTestProps {

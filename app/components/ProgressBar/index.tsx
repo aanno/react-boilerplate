@@ -1,8 +1,13 @@
 import * as React from "react";
 import ProgressBar from "./ProgressBar";
 import ComponentClass = React.ComponentClass;
+import {ComponentClassLike} from "../../../custom-typings/custom-typings";
 
-export type AppWithProgressBarType = ComponentClass<IAppWithProgressBar>;
+export type AppWithProgressBarType = ComponentClassLike<IAppWithProgressBar> & IAppWithProgressBarComponent;
+
+export interface IAppWithProgressBarComponent {
+  updateProgress: (progress: number) => void;
+}
 
 export interface IAppWithProgressBar {
   router?: any | undefined,
@@ -18,7 +23,8 @@ export interface IAppWithProgressState {
 
 function withProgressBar<P>(WrappedComponent: ComponentClass<P>): AppWithProgressBarType {
 
-  class AppWithProgressBar extends React.Component<IAppWithProgressBar, IAppWithProgressState> {
+  class AppWithProgressBar extends React.Component<IAppWithProgressBar, IAppWithProgressState>
+    implements IAppWithProgressBarComponent {
 
     unsubscribeHistory: any;
 

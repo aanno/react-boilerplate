@@ -1,7 +1,7 @@
 import * as React from "react";
-import {mount} from "enzyme";
+import {mount, ReactWrapper} from "enzyme";
 import sinon from "sinon";
-import withProgressBar, {IAppWithProgressState, AppWithProgressBarType} from "../index";
+import withProgressBar, {IAppWithProgressState, AppWithProgressBarType, IAppWithProgressBar} from "../index";
 import ProgressBar from "../ProgressBar";
 
 let clock: any = null;
@@ -64,7 +64,7 @@ describe('withProgressBar()', () => {
       <HocComponent location={{ pathname: '/' }} router={router} />
     );
 
-    const inst = renderedComponent.instance();
+    const inst: AppWithProgressBarType = renderedComponent.instance();
     expect(inst.unsubscribeHistory).toBeTruthy();
   });
 
@@ -73,17 +73,18 @@ describe('withProgressBar()', () => {
       <HocComponent location={{ pathname: '/' }} router={router} />
     );
 
-    const inst = renderedComponent.instance();
+    const inst: AppWithProgressBarType = renderedComponent.instance();
     inst.componentWillUnmount();
     expect(inst.unsubscribeHistory).toBeFalsy();
   });
 
   it('Should update state.progress when called updateProgress()', () => {
-    const renderedComponent = mount(
-      <HocComponent location={{ pathname: '/' }} router={router} />
-    );
+    const renderedComponent: AppWithProgressBarType & ReactWrapper<IAppWithProgressBar, IAppWithProgressState>
+      = mount(
+      <HocComponent location={{ pathname: '/' }} router={router}/>
+    ) as any;
 
-    const inst: AppWithProgressBarType = renderedComponent.instance() as AppWithProgressBarType;
+    const inst: AppWithProgressBarType = renderedComponent.instance() as any;
     inst.updateProgress(10);
     const state: IAppWithProgressState = renderedComponent.state() as IAppWithProgressState;
     expect(state.progress).toBe(10);
