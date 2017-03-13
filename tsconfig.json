@@ -9,7 +9,7 @@
 	// BUT it seems to be unneeded
 	"module": "commonjs",
 	"target": "es6",
-	"jsx": "react",
+	"jsx": "preserve",
 	"moduleResolution": "node",
 	"allowJs": true,
 	// https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#types-typeroots-and-types
@@ -25,6 +25,7 @@
 	"sourceMap": true,
 	"skipLibCheck": true,
 	"skipDefaultLibCheck": true,
+	"preserveConstEnums": true,
 	"alwaysStrict": true,
 	"importHelpers": true,
 	"noImplicitThis": true,
@@ -33,7 +34,7 @@
 	"noUnusedLocals": true,
 	"noUnusedParameters": true,
 	"strictNullChecks": true,
-	"noImplicitAny": false,
+	"noImplicitAny": true,
 	"newLine": "LF",
 	"rootDir": ".",
 	"outDir": "dist",
@@ -41,7 +42,7 @@
 	"diagnostics": true,
 	"listFiles": true,
 	"declaration": false,
-	// "declarationDir": "target/typings",
+	// "declarationDir": "./declarations",
 	// This will influence only the type _declarations_, you still need the polyfill! (tp)
 	// see http://stackoverflow.com/questions/42093758/need-clarification-of-the-target-and-lib-compiler-options
 	"lib": [
@@ -53,7 +54,8 @@
 	]
   },
   "include": [
-	"app/**/*"
+	"app/**/*",
+  "custom-typings/**/*"
   ],
   "exclude": [
 	"node_modules",
