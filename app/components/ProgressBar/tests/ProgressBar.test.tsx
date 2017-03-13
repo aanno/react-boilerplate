@@ -15,7 +15,7 @@ describe('<ProgressBar />', () => {
   });
 
   afterEach(() => {
-    /*clock = */sinon.restore();
+    /*clock = */sinon.restore({});
   });
 
   it('should initially render hidden progress bar', () => {
@@ -46,7 +46,7 @@ describe('<ProgressBar />', () => {
 
   it('should call componentDidMount', () => {
     sinon.spy(ProgressBar.prototype, 'componentDidMount');
-    const renderedComponent = mount( // eslint-disable-line
+    /* const renderedComponent = */mount( // eslint-disable-line
       <ProgressBar percent={0} updateProgress={(noop) => noop} />
     );
     expect((ProgressBar.prototype.componentDidMount as SinonSpy).calledOnce).toEqual(true);

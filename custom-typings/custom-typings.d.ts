@@ -11,6 +11,8 @@ import Map = Immuable.Map
 import Partial = _.Partial;
 import ComponentLifecycle = React.ComponentLifecycle;
 import {ReactWrapper} from "enzyme";
+import ReactInstance = React.ReactInstance;
+import ReactNode = React.ReactNode;
 
 /**
  * Redux Store plus Middleware

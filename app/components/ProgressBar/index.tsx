@@ -1,9 +1,9 @@
 import * as React from "react";
 import ProgressBar from "./ProgressBar";
+import {ComponentLike} from "../../../custom-typings/custom-typings";
 import ComponentClass = React.ComponentClass;
-import {ComponentClassLike, ComponentLike} from "../../../custom-typings/custom-typings";
 
-export type AppWithProgressBarType = ComponentLike<IAppWithProgressBar, IAppWithProgressState> & IAppWithProgressBarComponent;
+export type AppWithProgressBarType = Partial<ComponentLike<IAppWithProgressBar, IAppWithProgressState>> & IAppWithProgressBarComponent;
 
 export interface IAppWithProgressBarComponent {
   updateProgress: (progress: number) => void;
@@ -86,7 +86,7 @@ function withProgressBar<P>(WrappedComponent: ComponentClass<P>): AppWithProgres
     }
   }
 
-  return AppWithProgressBar;
+  return AppWithProgressBar as AppWithProgressBarType;
 }
 
 export default withProgressBar;
