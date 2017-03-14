@@ -16,11 +16,16 @@ const dllPlugin = pkg.dllPlugin;
 
 /**
  * Hot reload:
+ *
+ * react-hot-loader:
  * http://gaearon.github.io/react-hot-loader/getstarted/
  * https://github.com/gaearon/react-hot-boilerplate
  * https://github.com/BrowserSync/recipes/tree/master/recipes/webpack.react-hot-loader
  * http://andrewhfarmer.com/3-ways-webpack-hmr/
  * https://github.com/gaearon/react-hot-boilerplate/pull/61
+ *
+ * hrm(e):
+ * https://survivejs.com/webpack/appendices/hmr-with-react/
  */
 
 const plugins = [
@@ -70,6 +75,9 @@ const config = require('./webpack.base.ts.js')({
     // TODO (tp): Commenting out the line below leads to a problem with TypeScript:
     // Uncaught TypeError: index_js_3.default is not a function
     // presets: ['babel-preset-react-hmre'].map(require.resolve),
+
+    // Problem: Uncaught ReferenceError exports is not defined
+    // see: https://github.com/webpack/webpack/issues/3974
     // presets: ['babel-preset-react-hmre'],
   },
 

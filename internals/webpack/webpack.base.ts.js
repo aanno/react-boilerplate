@@ -6,6 +6,8 @@ const path = require('path');
 const webpack = require('webpack');
 const log = require('loglevel');
 
+log.setLevel(0 /* LogLevel.DEBUG */);
+
 const jsLoader = (options) => {
   const result = {
     test: /\.(jsx?|tsx?)$/i, // Transform all .js files required somewhere with Babel
@@ -26,6 +28,7 @@ const jsLoader = (options) => {
     exclude: /node_modules/,
   };
   if (options.reactHotLoader) {
+    log.info('using react-hot-loader/webpack');
     result.use.unshift({
       loader: 'react-hot-loader/webpack',
     });
