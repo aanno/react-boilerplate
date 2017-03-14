@@ -1,20 +1,19 @@
-import * as React from 'react';
+import * as React from "react";
+import Ul from "./Ul";
+import Wrapper from "./Wrapper";
+import {IReactNodeWithPropTypes, ListItemType} from "../../../custom-typings/custom-typings";
 
-import Ul from './Ul';
-import Wrapper from './Wrapper';
-import {IReactNodeWithPropTypes, IReactElementConstructor} from "../../../custom-typings/custom-typings";
-
-interface IList {
+export interface IList<T> {
   /*
   component: React.Component<any, any>,
   items?: React.Component<any, any>[],
    */
-  component: IReactElementConstructor,
-  items?: Array<IReactElementConstructor>,
+  component: React.ReactNode,
+  items?: ListItemType<T>[],
 }
 
-function List(props: IList): IReactNodeWithPropTypes<IList> {
-  const realList: any = function(props: IList) {
+export default function List<T>(props: IList<T>): IReactNodeWithPropTypes<IList<T>> {
+  const realList: any = function(props: IList<T>) {
     const ComponentToRender: any = props.component;
     let content: any = (<div></div>);
 
@@ -42,5 +41,3 @@ function List(props: IList): IReactNodeWithPropTypes<IList> {
   };
   return realList(props);
 }
-
-export default List;

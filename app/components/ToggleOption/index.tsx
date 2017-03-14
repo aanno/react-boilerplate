@@ -20,7 +20,6 @@ const ToggleOption: (option: IToggleOption) => IReactNodeWithPropTypes<IToggleOp
     intl: intlShape.isRequired,
   };
   return realToggleOption(props);
-
 };
 
 // TODO (tp):

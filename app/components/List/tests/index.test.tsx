@@ -1,9 +1,7 @@
-import * as React from 'react';
-import { render } from 'enzyme';
-
-import ListItem from '../../../components/ListItem';
-import List from '../index';
-import {IReactElementConstructor} from "../../../../custom-typings/custom-typings";
+import * as React from "react";
+import {render} from "enzyme";
+import ListItem from "../../../components/ListItem";
+import List from "../index";
 
 describe('<List />', () => {
   it('should render the component if no items are passed', () => {
@@ -14,7 +12,7 @@ describe('<List />', () => {
   });
 
   it('should render the items', () => {
-    const items: Array<IReactElementConstructor> = [
+    const items: any[] /* ListItemType<string>[] */ = [
       'Hello',
       'World',
     ];

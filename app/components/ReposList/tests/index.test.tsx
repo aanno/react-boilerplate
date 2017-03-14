@@ -6,7 +6,7 @@ import RepoListItem from '../../../containers/RepoListItem';
 import List from '../../../components/List';
 import LoadingIndicator from '../../../components/LoadingIndicator';
 import ReposList from '../index';
-import {ReactTestProps} from "../../../../custom-typings/custom-typings";
+import {ReactTestProps, IRepo} from "../../../../custom-typings/custom-typings";
 import {IReposList} from "../index";
 
 describe('<ReposList />', () => {
@@ -33,7 +33,7 @@ describe('<ReposList />', () => {
   });
 
   it('should render the repositories if loading was successful', () => {
-    const repos = [{
+    const repos: IRepo[] = [{
       owner: {
         login: 'mxstbr',
       },

@@ -1,11 +1,10 @@
-import * as React from 'react';
-
-import Item from './Item';
-import Wrapper from './Wrapper';
-import {IReactNodeWithPropTypes, IReactElementConstructor} from "../../../custom-typings/custom-typings";
+import * as React from "react";
+import Item from "./Item";
+import Wrapper from "./Wrapper";
+import {IReactNodeWithPropTypes} from "../../../custom-typings/custom-typings";
 
 export interface IListItem {
-  item: IReactElementConstructor,
+  item: React.ReactNode,
   className?: string,
 }
 

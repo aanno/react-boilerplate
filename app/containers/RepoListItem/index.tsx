@@ -39,7 +39,7 @@ export class RepoListItem extends React.PureComponent<IRepoListItem, {}> { // es
     }
 
     // Put together the content of the repository
-    const content = (
+    const content: React.ReactNode = (
       <Wrapper>
         <RepoLink href={item.html_url} target="_blank">
           {nameprefix + item.name}

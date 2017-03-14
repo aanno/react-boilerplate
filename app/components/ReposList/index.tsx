@@ -1,16 +1,15 @@
-import * as React from 'react';
-import { PropTypes } from 'react';
-
-import List from '../../components/List';
-import ListItem from '../../components/ListItem';
-import LoadingIndicator from '../../components/LoadingIndicator';
-import RepoListItem from '../../containers/RepoListItem';
-import {IReactNodeWithPropTypes, IReactElementConstructor} from "../../../custom-typings/custom-typings";
+import * as React from "react";
+import {PropTypes} from "react";
+import List from "../../components/List";
+import ListItem from "../../components/ListItem";
+import LoadingIndicator from "../../components/LoadingIndicator";
+import RepoListItem from "../../containers/RepoListItem";
+import {IReactNodeWithPropTypes, RepoType} from "../../../custom-typings/custom-typings";
 
 export interface IReposList {
   loading: boolean,
   error: Error | undefined,
-  repos: IReactElementConstructor[],
+  repos: RepoType[],
 }
 
 function ReposList(props: IReposList): IReactNodeWithPropTypes<IReposList> {

@@ -81,7 +81,7 @@ interface ITrivialReactComponentConstructor {
  */
 interface IToggleOption extends InjectedIntlProps {
   readonly value: string,
-  readonly message: FormattedMessage.MessageDescriptor,
+  readonly message?: FormattedMessage.MessageDescriptor,
   // intl: InjectedIntl,
 }
 
@@ -128,6 +128,8 @@ type IMessages = Readonly<IMessagesInterface>;
 type ITranslations = Readony<ITranslationsInterface>;
 
 type StyledComponentType<T> = React.ComponentClass<Partial<T>>
+
+export type ListItemType<T> = T | (React.ComponentClass<T> & new(props: T | undefined, context?: any));
 
 /**
  * Interface like ComponentClass<P> but without the constructor.
@@ -203,6 +205,8 @@ interface IRepo {
     open_issues_count: number,
     full_name: string,
 }
+
+type RepoType = ListItemType<IRepo>;
 
 interface IComponentToRenderProps {
   item: any;
