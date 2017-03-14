@@ -74,6 +74,7 @@ export class TestSyntheticEvent<T> implements SyntheticEvent<T> {
     this.isTrusted = true;
     //
     this.currentTarget = target;
+    this.target = target;
     //
     this.propagationStopped = false;
   }

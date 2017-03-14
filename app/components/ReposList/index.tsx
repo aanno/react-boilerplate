@@ -26,7 +26,7 @@ function ReposList(props: IReposList): IReactNodeWithPropTypes<IReposList> {
       return <List component={ErrorComponent}/>;
     }
 
-    if (repos /*!== false*/) {
+    if (repos /*!== false*/ && repos.length > 0) {
       return <List items={repos} component={RepoListItem}/>;
     }
 

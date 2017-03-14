@@ -5,7 +5,6 @@ import {isObject} from 'lodash';
 import {isString} from 'lodash';
 import * as invariant from 'invariant';
 import * as warning from 'warning';
-
 import createReducer from '../reducers';
 import {IMyStore, Saga, MyReducer} from "../../custom-typings/custom-typings";
 

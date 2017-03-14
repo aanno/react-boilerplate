@@ -13,6 +13,7 @@ import ComponentLifecycle = React.ComponentLifecycle;
 import {ReactWrapper} from "enzyme";
 import ReactInstance = React.ReactInstance;
 import ReactNode = React.ReactNode;
+import ComponentClass = React.ComponentClass;
 
 /**
  * Redux Store plus Middleware
@@ -192,3 +193,17 @@ module "react-hot-loader" {
 
 // dummy type for webpack.Module
 type Module = any;
+
+interface IRepo {
+    owner: {
+      login: string,
+    },
+    html_url: string,
+    name: string,
+    open_issues_count: number,
+    full_name: string,
+}
+
+interface IComponentToRenderProps {
+  item: any;
+}
