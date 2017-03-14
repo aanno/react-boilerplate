@@ -86,9 +86,15 @@ const render = (messages: ITranslations) => {
 // Hot reloadable translation json files
 if (module.hot) {
   log.debug('Hot module reloading is true');
+  log.debug('module', module, 'module.hot', module.hot);
+  (module.hot as any).accept();
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept('./i18n', () => {
+  module.hot.accept('./routes.ts', () => {
+    log.debug('Hot module reloading for ./app/routes.ts');
+    render(translationMessages);
+  });
+  module.hot.accept('./i18n.ts', () => {
     log.debug('Hot module reloading for ./i18n');
     render(translationMessages);
   });
@@ -102,14 +108,9 @@ if (module.hot) {
     rootRoute.component = require('./containers/App/index.tsx');
     render(translationMessages);
   });
-  module.hot.accept('containers/App/index.tsx', () => {
-    log.debug('Hot module reloading for containers/App/index.tsx');
-    rootRoute.component = require('./containers/App/index.tsx');
-    render(translationMessages);
-  });
-  module.hot.accept('containers/App', () => {
-    log.debug('Hot module reloading for containers/App');
-    rootRoute.component = require('./containers/App/index.tsx');
+  module.hot.accept('./containers/HomePage', () => {
+    log.debug('Hot module reloading for ./containers/HomePage');
+    rootRoute.component = require('./containers/HomePage/index.tsx');
     render(translationMessages);
   });
 }

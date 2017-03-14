@@ -70,6 +70,7 @@ const config = require('./webpack.base.ts.js')({
     // TODO (tp): Commenting out the line below leads to a problem with TypeScript:
     // Uncaught TypeError: index_js_3.default is not a function
     // presets: ['babel-preset-react-hmre'].map(require.resolve),
+    // presets: ['babel-preset-react-hmre'],
   },
 
   // Emit a source map for easier debugging
