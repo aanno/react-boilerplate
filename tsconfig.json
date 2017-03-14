@@ -2,22 +2,11 @@
   "docUrl1": "https://www.typescriptlang.org/docs/handbook/tsconfig-json.html",
   "docUrl2": "https://www.typescriptlang.org/docs/handbook/compiler-options.html",
   "compilerOptions": {
-    // system is NOT supported by webpack
-    // see http://stackoverflow.com/questions/35075130/why-webpack-bundled-as-system-register
-    // Perhaps https://www.npmjs.com/package/webpack-system-register
-    // is a solution to support https://github.com/systemjs/systemjs
-    // BUT it seems to be unneeded
-    "module": "commonjs",
+    "module": "es6",
     "target": "es6",
     "jsx": "preserve",
     "moduleResolution": "node",
     "allowJs": false,
-    // https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#types-typeroots-and-types
-    /*
-      "types": [
-        "alt"
-      ],
-       */
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noEmit": false,
@@ -41,26 +30,17 @@
     "pretty": true,
     "diagnostics": true,
     "listFiles": true,
-    // "declaration": true,
-    // "declarationDir": "./declarations",
-    // "declarationDir": "target/typings",
-    // This will influence only the type _declarations_, you still need the polyfill! (tp)
-    // see http://stackoverflow.com/questions/42093758/need-clarification-of-the-target-and-lib-compiler-options
     "lib": [
       "DOM",
       "ES2016",
       "ScriptHost"
-      // "DOM.Iterable",
-      // "WebWorker"
     ]
   },
   "include": [
     "app/**/*",
     "custom-typings/**/*"
-    // "internals/templates/**/*"
   ],
   "exclude": [
     "node_modules"
-    // "**/*.spec.ts"
   ]
 }

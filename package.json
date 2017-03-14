@@ -185,11 +185,11 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "app/**/*.{js,jsx}",
-      "!app/**/*.test.{js,jsx}",
-      "!app/*/RbGenerated*/*.{js,jsx}",
-      "!app/app.js",
-      "!app/routes.js"
+      "app/**/*.{js,jsx,ts,tsx}",
+      "!app/**/*.test.{js,jsx,ts,tsx}",
+      "!app/*/RbGenerated*/*.{js,jsx,ts,tsx}",
+      "!app/app.{js,jsx,ts,tsx}",
+      "!app/routes.{js,jsx,ts,tsx}"
     ],
     "coverageThreshold": {
       "global": {
@@ -207,8 +207,14 @@
       ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/mocks/cssModule.js",
       ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/image.js"
     },
-    "setupTestFrameworkScriptFile": "<rootDir>/internals/testing/test-bundler.js",
-    "testRegex": "tests/.*\\.test\\.js$"
+    "moduleFileExtensions": [
+      "js", "jsx", "ts", "tsx"
+    ],
+    "etupTestFrameworkScriptFile": "<rootDir>/internals/testing/test-bundler.js",
+    "transform": {
+      "^.+\\.(ts|tsx)$": "typescript-babel-jest"
+    },
+    "testRegex": "tests/.*\\.test\\.(js|jsx|ts|tsx)$"
   },
   "dependencies": {
     "babel-polyfill": "^6.20.0",
@@ -333,6 +339,7 @@
     "ts-node": "^2.1.0",
     "tslint": "^4.5.1",
     "typescript": "^2.2.1",
+    "typescript-babel-jest": "^1.0.2",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.10.1",
