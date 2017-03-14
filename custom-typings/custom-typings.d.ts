@@ -79,7 +79,7 @@ interface ITrivialReactComponentConstructor {
  * ToggleOption arguments
  * Html option
  */
-interface IToggleOption extends InjectedIntlProps {
+interface IToggleOption extends Partial<InjectedIntlProps> {
   readonly value: string,
   readonly message?: FormattedMessage.MessageDescriptor,
   // intl: InjectedIntl,

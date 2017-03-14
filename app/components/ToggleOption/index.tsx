@@ -7,9 +7,14 @@
 import * as React from 'react';
 import { injectIntl, intlShape } from 'react-intl';
 import {IReactNodeWithPropTypes, IToggleOption} from "../../../custom-typings/custom-typings";
+import InjectedIntlProps = ReactIntl.InjectedIntlProps;
+
+type RealToggleOptionProps = IToggleOption & InjectedIntlProps;
 
 const ToggleOption: (option: IToggleOption) => IReactNodeWithPropTypes<IToggleOption> = (props: IToggleOption) => {
-  const realToggleOption: any = ({value, message, intl}: IToggleOption) => (
+  // TODO (tp): Very strange - seems to be a bug in typescript 2.2.1!
+  const realProps: RealToggleOptionProps = props as RealToggleOptionProps;
+  const realToggleOption: any = ({value, message, intl}: RealToggleOptionProps) => (
     <option value={value}>
       {message ? (intl ? intl.formatMessage(message) : message) : value}
     </option>
@@ -19,8 +24,7 @@ const ToggleOption: (option: IToggleOption) => IReactNodeWithPropTypes<IToggleOp
     message: React.PropTypes.object,
     intl: intlShape.isRequired,
   };
-  return realToggleOption(props);
+  return realToggleOption(realProps);
 };
 
-// TODO (tp):
-export default injectIntl(ToggleOption as any/* as React.ComponentClass<IToggleOption> */);
+export default injectIntl(ToggleOption);
