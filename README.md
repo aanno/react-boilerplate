@@ -3,7 +3,40 @@
 ## Changes in this fork
 
 * Using TypeScript
+* Current state: Based on version 3.4.0, some minor problems (see below)
+
+### Branches overview
+
+#### Branch 'typescript-full' (also 'master')
+
+* Using TypeScript for the app (NOT for the build infrastructure)
+* App is fully converted to TypeScript wrt [react-boilerplate/react-boilerplate](https://github.com/react-boilerplate/react-boilerplate)
+* Also tracking the fork [keokilee/react-typescript-boilerplate](https://github.com/keokilee/react-typescript-boilerplate)
+  for inspirations
+
+Known problems:
+
+* Generator templates (*.hbs) are NOT YET converted to TypeScript
+
+#### Branch 'typescript-minimal'
+
+* Using TypeScript compiler (for app and build intrastructure)
 * Minimal changes wrt [react-boilerplate/react-boilerplate](https://github.com/react-boilerplate/react-boilerplate)
+* This means that the app is NOT converted to TypeScript
+
+Known problems:
+
+* Hot loading with webpack-hot-middleware has not worked
+* Hence now based on react-hot-reloader (version 3)
+* Hot loading support is still a bit flacky at present
+
+#### Branch 'react-boilerplate'
+
+* Tracking branch for 'master' of [react-boilerplate/react-boilerplate](https://github.com/react-boilerplate/react-boilerplate)
+
+#### Branch 'typescript'
+
+* Tracking branch for 'master' of [keokilee/react-typescript-boilerplate](https://github.com/keokilee/react-typescript-boilerplate)
 
 ## Original README
 
