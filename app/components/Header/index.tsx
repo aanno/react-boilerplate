@@ -8,6 +8,7 @@ import HeaderLink from './HeaderLink';
 // import Banner from 'banner.jpg';
 import messages from './messages';
 import * as log from 'loglevel';
+import {ROUTE_PREFIX} from "../../config/config"
 
 // TODO (tp): no idea why the import does not work
 const Banner = require('./banner.jpg')
@@ -26,11 +27,14 @@ class Header extends React.Component<IHeader, {}> { // eslint-disable-line react
           <Img src={Banner} alt="react-boilerplate - Logo" />
         </A>
         <NavBar>
-          <HeaderLink to="/">
+          <HeaderLink to={ROUTE_PREFIX + ""}>
             <FormattedMessage {...messages.home} />
           </HeaderLink>
-          <HeaderLink to="/features">
+          <HeaderLink to={ROUTE_PREFIX + "features"}>
             <FormattedMessage {...messages.features} />
+          </HeaderLink>
+          <HeaderLink to={ROUTE_PREFIX + "form"}>
+            <FormattedMessage {...messages.form} />
           </HeaderLink>
         </NavBar>
       </div>

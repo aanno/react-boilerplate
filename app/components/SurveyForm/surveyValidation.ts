@@ -6,4 +6,5 @@ export const surveyValidation = createValidator({
   email: [required, email],
   occupation: maxLength(20), // single rules don't have to be in an array
 })
+export default surveyValidation
 // export default memoize(10)(surveyValidation);

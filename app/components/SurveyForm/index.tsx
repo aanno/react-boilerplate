@@ -174,5 +174,5 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
 
 export default connect(
   () => ({}),
-  (dispatch: Dispatch<any>) => ({}) /*bindActionCreators(surveyActions as any, dispatch)*/
+  (dispatch: Dispatch<any>) => bindActionCreators(surveyActions as any, dispatch)
 )(SurveyForm)

@@ -5,6 +5,7 @@
 import { getAsyncInjectors } from './utils/asyncInjectors';
 import {IMyStore, Module} from "../custom-typings/custom-typings";
 import {RouteConfig} from "react-router";
+import {ROUTE_PREFIX} from "./config/config"
 
 type LazyModuleCb = (_: any, defaultModule: Module) => void;
 
@@ -22,7 +23,7 @@ export default function createRoutes(store: IMyStore): RouteConfig {
 
   return [
     {
-      path: '/',
+      path: ROUTE_PREFIX + '',
       name: 'home',
       getComponent(_, cb: LazyModuleCb) {
         const importModules = Promise.all([
@@ -43,10 +44,18 @@ export default function createRoutes(store: IMyStore): RouteConfig {
         importModules.catch(errorLoading);
       },
     }, {
-      path: '/features',
+      path: ROUTE_PREFIX + 'features',
       name: 'features',
       getComponent(_, cb: LazyModuleCb) {
         System.import('containers/FeaturePage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    }, {
+      path: ROUTE_PREFIX + 'form',
+      name: 'form',
+      getComponent(_, cb: LazyModuleCb) {
+        System.import('containers/FormPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
