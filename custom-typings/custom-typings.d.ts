@@ -15,7 +15,7 @@ import {ReactWrapper} from "enzyme";
 import ReactInstance = React.ReactInstance;
 import ReactNode = React.ReactNode;
 import ComponentClass = React.ComponentClass;
-import {Config, FormDecorator, WrappedFieldInputProps, WrappedFieldMetaProps} from "redux-form"
+import {Config, FormDecorator, WrappedFieldInputProps, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form"
 import {ILeftMenu} from "../app/components/tsb/LeftMenu/index"
 import {ITopMenu} from "../app/components/tsb/TopMenu/index"
 
@@ -41,6 +41,11 @@ interface FieldInputState<T> extends WrappedFieldMetaProps<T> {
 interface FieldInputProps extends Partial<WrappedFieldInputProps> {
   name: string,
   // value: FieldValue,
+}
+
+interface IFieldProps extends WrappedFieldProps<any> {
+  label: string,
+  type: string,
 }
 
 interface IReduxFormState {

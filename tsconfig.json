@@ -6,7 +6,7 @@
     "target": "es6",
     "jsx": "preserve",
     "moduleResolution": "node",
-    "allowJs": true,
+    "allowJs": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noEmit": false,

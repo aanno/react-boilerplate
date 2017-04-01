@@ -2,22 +2,23 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import { App, Code, Markdown, generateExampleBreadcrumbs } from 'redux-form-website-template'
+// import { App, Code, Markdown, generateExampleBreadcrumbs } from 'redux-form-website-template'
 import Values from './ImmutableValues'
 import reducer from './reducer'
 
 const dest = document.getElementById('content')
 
 const store =
-  (window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)(reducer)
+  (window.devToolsExtension ? (window.devToolsExtension as any)()(createStore) : createStore)(reducer)
 
-const showResults = values =>
+const showResults = (values: any) =>
   new Promise(resolve => {
     setTimeout(() => {  // simulate server latency
       window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`)
       resolve()
     }, 500) })
 
+/*
 let render = () => {
   const ImmutableForm = require('./ImmutableForm').default
   const readme = require('./Immutable.md')
@@ -26,11 +27,11 @@ let render = () => {
   const rawReducer = require('!!raw-loader!./reducer')
   ReactDOM.render(
     <Provider store={store}>
+      {/**
+       * This <App/> component only provides the site wrapper.
+       * Remove it on your dev server if you wish. It will not affect the functionality.
+       /}
       <App
-        /**
-         * This <App/> component only provides the site wrapper.
-         * Remove it on your dev server if you wish. It will not affect the functionality.
-         */
         version="6.6.1"
         path="/examples/immutable"
         breadcrumbs={generateExampleBreadcrumbs('immutable', 'Immutable JS Example', '6.6.1')}>
@@ -92,3 +93,4 @@ if (module.hot) {
 }
 
 render()
+*/

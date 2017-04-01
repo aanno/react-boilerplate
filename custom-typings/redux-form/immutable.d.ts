@@ -7,6 +7,8 @@ import {Config, DataShape, FormDecorator} from "redux-form"
 
 declare module 'redux-form/immutable' {
   export * from 'redux-form'
+
+  export const values: any
 }
 
 // }

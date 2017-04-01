@@ -10,11 +10,18 @@ import { FormattedMessage } from 'react-intl';
 import H1 from '../../components/H1';
 import messages from './messages';
 import SurveyForm from "../../components/SurveyForm"
-import ImmutableForm from "../../components/FormExample/ImmutableForm.js"
+import ImmutableForm from "../../components/FormExample/ImmutableForm"
 
 interface IFormPage {
 
 }
+
+const showResults = (values: any) =>
+  new Promise(resolve => {
+    setTimeout(() => {  // simulate server latency
+      window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`)
+      resolve()
+    }, 500) })
 
 export default class FormPage extends React.Component<IFormPage, {}> { // eslint-disable-line react/prefer-stateless-function
 
@@ -30,7 +37,7 @@ export default class FormPage extends React.Component<IFormPage, {}> { // eslint
         <H1>
           <FormattedMessage {...messages.header} />
         </H1>
-        <ImmutableForm/>
+        <ImmutableForm onSubmit={showResults}/>
       </div>
     );
   }

@@ -1,6 +1,7 @@
-const validate = values => {
+import * as Immutable from "immutable"
+const validate = (values: Immutable.Map<string, any>) => {
   // IMPORTANT: values is an Immutable.Map here!
-  const errors = {}
+  const errors: any /*Immutable.Map<string, any>*/ = {}
   if (!values.get('username')) {
     errors.username = 'Required'
   } else if (values.get('username').length > 15) {
