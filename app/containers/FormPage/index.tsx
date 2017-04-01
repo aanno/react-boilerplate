@@ -10,6 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import H1 from '../../components/H1';
 import messages from './messages';
 import SurveyForm from "../../components/SurveyForm"
+import ImmutableForm from "../../components/FormExample/ImmutableForm.js"
 
 interface IFormPage {
 
@@ -29,7 +30,7 @@ export default class FormPage extends React.Component<IFormPage, {}> { // eslint
         <H1>
           <FormattedMessage {...messages.header} />
         </H1>
-        <SurveyForm/>
+        <ImmutableForm/>
       </div>
     );
   }
