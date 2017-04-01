@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {DataShape, FormProps, reduxForm, WrappedFieldMetaProps} from 'redux-form/immutable'
+import {DataShape, FormProps, reduxForm, WrappedFieldMetaProps, Field} from 'redux-form/immutable'
 import {connect, Dispatch} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as log from "loglevel"
@@ -87,30 +87,30 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
 
   render() {
     log.debug("SurveyForm.render: props=", this.props)
-    if (!this.props.fields) {
-      return null
-    }
     const {
       asyncValidating,
       dirty,
-      fields: {name, email, occupation, currentlyEmployed, sex},
+      fields: fields,
       active,
       handleSubmit,
       invalid,
       resetForm,
       pristine,
       valid,
-      }: ISurveyFormReal = this.props;
-    if (!(name && email && occupation && currentlyEmployed && sex)) {
-      return null
-    }
+      }: ISurveyFormReal = this.props
+    // {name, email, occupation, currentlyEmployed, sex},
+    const name = fields ? fields.name : {name: "name", value: ""} as any
+    const email = fields ? fields.email : {name: "email", value: ""} as any
+    const occupation = fields ? fields.occupation : {name: "occupation", value: ""} as any
+    const currentlyEmployed = fields ? fields.currentlyEmployed : {name: "currentlyEmployed", value: false} as any
+    const sex = fields ? fields.sex : {name: "sex", value: "male"} as any
     const styles = require('!css-loader!sass-loader!./SurveyForm.scss');
     const renderInput = (field: FieldInputState<any>, label: string, showAsyncValidating?: boolean) =>
-      <div className={'form-group' + (field.error && field.touched ? ' has-error' : '')}>
+      (<div className={'form-group' + (field.error && field.touched ? ' has-error' : '')}>
         <label htmlFor={field.name} className="col-sm-2">{label}</label>
         <div className={'col-sm-8 ' + styles.inputGroup}>
           {showAsyncValidating && asyncValidating && <i className={'fa fa-cog fa-spin ' + styles.cog}/>}
-          <input type="text" className="form-control" id={field.name} {...field}/>
+          <Field component="input" type="text" className="form-control" id={field.name} {...field}/>
           {field.error && field.touched && <div className="text-danger">{field.error}</div>}
           <div className={styles.flags}>
             {field.dirty && <span className={styles.dirty} title="Dirty">D</span>}
@@ -119,7 +119,7 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
             {field.touched && <span className={styles.touched} title="Touched">T</span>}
           </div>
         </div>
-      </div>;
+      </div>)
 
     return (
       <div>
@@ -136,9 +136,9 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
           <div className="form-group">
             <label className="col-sm-2">Sex</label>
             <div className="col-sm-8">
-              <input type="radio" id="sex-male" {...sex} value="male" checked={sex.value === 'male'}/>
+              <Field component="input" type="radio" id="sex-male" {...sex} value="male" checked={sex.value === 'male'}/>
               <label htmlFor="sex-male" className={styles.radioLabel}>Male</label>
-              <input type="radio" id="sex-female" {...sex} value="female" checked={sex.value === 'female'}/>
+              <Field component="input" type="radio" id="sex-female" {...sex} value="female" checked={sex.value === 'female'}/>
               <label htmlFor="sex-female" className={styles.radioLabel}>Female</label>
             </div>
           </div>
