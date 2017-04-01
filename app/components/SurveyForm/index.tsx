@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {DataShape, FormProps, reduxForm, WrappedFieldMetaProps} from 'redux-form/immutable'
 import {connect, Dispatch} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import * as log from "loglevel"
 import surveyValidation from './surveyValidation'
 import surveyActions from './survey'
 import {FieldInputProps, FieldInputState} from "../../../custom-typings/custom-typings"
@@ -50,6 +51,7 @@ function asyncValidate(data: SurveyFormContent, dispatch: Dispatch<any>, {isVali
   dispatch => bindActionCreators(surveyActions, dispatch)
 )
 */
+/*
 @reduxForm({
   form: 'survey',
   fields: ['name', 'email', 'occupation', 'currentlyEmployed', 'sex'],
@@ -64,7 +66,9 @@ function asyncValidate(data: SurveyFormContent, dispatch: Dispatch<any>, {isVali
     sex: "male",
   },
 } as any)
+*/
 class SurveyForm extends React.Component<ISurveyForm, {}> {
+
   static propTypes = {
     active: PropTypes.string,
     asyncValidating: PropTypes.bool.isRequired,
@@ -77,7 +81,15 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
     valid: PropTypes.bool.isRequired,
   }
 
+  constructor(props: ISurveyFormReal) {
+    super(props)
+  }
+
   render() {
+    log.debug("SurveyForm.render: props=", this.props)
+    if (!this.props.fields) {
+      return null
+    }
     const {
       asyncValidating,
       dirty,
@@ -173,7 +185,21 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
   }
 }
 
-export default SurveyForm
+export default reduxForm({
+    form: 'survey',
+    // fields: ['name', 'email', 'occupation', 'currentlyEmployed', 'sex'],
+    validate: surveyValidation,
+    asyncValidate,
+    asyncBlurFields: ['email'],
+    initialValues: {
+      name: "Frank",
+      email: "Frank@frank.fr",
+      occupation: "Frank",
+      currentlyEmployed: true,
+      sex: "male",
+    },
+  }
+)(SurveyForm)
 /*
 export default connect(
   () => ({}),

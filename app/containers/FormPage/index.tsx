@@ -37,7 +37,7 @@ export default class FormPage extends React.Component<IFormPage, {}> { // eslint
         <H1>
           <FormattedMessage {...messages.header} />
         </H1>
-        <ImmutableForm onSubmit={showResults}/>
+        {/*<ImmutableForm onSubmit={showResults}/>*/}
         <SF/>
       </div>
     );
