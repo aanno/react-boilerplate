@@ -130,7 +130,7 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
           <div className="form-group">
             <label htmlFor="currentlyEmployed" className="col-sm-2">Currently Employed?</label>
             <div className="col-sm-8">
-              <input type="checkbox" id="currentlyEmployed" {...currentlyEmployed as any}/>
+              <Field component="input" type="checkbox" id="currentlyEmployed" {...currentlyEmployed as any}/>
             </div>
           </div>
           <div className="form-group">
@@ -198,8 +198,7 @@ export default reduxForm({
       currentlyEmployed: true,
       sex: "male",
     },
-  }
-)(SurveyForm)
+  })(SurveyForm)
 /*
 export default connect(
   () => ({}),
