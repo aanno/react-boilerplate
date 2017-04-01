@@ -24,8 +24,8 @@ const showResults = (values: any) =>
     }, 500) })
 
 export default class FormPage extends React.Component<IFormPage, {}> { // eslint-disable-line react/prefer-stateless-function
-
   render() {
+    const SF: any = SurveyForm
     return (
       <div>
         <Helmet
@@ -38,6 +38,7 @@ export default class FormPage extends React.Component<IFormPage, {}> { // eslint
           <FormattedMessage {...messages.header} />
         </H1>
         <ImmutableForm onSubmit={showResults}/>
+        <SF/>
       </div>
     );
   }

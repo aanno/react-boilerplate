@@ -28,11 +28,12 @@ interface ISurveyForm {
 
 export type SurveyFormContent = Partial<ISurveyFormContent>
 
-export interface ICampaignPage extends Partial<FormProps<DataShape, {}, {}>> {
+export interface ISurveyFormReal extends FormProps<DataShape, {}, {}> {
   fields: ISurveyFormFields,
   values?: ISurveyFormContent,
   active?: boolean,
   resetForm?: any,
+  handleSubmit?: any,
 }
 
 // reduxForm.d.ts:
@@ -87,7 +88,7 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
       resetForm,
       pristine,
       valid,
-      }: ICampaignPage = this.props;
+      }: ISurveyFormReal = this.props;
     if (!(name && email && occupation && currentlyEmployed && sex)) {
       return null
     }
@@ -172,7 +173,10 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
   }
 }
 
+export default SurveyForm
+/*
 export default connect(
   () => ({}),
   (dispatch: Dispatch<any>) => bindActionCreators(surveyActions as any, dispatch)
 )(SurveyForm)
+ */
