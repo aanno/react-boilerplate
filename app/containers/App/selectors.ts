@@ -31,7 +31,7 @@ const makeSelectRepos: MakeSelectType<boolean> = () => createSelector(
 );
 
 const makeSelectLocationState: MakeSelectType<any> = () => {
-  // TODO (tp): Perhaps RouterState?
+  // TODO tp: Perhaps RouterState?
   let prevRoutingState: any;
   let prevRoutingStateJS: any;
 

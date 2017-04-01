@@ -4,6 +4,10 @@
 # and leave all files detected as binary untouched.
 * text=auto
 
+eol lf
+autocrlf false
+#autocrlf input
+
 #
 # The above will handle all files NOT found below
 #

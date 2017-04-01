@@ -7,6 +7,10 @@ import Wrapper from './Wrapper';
 import messages from './messages';
 
 function Footer() {
+  const elem = <A href="https://twitter.com/mxstbr">Max Stoiber</A>
+  const values: any = {
+    author: elem,
+  }
   return (
     <Wrapper>
       <section>
@@ -18,9 +22,7 @@ function Footer() {
       <section>
         <FormattedMessage
           {...messages.authorMessage}
-          values={{
-            author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
-          }}
+          values={values}
         />
       </section>
     </Wrapper>

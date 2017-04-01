@@ -5,9 +5,15 @@
 import {fromJS} from "immutable";
 import {combineReducers} from "redux-immutable";
 import {LOCATION_CHANGE, RouterState, RouterAction} from "react-router-redux";
+import {reducer as formReducer} from 'redux-form/immutable'
 import globalReducer from "./containers/App/reducer";
+import homeReducer from "./containers/HomePage/reducer";
 import languageProviderReducer from "./containers/LanguageProvider/reducer";
-import {IStoreState, MyReducer, MyReducersMapObject} from "../custom-typings/custom-typings";
+import {
+  CrudState, IAction, ICrudAction, IStoreState, MyReducer,
+  MyReducersMapObject,
+} from "../custom-typings/custom-typings";
+import { crudReducer } from "./modules/redux-crud-store/index";
 
 /*
  * routeReducer
@@ -29,12 +35,28 @@ function routeReducer(state: RouterState = routeInitialState, action: RouterActi
   switch (action.type) {
     /* istanbul ignore next */
     case LOCATION_CHANGE:
-      // TODO (tp):
+      // TODO tp:
       return (state as any).merge({
         locationBeforeTransitions: action.payload,
       });
     default:
       return state;
+  }
+}
+
+const initialState = fromJS({})
+
+function extendedCrudReducer(state: CrudState = initialState, action: ICrudAction) {
+  state = crudReducer(state, action) as CrudState
+  if (action.meta && action.payload) {
+    const params = action.payload.params
+    const pop = action.type.split('/').pop()
+    if (!pop) {
+      throw new Error("ICrudAction contains no splittable type!")
+    }
+    return state.setIn([action.meta.model, 'params', pop.trim()], params)
+  } else {
+    return state
   }
 }
 
@@ -46,6 +68,9 @@ export default function createReducer(asyncReducers: MyReducersMapObject): MyRed
     route: routeReducer,
     global: globalReducer,
     language: languageProviderReducer,
+    form: formReducer,
+    models: extendedCrudReducer,
+    home: homeReducer,
     ...asyncReducers,
   }) as MyReducer<IStoreState>;
 }

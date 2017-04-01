@@ -1,4 +1,4 @@
-import {Store} from "react-redux";
+import {Dispatch, Store} from "react-redux";
 import ValidationMap = React.ValidationMap;
 import InjectedIntl = ReactIntl.InjectedIntl;
 import InjectedIntlProps = ReactIntl.InjectedIntlProps;
@@ -6,14 +6,18 @@ import {RouterState} from "react-router-redux";
 import {IAppState} from "../app/containers/App/reducer";
 import * as Redux from "redux";
 import Action = Redux.Action;
-import * as Immuable from "immutable";
-import Map = Immuable.Map
+import * as Immutable from "immutable";
+import Map = Immutable.Map
+import List = Immutable.List
 import Partial = _.Partial;
 import ComponentLifecycle = React.ComponentLifecycle;
 import {ReactWrapper} from "enzyme";
 import ReactInstance = React.ReactInstance;
 import ReactNode = React.ReactNode;
 import ComponentClass = React.ComponentClass;
+import {Config, FormDecorator, WrappedFieldInputProps, WrappedFieldMetaProps} from "redux-form"
+import {ILeftMenu} from "../app/components/tsb/LeftMenu/index"
+import {ITopMenu} from "../app/components/tsb/TopMenu/index"
 
 /**
  * Redux Store plus Middleware
@@ -29,18 +33,37 @@ interface MyReducersMapObject {
   [key: string]: MyReducer<any>;
 }
 
+interface FieldInputState<T> extends WrappedFieldMetaProps<T> {
+  name: string,
+  value: T,
+}
+
+interface FieldInputProps extends Partial<WrappedFieldInputProps> {
+  name: string,
+  // value: FieldValue,
+}
+
+interface IReduxFormState {
+  // TODO tp: For every form, enter the used input-store mapping (i.e. name from <input>)!
+  kdaten: any,
+}
+
 interface IStoreInterface {
   language: string,
   route: RouterState,
   global: IAppState,
+  // TODO tp:
+  models: CrudState,
+  form: IReduxFormState,
 }
 
 /**
  * Redux Store interface for our (concrete) store.
  */
-interface IStoreState extends IImmutableStore, Readonly<IStoreState> {
+interface IStoreState extends IImmutableStore, Readonly<IStoreInterface> {
   // ???
   // get: (id: string) => any,
+  (state: IStoreState, action: IAction): IStoreState,
 }
 
 /**
@@ -52,6 +75,41 @@ interface IImmutableStore extends Map<string, any> {
 
 interface IAction extends Action {
   type: string,
+}
+
+interface IWithId {
+  id: string,
+}
+
+// TODO tp:
+interface ICrudItem extends List<any> {
+  fetchTime: number | undefined,
+}
+
+// TODO tp:
+interface ICrudState extends List<ICrudItem> {
+
+}
+
+// TODO tp:
+type CrudState = ICrudState
+
+interface ICrudActionPayload {
+  id: number,
+  action: ICrudAction,
+  // TODO tp:
+  params: any,
+  data: IWithId[],
+  model: any,
+}
+
+type CrudActionPayload = ICrudActionPayload & IWithId[]
+
+interface ICrudAction extends IAction {
+  payload: CrudActionPayload,
+  // TODO tp:
+  meta: any,
+  error: any,
 }
 
 // redux-immutable:
@@ -106,6 +164,8 @@ interface IReactMinimalComponent extends Element, IReactMinimalProps {
 
 interface IReactMinimalProps {
   readonly children?: React.ReactNode,
+  readonly dispatch?: Dispatch<any>,
+
   // TODO (tp):
   readonly context?: any,
 }
@@ -113,7 +173,6 @@ interface IReactMinimalProps {
 interface IReactPropsIntl extends IReactMinimalProps {
   readonly locale: string,
   readonly messages: ITranslations,
-  readonly dispatch: Dispatch<any>,
 }
 
 interface IMessagesInterface {
@@ -211,3 +270,10 @@ type RepoType = ListItemType<IRepo>;
 interface IComponentToRenderProps {
   item: any;
 }
+
+interface ISelectOption {
+  value: string,
+  text: string,
+}
+
+type ToLocationFunction = (location: Location) => LocationDescriptor

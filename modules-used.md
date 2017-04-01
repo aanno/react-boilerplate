@@ -1,3 +1,8 @@
+dependencies difficult to update
+===
+* react-router (from 3.0.x to 4.0.x)
+* react-helmet (from 3.2.x to 5.0.x)
+
 dependencies
 ===
 
@@ -129,7 +134,7 @@ babel-plugin-transform-react-inline-elements
 babel-plugin-transform-react-remove-prop-types
 ---
 
-babel-preset-latest
+babel-preset-latest => babel-preset-env
 ---
 
 babel-preset-react

@@ -59,7 +59,7 @@ export class TestSyntheticEvent<T> implements SyntheticEvent<T> {
   nativeEvent: Event;
   // If you thought this should be `EventTarget & T`, see https://github.com/DefinitelyTyped/DefinitelyTyped/pull/12239
   target: EventTarget;
-  timeStamp: Date;
+  timeStamp: number;
   type: string;
 
   //

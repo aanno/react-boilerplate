@@ -5,4 +5,6 @@ declare const System: any;
 
 interface Window {
   readonly __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any,
+  readonly __DATE__: string,
+  readonly __GIT__: any,
 }

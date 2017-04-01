@@ -10,14 +10,18 @@ import {connect} from "react-redux";
 import {createSelector} from "reselect";
 import {IntlProvider} from "react-intl";
 import {makeSelectLocale} from "./selectors";
-import {ITranslations} from "../../../custom-typings/custom-typings";
+import {IStoreState, ITranslations} from "../../../custom-typings/custom-typings";
 
 interface ILanguageProvider /* extends IReactPropsIntl */ {
   messages: ITranslations,
+}
+
+interface ILanguageProviderState2Props {
   locale: string,
 }
 
-export class LanguageProvider extends React.PureComponent<ILanguageProvider, {}> { // eslint-disable-line react/prefer-stateless-function
+export class LanguageProvider extends React.PureComponent<
+  ILanguageProvider & ILanguageProviderState2Props, {}> { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
     locale: React.PropTypes.string,
@@ -34,9 +38,9 @@ export class LanguageProvider extends React.PureComponent<ILanguageProvider, {}>
   }
 }
 
-const mapStateToProps = createSelector(
+const mapStateToProps: (state: IStoreState) => ILanguageProviderState2Props = createSelector(
   makeSelectLocale(),
-  (locale) => ({ locale })
+  (locale) => ({ locale }) as any,
 );
 
-export default connect(mapStateToProps)(LanguageProvider);
+export default connect<ILanguageProviderState2Props, {}, ILanguageProvider>(mapStateToProps)(LanguageProvider);

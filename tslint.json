@@ -109,7 +109,8 @@
 	"comment-format": [
 	  true,
 	  "check-space"
-	]
+	],
+	"max-line-length": 160
   },
   "rulesDirectory": [
 	/*

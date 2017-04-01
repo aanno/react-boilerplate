@@ -12,10 +12,12 @@
 import { fromJS } from 'immutable';
 
 import {
-  CHANGE_USERNAME,
+  AUTH_USER, CHANGE_USERNAME,
 } from './constants';
 import {IChangeUsernameAction} from "./actions";
 import {IImmutableStore} from "../../../custom-typings/custom-typings";
+import { apiCall } from "../../modules/redux-crud-store";
+import { API_CALL } from "../../modules/redux-crud-store/actionTypes";
 
 export interface IHomePageState extends IImmutableStore {
   username: string,
@@ -26,13 +28,16 @@ const initialState: IHomePageState = fromJS({
   username: '',
 });
 
-function homeReducer(state: IHomePageState = initialState, action: IChangeUsernameAction) {
+function homeReducer(state: IHomePageState = initialState, action: any) {
   switch (action.type) {
     case CHANGE_USERNAME:
 
       // Delete prefixed '@' from the github username
       return state
         .set('username', action.name.replace(/@/gi, ''));
+    // case AUTH_USER:
+    case API_CALL:
+      return state
     default:
       return state;
   }

@@ -1,0 +1,21 @@
+# scss-lint
+# Attention: ruby tool
+# https://github.com/brigade/scss-lint#installation
+
+
+scss_files: 'app/assets/styles/sass/**/*.s+(a|c)ss'
+# 'app/assets/stylesheets/**/*.css.scss'
+
+exclude: 'sass/vendor/**/*.*'
+# 'app/assets/stylesheets/plugins/**'
+
+linters:
+  BorderZero:
+    enabled: false
+
+  Indentation:
+    exclude:
+      - 'path/to/file.scss'
+      - 'path/to/directory/**'
+    severity: warning
+    width: 2

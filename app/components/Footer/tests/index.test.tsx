@@ -20,13 +20,15 @@ describe('<Footer />', () => {
 
   it('should render the credits', () => {
     const renderedComponent = shallow(<Footer />);
+    const elem = <A href="https://twitter.com/mxstbr">Max Stoiber</A>
+    const values: any = {
+      author: elem,
+    }
     expect(renderedComponent.contains(
       <section>
         <FormattedMessage
           {...messages.authorMessage}
-          values={{
-            author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
-          }}
+          values={values}
         />
       </section>
     )).toBe(true);
