@@ -4,6 +4,7 @@ import {Dispatch} from "react-redux"
 import * as log from "loglevel"
 import surveyValidation from "./surveyValidation"
 import {FieldInputState} from "../../../custom-typings/custom-typings"
+import {stateLog} from "../../utils/immutableJsUtils"
 
 interface ISurveyFormFields {
   name: FieldInputState<string>,
@@ -90,7 +91,8 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
   }
 
   render() {
-    log.debug("SurveyForm.render: props=", this.props)
+    stateLog.debug("SurveyForm.render: props=", this.props)
+    stateLog.debug("SurveyForm.render: state=", this.state)
     const {
       asyncValidating,
       dirty,
@@ -102,6 +104,7 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
       pristine,
       valid,
     }: ISurveyForm = this.props
+    log.debug("survey fields", fields)
     // {name, email, occupation, currentlyEmployed, sex},
     const name = fields ? fields.name : {name: "name", value: ""} as any
     const email = fields ? fields.email : {name: "email", value: ""} as any

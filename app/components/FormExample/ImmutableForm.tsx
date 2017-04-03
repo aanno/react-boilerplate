@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form/immutable' // <--- immutable import
 import validate from './validate'
 import {FieldInputState, IFieldProps} from "../../../custom-typings/custom-typings"
 import {DataShape, FormProps, WrappedFieldProps} from "redux-form"
+import {stateLog} from "../../utils/immutableJsUtils"
 
 interface IImmutableFormFields {
   username: FieldInputState<string>,
@@ -43,6 +44,8 @@ const renderField = ({ input, label, type, meta: { touched, error } }: IFieldPro
 )
 
 const ImmutableForm = (props: IImmutableForm) => {
+  stateLog.debug("immutable form props:", props)
+  // stateLog.debug("immutable form state:", this.state)
   const { handleSubmit, pristine, reset, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
