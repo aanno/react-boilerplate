@@ -97,6 +97,7 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
       asyncValidating,
       dirty,
       fields: fields,
+      values: values,
       active,
       handleSubmit,
       invalid,
@@ -106,9 +107,9 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
     }: ISurveyForm = this.props
     log.debug("survey fields", fields)
     // {name, email, occupation, currentlyEmployed, sex},
-    const name = fields ? fields.name : {name: "name", value: ""} as any
-    const email = fields ? fields.email : {name: "email", value: ""} as any
-    const occupation = fields ? fields.occupation : {name: "occupation", value: ""} as any
+    const name = fields ? fields.name : {name: "name", value: values ? values.name : ""} as any
+    const email = fields ? fields.email : {name: "email", value: values ? values.email : ""} as any
+    const occupation = fields ? fields.occupation : {name: "occupation", value: values ? values.occupation : ""} as any
     const currentlyEmployed = fields ? fields.currentlyEmployed : {name: "currentlyEmployed", value: false} as any
     const sex = fields ? fields.sex : {name: "sex", value: "male"} as any
     const styles = require('!css-loader!sass-loader!./SurveyForm.scss');
