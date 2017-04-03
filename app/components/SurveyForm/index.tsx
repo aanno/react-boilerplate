@@ -37,6 +37,7 @@ export type SurveyFormContent = Partial<ISurveyFormContent>
 export interface ISurveyForm extends FormProps<DataShape, ISurveyFormContent, {}> {
   fields?: ISurveyFormFields,
   values?: ISurveyFormContent,
+  vs?: ISurveyFormContent,
   active?: boolean,
   resetForm?: any,
   onSubmit?: any,
@@ -92,12 +93,12 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
 
   render() {
     stateLog.debug("SurveyForm.render: props=", this.props)
-    stateLog.debug("SurveyForm.render: state=", this.state)
+    // stateLog.debug("SurveyForm.render: state=", this.state)
     const {
       asyncValidating,
       dirty,
       fields: fields,
-      values: values,
+      vs: values,
       active,
       handleSubmit,
       invalid,
@@ -106,12 +107,13 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
       valid,
     }: ISurveyForm = this.props
     log.debug("survey fields", fields)
+    log.debug("survey values", values)
     // {name, email, occupation, currentlyEmployed, sex},
-    const name = fields ? fields.name : {name: "name", value: values ? values.name : ""} as any
-    const email = fields ? fields.email : {name: "email", value: values ? values.email : ""} as any
-    const occupation = fields ? fields.occupation : {name: "occupation", value: values ? values.occupation : ""} as any
-    const currentlyEmployed = fields ? fields.currentlyEmployed : {name: "currentlyEmployed", value: false} as any
-    const sex = fields ? fields.sex : {name: "sex", value: "male"} as any
+    const name = {name: "name", value: values ? values.name : ""} as any
+    const email = {name: "email", value: values ? values.email : ""} as any
+    const occupation = {name: "occupation", value: values ? values.occupation : ""} as any
+    const currentlyEmployed = {name: "currentlyEmployed", value: false} as any
+    const sex = {name: "sex", value: "male"} as any
     const styles = require('!css-loader!sass-loader!./SurveyForm.scss');
     const renderInput = (field: FieldInputState<any>, label: string, showAsyncValidating?: boolean) => {
       log.debug("survey field:", field)
@@ -214,13 +216,14 @@ const Form = reduxForm({
 
 export default connect(
   (state: IStoreState) => {
-    stateLog.debug("SurveyForm.connect state:", state)
+    // stateLog.debug("SurveyForm.connect state:", state)
     // const result = state.form.survey
-    const result = state.getIn(["form", "survey"])
-    stateLog.debug("SurveyForm.connect toProps:", result)
+    let result = state.getIn(["form", "survey"])
     if (!result) {
       return {}
     }
+    result = result.set("vs", result.get("values"))
+    stateLog.debug("SurveyForm.connect toProps:", result)
     return result.toJS()
   },
   // (dispatch: Dispatch<any>) => bindActionCreators(surveyActions as any, dispatch),
