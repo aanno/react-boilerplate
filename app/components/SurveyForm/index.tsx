@@ -23,18 +23,24 @@ interface ISurveyFormContent {
   sex: boolean,
 }
 
+/*
 interface ISurveyForm {
-  fields: ISurveyFormFields,
-}
-
-export type SurveyFormContent = Partial<ISurveyFormContent>
-
-export interface ISurveyFormReal extends FormProps<DataShape, {}, {}> {
-  fields: ISurveyFormFields,
+  fields?: ISurveyFormFields,
   values?: ISurveyFormContent,
   active?: boolean,
   resetForm?: any,
-  handleSubmit?: any,
+  onSubmit?: any,
+}
+ */
+
+export type SurveyFormContent = Partial<ISurveyFormContent>
+
+export interface ISurveyForm extends FormProps<DataShape, {}, {}> {
+  fields?: ISurveyFormFields,
+  values?: ISurveyFormContent,
+  active?: boolean,
+  resetForm?: any,
+  onSubmit?: any,
 }
 
 // reduxForm.d.ts:
@@ -81,7 +87,7 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
     valid: PropTypes.bool.isRequired,
   }
 
-  constructor(props: ISurveyFormReal) {
+  constructor(props: ISurveyForm) {
     super(props)
   }
 
@@ -97,7 +103,7 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
       resetForm,
       pristine,
       valid,
-      }: ISurveyFormReal = this.props
+      }: ISurveyForm = this.props
     // {name, email, occupation, currentlyEmployed, sex},
     const name = fields ? fields.name : {name: "name", value: ""} as any
     const email = fields ? fields.email : {name: "email", value: ""} as any
