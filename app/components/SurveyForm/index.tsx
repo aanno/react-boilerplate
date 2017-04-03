@@ -1,11 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {DataShape, FormProps, reduxForm, WrappedFieldMetaProps, Field} from 'redux-form/immutable'
-import {connect, Dispatch} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import React, {PropTypes} from "react"
+import {DataShape, Field, FormProps, reduxForm} from "redux-form/immutable"
+import {Dispatch} from "react-redux"
 import * as log from "loglevel"
-import surveyValidation from './surveyValidation'
-import surveyActions from './survey'
-import {FieldInputProps, FieldInputState} from "../../../custom-typings/custom-typings"
+import surveyValidation from "./surveyValidation"
+import {FieldInputState} from "../../../custom-typings/custom-typings"
 
 interface ISurveyFormFields {
   name: FieldInputState<string>,
@@ -24,18 +22,18 @@ interface ISurveyFormContent {
 }
 
 /*
-interface ISurveyForm {
-  fields?: ISurveyFormFields,
-  values?: ISurveyFormContent,
-  active?: boolean,
-  resetForm?: any,
-  onSubmit?: any,
-}
+ interface ISurveyForm {
+ fields?: ISurveyFormFields,
+ values?: ISurveyFormContent,
+ active?: boolean,
+ resetForm?: any,
+ onSubmit?: any,
+ }
  */
 
 export type SurveyFormContent = Partial<ISurveyFormContent>
 
-export interface ISurveyForm extends FormProps<DataShape, {}, {}> {
+export interface ISurveyForm extends FormProps<DataShape, ISurveyFormContent, {}> {
   fields?: ISurveyFormFields,
   values?: ISurveyFormContent,
   active?: boolean,
@@ -53,26 +51,26 @@ function asyncValidate(data: SurveyFormContent, dispatch: Dispatch<any>, {isVali
 }
 
 /*
-@connect(() => ({}),
-  dispatch => bindActionCreators(surveyActions, dispatch)
-)
-*/
+ @connect(() => ({}),
+ dispatch => bindActionCreators(surveyActions, dispatch)
+ )
+ */
 /*
-@reduxForm({
-  form: 'survey',
-  fields: ['name', 'email', 'occupation', 'currentlyEmployed', 'sex'],
-  validate: surveyValidation,
-  asyncValidate,
-  asyncBlurFields: ['email'],
-  initialValues: {
-    name: "Frank",
-    email: "Frank@frank.fr",
-    occupation: "Frank",
-    currentlyEmployed: true,
-    sex: "male",
-  },
-} as any)
-*/
+ @reduxForm({
+ form: 'survey',
+ fields: ['name', 'email', 'occupation', 'currentlyEmployed', 'sex'],
+ validate: surveyValidation,
+ asyncValidate,
+ asyncBlurFields: ['email'],
+ initialValues: {
+ name: "Frank",
+ email: "Frank@frank.fr",
+ occupation: "Frank",
+ currentlyEmployed: true,
+ sex: "male",
+ },
+ } as any)
+ */
 class SurveyForm extends React.Component<ISurveyForm, {}> {
 
   static propTypes = {
@@ -103,7 +101,7 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
       resetForm,
       pristine,
       valid,
-      }: ISurveyForm = this.props
+    }: ISurveyForm = this.props
     // {name, email, occupation, currentlyEmployed, sex},
     const name = fields ? fields.name : {name: "name", value: ""} as any
     const email = fields ? fields.email : {name: "email", value: ""} as any
@@ -111,22 +109,25 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
     const currentlyEmployed = fields ? fields.currentlyEmployed : {name: "currentlyEmployed", value: false} as any
     const sex = fields ? fields.sex : {name: "sex", value: "male"} as any
     const styles = require('!css-loader!sass-loader!./SurveyForm.scss');
-    const renderInput = (field: FieldInputState<any>, label: string, showAsyncValidating?: boolean) =>
-      (<div className={'form-group' + (field.error && field.touched ? ' has-error' : '')}>
-        <label htmlFor={field.name} className="col-sm-2">{label}</label>
-        <div className={'col-sm-8 ' + styles.inputGroup}>
-          {showAsyncValidating && asyncValidating && <i className={'fa fa-cog fa-spin ' + styles.cog}/>}
-          <Field component="input" type="text" className="form-control" id={field.name} {...field}/>
-          {field.error && field.touched && <div className="text-danger">{field.error}</div>}
-          <div className={styles.flags}>
-            {field.dirty && <span className={styles.dirty} title="Dirty">D</span>}
-            {field.active && <span className={styles.active} title="Active">A</span>}
-            {field.visited && <span className={styles.visited} title="Visited">V</span>}
-            {field.touched && <span className={styles.touched} title="Touched">T</span>}
+    const renderInput = (field: FieldInputState<any>, label: string, showAsyncValidating?: boolean) => {
+      log.debug("survey field:", field)
+      return (
+        <div className={'form-group' + (field.error && field.touched ? ' has-error' : '')}>
+          <label htmlFor={field.name} className="col-sm-2">{label}</label>
+          <div className={'col-sm-8 ' + styles.inputGroup}>
+            {showAsyncValidating && asyncValidating && <i className={'fa fa-cog fa-spin ' + styles.cog}/>}
+            <Field component="input" type="text" className="form-control" id={field.name} {...field}/>
+            {field.error && field.touched && <div className="text-danger">{field.error}</div>}
+            <div className={styles.flags}>
+              {field.dirty && <span className={styles.dirty} title="Dirty">D</span>}
+              {field.active && <span className={styles.active} title="Active">A</span>}
+              {field.visited && <span className={styles.visited} title="Visited">V</span>}
+              {field.touched && <span className={styles.touched} title="Touched">T</span>}
+            </div>
           </div>
-        </div>
-      </div>)
-
+        </div>)
+    }
+    log.debug("survey form props:", (this.props))
     return (
       <div>
         <form className="form-horizontal" onSubmit={handleSubmit}>
@@ -144,7 +145,8 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
             <div className="col-sm-8">
               <Field component="input" type="radio" id="sex-male" {...sex} value="male" checked={sex.value === 'male'}/>
               <label htmlFor="sex-male" className={styles.radioLabel}>Male</label>
-              <Field component="input" type="radio" id="sex-female" {...sex} value="female" checked={sex.value === 'female'}/>
+              <Field component="input" type="radio" id="sex-female" {...sex} value="female"
+                     checked={sex.value === 'female'}/>
               <label htmlFor="sex-female" className={styles.radioLabel}>Female</label>
             </div>
           </div>
@@ -192,22 +194,22 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
 }
 
 export default reduxForm({
-    form: 'survey',
-    // fields: ['name', 'email', 'occupation', 'currentlyEmployed', 'sex'],
-    validate: surveyValidation,
-    asyncValidate,
-    asyncBlurFields: ['email'],
-    initialValues: {
-      name: "Frank",
-      email: "Frank@frank.fr",
-      occupation: "Frank",
-      currentlyEmployed: true,
-      sex: "male",
-    },
-  })(SurveyForm)
+  form: 'survey',
+  // fields: ['name', 'email', 'occupation', 'currentlyEmployed', 'sex'],
+  validate: surveyValidation,
+  asyncValidate,
+  asyncBlurFields: ['email'],
+  initialValues: {
+    name: "Frank",
+    email: "Frank@frank.fr",
+    occupation: "Frank",
+    currentlyEmployed: true,
+    sex: "male",
+  },
+})(SurveyForm)
 /*
-export default connect(
-  () => ({}),
-  (dispatch: Dispatch<any>) => bindActionCreators(surveyActions as any, dispatch)
-)(SurveyForm)
+ export default connect(
+ () => ({}),
+ (dispatch: Dispatch<any>) => bindActionCreators(surveyActions as any, dispatch)
+ )(SurveyForm)
  */

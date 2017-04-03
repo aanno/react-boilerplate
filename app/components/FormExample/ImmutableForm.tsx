@@ -24,7 +24,7 @@ interface IImmutableForm {
 
 export type ImmutableFormContent = Partial<IImmutableFormContent>
 
-export interface IImmutableForm extends Partial<FormProps<DataShape, {}, {}>> {
+export interface IImmutableForm extends FormProps<DataShape, IImmutableFormContent, {}> {
   fields?: IImmutableFormFields,
   values?: IImmutableFormContent,
   active?: boolean,
