@@ -1,9 +1,9 @@
 import React, {PropTypes} from "react"
 import {DataShape, Field, FormProps, reduxForm} from "redux-form/immutable"
-import {Dispatch} from "react-redux"
+import {connect, Dispatch} from "react-redux"
 import * as log from "loglevel"
 import surveyValidation from "./surveyValidation"
-import {FieldInputState} from "../../../custom-typings/custom-typings"
+import {FieldInputState, IStoreState} from "../../../custom-typings/custom-typings"
 import {stateLog} from "../../utils/immutableJsUtils"
 
 interface ISurveyFormFields {
@@ -196,7 +196,7 @@ class SurveyForm extends React.Component<ISurveyForm, {}> {
   }
 }
 
-export default reduxForm({
+const Form = reduxForm({
   form: 'survey',
   // fields: ['name', 'email', 'occupation', 'currentlyEmployed', 'sex'],
   validate: surveyValidation,
@@ -210,9 +210,17 @@ export default reduxForm({
     sex: "male",
   },
 })(SurveyForm)
-/*
- export default connect(
- () => ({}),
- (dispatch: Dispatch<any>) => bindActionCreators(surveyActions as any, dispatch)
- )(SurveyForm)
- */
+
+export default connect(
+  (state: IStoreState) => {
+    stateLog.debug("SurveyForm.connect state:", state)
+    // const result = state.form.survey
+    const result = state.getIn(["form", "survey"])
+    stateLog.debug("SurveyForm.connect toProps:", result)
+    if (!result) {
+      return {}
+    }
+    return result.toJS()
+  },
+  // (dispatch: Dispatch<any>) => bindActionCreators(surveyActions as any, dispatch),
+)(Form)

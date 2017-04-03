@@ -18,6 +18,8 @@ import ComponentClass = React.ComponentClass;
 import {Config, FormDecorator, WrappedFieldInputProps, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form"
 import {ILeftMenu} from "../app/components/tsb/LeftMenu/index"
 import {ITopMenu} from "../app/components/tsb/TopMenu/index"
+import {IImmutableForm} from "../app/components/FormExample/ImmutableForm"
+import {ISurveyForm} from "../app/components/SurveyForm/index"
 
 /**
  * Redux Store plus Middleware
@@ -50,7 +52,8 @@ interface IFieldProps extends WrappedFieldProps<any> {
 
 interface IReduxFormState {
   // TODO tp: For every form, enter the used input-store mapping (i.e. name from <input>)!
-  kdaten: any,
+  immutableExample: IImmutableForm,
+  survey: ISurveyForm,
 }
 
 interface IStoreInterface {
