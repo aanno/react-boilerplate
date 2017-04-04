@@ -1,4 +1,12 @@
 import "babel-polyfill";
+/**
+ * Allow to use ImmutableJS Maps like 'normal' JS Objects
+ *
+ * Details:
+ * https://github.com/facebook/immutable-js/issues/440
+ */
+import "proxy-polyfill";
+import "immutable-proxy";
 // Import all the third party stuff
 import * as React from "react";
 import * as ReactDOM from "react-dom";
