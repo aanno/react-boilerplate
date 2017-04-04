@@ -9,6 +9,7 @@ import {syncHistoryWithStore} from "react-router-redux";
 import * as FontFaceObserver from "fontfaceobserver";
 import {useScroll} from "react-router-scroll";
 import {AppContainer} from "react-hot-loader";
+import {versionOfBuild} from "./utils/version";
 import "react-hot-loader/patch";
 import "sanitize.css/sanitize.css";
 // Import root app
@@ -82,6 +83,8 @@ const render = (messages: ITranslations) => {
     document.getElementById('app')
   );
 };
+
+versionOfBuild();
 
 // Hot reloadable translation json files
 if (module.hot) {
